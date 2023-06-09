@@ -1,0 +1,238 @@
+﻿<Window x:Class="NewBlueJayERPBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        xmlns:local="clr-namespace:NewBlueJayERPBrowser"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1000">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" >
+            <Image HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="149" Stretch="Fill" Source="logo.png"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" >
+            <Label x:Name="lblTitle" Content="Blue Jay ERP" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="35" Height="75"/>
+        </StackPanel>
+        <Rectangle Grid.Column="0" Grid.Row="1" Grid.RowSpan="1000">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightBlue" Offset="0" />
+                    <GradientStop Color="AliceBlue" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,20,1,1" >
+            <Expander x:Name="expEmployees" Header="Employees" FontSize="16">
+                <StackPanel Margin="10,0,0,0">
+                    <Expander x:Name="expEmployeeDataEntry" Header="Data Entry" FontSize="14">
+                        <StackPanel Margin="10,0,0,0">
+                            <Expander x:Name="expAddNonProductionProductivity" Header="Add Non-Production Productivity" FontSize="14"/>
+                            <Expander x:Name="expAddIncentivePayStatus" Header="Add Incentive Pay Status" FontSize="14"/>
+                            <Expander x:Name="expAddIncentivePayTitle" Header="Add Inventive Pay Title" FontSize="14"/>
+                            <Expander x:Name="expVerifyIncentivePay" Header="Verify Incentive Pay" FontSize="14"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expEmployeeReports" Header="Reports" FontSize="14">
+                        <StackPanel Margin="10,0,0,0">
+                            <Expander x:Name="expCompareEmployeeCrews" Header="Compare Employee Crews" FontSize="14"/>
+                            <Expander x:Name="expDesignEmployeeProductivity" Header="Design Employee Productivity" FontSize="14"/>
+                            <Expander x:Name="expEmployeeHoursPunched" Header="Employee Hours Punched" FontSize="14"/>
+                            <Expander x:Name="expEmployeeLookup" Header="Employee Lookup" FontSize="14"/>
+                            <Expander x:Name="expEmployeeOvertimeReport" Header="Employee Overtime Report" FontSize="14"/>
+                            <Expander x:Name="expEmployeeRoster" Header="Employee Roster" FontSize="14"/>
+                            <Expander x:Name="expManagerHourlyDailyReport" Header="Manager Hourly Daily Report" FontSize="14"/>
+                            <Expander x:Name="expNonProductionProductivity" Header="Non-Production Productivity" FontSize="14"/>
+                            <Expander x:Name="expManagerProductivityPunchedGraph" Header="Productivity Punched Graph" FontSize="14"/>
+                            <Expander x:Name="expPunchedVSProductionHours" Header="Punched Vs Production Hours" FontSize="14"/>
+                            <Expander x:Name="expViewEmployeeProduction" Header="View Employee Production" FontSize="14"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expEmployeeAdministration" Header="Administration" FontSize="14">
+                        <StackPanel Margin="10,0,0,0">
+                            <Expander x:Name="expAddDepartment" Header="Add Department" FontSize="14"/>
+                            <Expander x:Name="expAddEmployee" Header="Add Employee" FontSize="14"/>
+                            <Expander x:Name="expAddEmployeeGroup" Header="Add Employee Group" FontSize="14"/>
+                            <Expander x:Name="expAddEmployeeToVehicleList" Header="Add Employee To Vehicle List" FontSize="14"/>
+                            <Expander x:Name="expCreateFuelCardNumber" Header="Create Fuel Card Number" FontSize="14"/>
+                            <Expander x:Name="expEditEmployee" Header="Edit Employee" FontSize="14"/>
+                            <Expander x:Name="expEditEmployeeHours" Header="Edit Employee Hours" FontSize="14"/>
+                            <Expander x:Name="expEditFuelCard" Header="Edit Fuel Card" FontSize="14"/>
+                            <Expander x:Name="expEditFuelCardPIN" Header="Edit Fuel Card PIN" FontSize="14"/>
+                            <Expander x:Name="expManuallyAddFuelPIN" Header="Manually Add Fuel PIN" FontSize="14"/>
+                            <Expander x:Name="expTerminateEmployee" Header="Terminate Employee" FontSize="14"/>
+                            <Expander x:Name="expProductivityDataEntryReport" Header="Productivity Data Entry Report" FontSize="14"/>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Expander>
+            <Expander x:Name="expProjects" Header="Projects" FontSize="16" Margin="0,5,0,0">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expProjectDashboards" Header="Project Dashboards" FontSize="14">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expOpenProjectsDashboard" Header="Open Projects Dashboard" />
+                            <Expander x:Name="expOverDueProjectsDashboard" Header="Over Due Projects Dashboard" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" FontSize="14">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expAddNewProject" Header="Add New Project" />
+                            <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
+                            <Expander x:Name="expEditProject" Header="Edit Project" />
+                            <Expander x:Name="expProjectMangementSheet" Header="Project Management Sheet" />
+                            <Expander x:Name="expSubmitAfterHoursReport" Header="Submit After Hours Report" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" FontSize="14">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expCreateJSIEntry" Header="Create JSI Entry" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expJSIReports" Header="JSI Reports" FontSize="14">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expJSIProjectReports" Header="JSI Project Reports" />
+                            <Expander x:Name="expJSIDateReports" Header="JSI Date Reports" />
+                            <Expander x:Name="expViewJSIInspection" Header="View JSI Inspection" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expProjectReports" Header="Project Reports" FontSize="14">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expCreateProductivitySheets" Header="Create Productivity Sheets" />
+                            <Expander x:Name="expDepartmentOpenProjectReport" Header="Department Open Project Report" />
+                            <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" />
+                            <Expander x:Name="expOverdueProjectReport" Header="Overdue Project Report" />
+                            <Expander x:Name="expFootagesReport" Header="Footages Report" />
+                            <Expander x:Name="expInvoiceReport" Header="Invoice Report" />
+                            <Expander x:Name="expProductionReport" Header="Production Report" />
+                            <Expander x:Name="expProductivityReport" Header="Productivity Report" />
+                            <Expander x:Name="expProductivityCostingReport" Header="Productivity Costing Report" />
+                            <Expander x:Name="expShopAnalysis" Header="Shop Analysis" />
+                            <Expander x:Name="expSortedWorkTaskReport" Header="Sorted Work Task Report" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expProjectAdministration" Header="Project Administration" FontSize="14">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expAddNonProductionTask" Header="Add Non-ProductionTask" />
+                            <Expander x:Name="expAddProductionTask" Header="Add Production Task" />
+                            <Expander x:Name="expAddWorkTask" Header="Add Work Task" />
+                            <Expander x:Name="expAddWOVBillingCode" Header="Add WOV Billing Code" />
+                            <Expander x:Name="expAddWOVTasks" Header="Add WOV Task" />
+                            <Expander x:Name="expAssignWorkTasks" Header="Assign Work Tasks" />
+                            <Expander x:Name="expEditWorkTask" Header="Edit Work Task" />
+                            <Expander x:Name="expEditWOVBillingCode" Header="Edit WOV Billing Code" />
+                            <Expander x:Name="expImportNonProductionTask" Header="Import Non-Production Task" />
+                            <Expander x:Name="expRemoveDuplicateProjects" Header="Remove Duplicate Projects" />
+                            <Expander x:Name="expVoidDesignProductivity" Header="Void Design Productivity" />
+                            <Expander x:Name="expVoidProductivity" Header="Void Productivity" />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Expander>
+            <Expander x:Name="expRentals" Header="Rentals" FontSize="16" Margin="0,5,0,0">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expRentalDataEntry" Header="Rental Data Entry" >
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expCreateRental" Header="Create Rental" />
+                            <Expander x:Name="expUpdateRental" Header="Update Rental" />
+                            <Expander x:Name="expCloseRental" Header="Close Rental" />
+                        </StackPanel>                        
+                    </Expander>
+                    <Expander x:Name="expRentalReports" Header="Rental Reports" >
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expOpenRentalReport" Header="Open Rental Report" />
+                            <Expander x:Name="expExpiringRentalReport" Header="Expiring Rental Report" />
+                            <Expander x:Name="expViewRental" Header="View Rental" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expRentalAdministration" Header="Rental Administration">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expImportVendors" Header="Import Vendors" />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Expander>
+            <Expander x:Name="expVehicles" Header="Vehicles" FontSize="16" Margin="0,5,0,0">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry"></Expander>
+                    <Expander x:Name="expVehicleReports" Header="Vehicle Reports" ></Expander>
+                    <Expander x:Name="expVehicleAdministration" Header="Vehicle Administration"></Expander>
+                </StackPanel>
+            </Expander>
+            <Expander x:Name="expTrailers" Header="Trailers" FontSize="16" Margin="0,5,0,0">
+
+            </Expander>
+            <Expander x:Name="expInventory" Header="Inventory" FontSize="16" Margin="0,5,0,0">
+
+            </Expander>
+            <Expander x:Name="expAssets" Header="Assets" FontSize="16" Margin="0,5,0,0">
+
+            </Expander>
+            <Expander x:Name="expITInfo" Header="IT Info" FontSize="16" Margin="0,5,0,0">
+
+            </Expander>
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="0,5,0,0">
+
+            </Expander>
+            <Expander x:Name="expClose" Header="Close" FontSize="16" Margin="0,5,0,0" Expanded="expClose_Expanded">
+
+            </Expander>
+        </StackPanel>
+        <Frame x:Name="fraMainWindow" Grid.Column="1" Grid.Row="1" />
+    </Grid>
+</Window>

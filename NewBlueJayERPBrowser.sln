@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBlueJayERPBrowser", "NewBlueJayERPBrowser\NewBlueJayERPBrowser.csproj", "{CF0F9073-FFF7-4F76-A94A-380EB059D3B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF0F9073-FFF7-4F76-A94A-380EB059D3B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF0F9073-FFF7-4F76-A94A-380EB059D3B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF0F9073-FFF7-4F76-A94A-380EB059D3B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF0F9073-FFF7-4F76-A94A-380EB059D3B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91C73251-FB26-4797-8888-CCF2D11B27BC}
+	EndGlobalSection
+EndGlobal
