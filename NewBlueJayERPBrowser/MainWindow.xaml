@@ -1,13 +1,12 @@
 ﻿<Window x:Class="NewBlueJayERPBrowser.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        xmlns:local="clr-namespace:NewBlueJayERPBrowser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000">
+        Title="MainWindow" Height="800" Width="1000" Loaded="Window_Loaded" >
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#358AB1" />
@@ -68,9 +67,9 @@
             <Image HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="149" Stretch="Fill" Source="logo.png"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" >
-            <Label x:Name="lblTitle" Content="Blue Jay ERP" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="35" Height="75"/>
+            <Label x:Name="lblTitle" Content="Blue Jay Communications ERP" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="35" Height="75"/>
         </StackPanel>
-        <Rectangle Grid.Column="0" Grid.Row="1" Grid.RowSpan="1000">
+        <Rectangle x:Name="stpSideBar" Grid.Column="0" Grid.Row="1" Grid.RowSpan="1000">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="LightBlue" Offset="0" />
@@ -79,7 +78,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,20,1,1" >
-            <Expander x:Name="expEmployees" Header="Employees" FontSize="16">
+            <Expander x:Name="expEmployees" Header="Employees" FontSize="16" Expanded="expEmployees_Expanded">
                 <StackPanel Margin="10,0,0,0">
                     <Expander x:Name="expEmployeeDataEntry" Header="Data Entry" FontSize="14">
                         <StackPanel Margin="10,0,0,0">
@@ -122,7 +121,7 @@
                     </Expander>
                 </StackPanel>
             </Expander>
-            <Expander x:Name="expProjects" Header="Projects" FontSize="16" Margin="0,5,0,0">
+            <Expander x:Name="expProjects" Header="Projects" FontSize="16" Margin="0,5,0,0" Expanded="expProjects_Expanded">
                 <StackPanel Margin="10,1,1,1">
                     <Expander x:Name="expProjectDashboards" Header="Project Dashboards" FontSize="14">
                         <StackPanel Margin="10,1,1,1">
@@ -184,54 +183,120 @@
                     </Expander>
                 </StackPanel>
             </Expander>
-            <Expander x:Name="expRentals" Header="Rentals" FontSize="16" Margin="0,5,0,0">
+            <Expander x:Name="expRentals" Header="Rentals" FontSize="16" Margin="0,5,0,0" Expanded="expRentals_Expanded">
                 <StackPanel Margin="10,1,1,1">
-                    <Expander x:Name="expRentalDataEntry" Header="Rental Data Entry" >
+                    <Expander x:Name="expRentalDataEntry" FontSize="14" Header="Rental Data Entry" >
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expCreateRental" Header="Create Rental" />
                             <Expander x:Name="expUpdateRental" Header="Update Rental" />
                             <Expander x:Name="expCloseRental" Header="Close Rental" />
                         </StackPanel>                        
                     </Expander>
-                    <Expander x:Name="expRentalReports" Header="Rental Reports" >
+                    <Expander x:Name="expRentalReports" FontSize="14" Header="Rental Reports" >
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expOpenRentalReport" Header="Open Rental Report" />
                             <Expander x:Name="expExpiringRentalReport" Header="Expiring Rental Report" />
                             <Expander x:Name="expViewRental" Header="View Rental" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expRentalAdministration" Header="Rental Administration">
+                    <Expander x:Name="expRentalAdministration" FontSize="14" Header="Rental Administration">
                         <StackPanel Margin="10,1,1,1">
-                            <Expander x:Name="expImportVendors" Header="Import Vendors" />
+                            <Expander x:Name="expImportVendors"  Header="Import Vendors" />
                         </StackPanel>
                     </Expander>
                 </StackPanel>
             </Expander>
-            <Expander x:Name="expVehicles" Header="Vehicles" FontSize="16" Margin="0,5,0,0">
+            <Expander x:Name="expVehicles" Header="Vehicles" FontSize="16" Margin="0,5,0,0" Expanded="expVehicles_Expanded">
                 <StackPanel Margin="10,1,1,1">
-                    <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry"></Expander>
-                    <Expander x:Name="expVehicleReports" Header="Vehicle Reports" ></Expander>
-                    <Expander x:Name="expVehicleAdministration" Header="Vehicle Administration"></Expander>
+                    <Expander x:Name="expVehicleDataEntry" FontSize="14" Header="Vehicle Data Entry"></Expander>
+                    <Expander x:Name="expVehicleReports" FontSize="14" Header="Vehicle Reports" ></Expander>
+                    <Expander x:Name="expVehicleAdministration" FontSize="14" Header="Vehicle Administration"></Expander>
                 </StackPanel>
             </Expander>
-            <Expander x:Name="expTrailers" Header="Trailers" FontSize="16" Margin="0,5,0,0">
-
+            <Expander x:Name="expTrailers" Header="Trailers" FontSize="16" Margin="0,5,0,0" Expanded="expTrailers_Expanded">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expTrailerDataEntry" FontSize="14" Header="Trailer Data Entry" ></Expander>
+                    <Expander x:Name="expTrailerReports" FontSize="14" Header="Trailer Reports" ></Expander>
+                    <Expander x:Name="expTrailerAdministration" FontSize="14" Header="Trailer Administration"></Expander>
+                </StackPanel>
             </Expander>
-            <Expander x:Name="expInventory" Header="Inventory" FontSize="16" Margin="0,5,0,0">
-
+            <Expander x:Name="expInventory" Header="Inventory" FontSize="16" Margin="0,5,0,0" Expanded="expInventory_Expanded">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expInventoryReports" FontSize="14" Header="Inventory Reports"></Expander>
+                </StackPanel>
             </Expander>
-            <Expander x:Name="expAssets" Header="Assets" FontSize="16" Margin="0,5,0,0">
-
+            <Expander x:Name="expAssets" Header="Assets" FontSize="16" Margin="0,5,0,0" Expanded="expAssets_Expanded">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expAssetReports" FontSize="14" Header="Asset Reports"></Expander>
+                </StackPanel>
             </Expander>
-            <Expander x:Name="expITInfo" Header="IT Info" FontSize="16" Margin="0,5,0,0">
-
+            <Expander x:Name="expITInfo" Header="IT Info" FontSize="16" Margin="0,5,0,0" Expanded="expITInfo_Expanded">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expITDateEntry" FontSize="14" Header="IT Data Entry">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expAddSearchTerms" FontSize="14" Header="Add Search Terms" />
+                            <Expander x:Name="expCreateProblemType" FontSize="14" Header="Create Problem Type" />
+                            <Expander x:Name="expCreateITYHelpDeskTicket" FontSize="14" Header="Create IT Help Desk Ticket" />
+                            <Expander x:Name="expEditSearchTerms" FontSize="14" Header="Edit Search Terms" />
+                            <Expander x:Name="expReopenHelpDeskTicket" FontSize="14" Header="Re-Open Help Desk Ticket" />
+                            <Expander x:Name="expUpdateHelpDeskTickets" FontSize="14" Header="Update Help Desk Tickets" />
+                        </StackPanel>                        
+                    </Expander>
+                    <Expander x:Name="expITReports" Header="IT Reports">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expEmailServerReport" FontSize="14" Header="Email Server Report" />
+                            <Expander x:Name="expEventLogReport" FontSize="14" Header="Event Log Report" />
+                            <Expander x:Name="expMyOpenTickets" FontSize="14" Header="My Open Tickets" />
+                            <Expander x:Name="expMyTickets" FontSize="14" Header="My Tickets" />
+                            <Expander x:Name="expHelpDeskTicketReport" FontSize="14" Header="Help Desk Ticket Report" />
+                            <Expander x:Name="expServerAuditLogReport" FontSize="14" Header="Server Audit Log Report" />
+                            <Expander x:Name="expServerSecurityReport" FontSize="14" Header="Server Security Report" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expPhoneDataEntry" Header="Phone Data Entry">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expAddEditCellPhone" FontSize="14" Header="Add/Edit Cell Phone" />
+                            <Expander x:Name="expAddEditPhoneExt" FontSize="14" Header="Add/Edit Phone Extension" />
+                            <Expander x:Name="expAssignPhones" FontSize="14" Header = "Assign Phones" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander x:Name="expPhoneReports" Header="Phone Reports" >
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expPhoneCallSearch" FontSize="14" Header="Phone Call Search" />
+                            <Expander x:Name="expPhoneList" FontSize="14" Header="Phone List" />
+                            <Expander x:Name="expUnassignedPhoneList" FontSize="14" Header="Unassigned Phone List" />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
             </Expander>
-            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="0,5,0,0">
-
+            <Expander x:Name="expTasks" Header="Tasks" FontSize="16" Margin="0,5,0,0" Expanded="expTasks_Expanded">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expAssignTask" FontSize="14" Header="Assign Task" />
+                    <Expander x:Name="expMyTasks" FontSize="14" Header="My Tasks" />
+                    <Expander x:Name="expMyOriginatingTasks" FontSize="14" Header="My Originating Tasks" />
+                </StackPanel>
             </Expander>
-            <Expander x:Name="expClose" Header="Close" FontSize="16" Margin="0,5,0,0" Expanded="expClose_Expanded">
-
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="0,5,0,0" Expanded="expHelp_Expanded">
+                <StackPanel Margin="10,1,1,1">
+                    <Expander x:Name="expCreateHelpDeskTicket" FontSize="14" Header="Create Help Desk Ticket" />
+                    <Expander x:Name="expMySubmittedTickets" FontSize="14" Header="My Submitted Tickets" />
+                </StackPanel>
             </Expander>
+            <Expander x:Name="expClose" Header="Close" FontSize="16" Margin="0,5,0,0" Expanded="expClose_Expanded" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Height="250" Width="300">
+            <StackPanel Orientation="Horizontal" Height="50">
+                <Label x:Name="lblEmployeeID" Width="110" Content="Employee ID" FontSize="18" Height="50" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                <PasswordBox x:Name="pbxEmployeeID" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="175" Margin="10,1,1,1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="50">
+                <Label x:Name="lblLastName" Width="110" Content="Last Name" FontSize="18" Height="50" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="txtLastName" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="175" Margin="10,1,1,1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="100">
+                <Button x:Name="btnSignIn" Content="Sign In" FontSize="24" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="50" Width="125" Margin="20,1,1,1" Click="btnSignIn_Click"/>
+                <Button x:Name="btnCancel" Content="Cancel" FontSize="24" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="50" Width="125" Margin="10,1,1,1" Click="btnCancel_Click"/>
+            </StackPanel>
         </StackPanel>
         <Frame x:Name="fraMainWindow" Grid.Column="1" Grid.Row="1" />
     </Grid>
