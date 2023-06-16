@@ -123,13 +123,13 @@
             </Expander>
             <Expander x:Name="expProjects" Header="Projects" FontSize="16" Margin="0,5,0,0" Expanded="expProjects_Expanded">
                 <StackPanel Margin="10,1,1,1">
-                    <Expander x:Name="expProjectDashboards" Header="Project Dashboards" FontSize="14">
+                    <Expander x:Name="expProjectDashboards" Header="Project Dashboards" FontSize="14" Expanded="expProjectDashboards_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expOpenProjectsDashboard" Header="Open Projects Dashboard" />
                             <Expander x:Name="expOverDueProjectsDashboard" Header="Over Due Projects Dashboard" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" FontSize="14">
+                    <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" FontSize="14" Expanded="expProjectDataEntry_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expAddNewProject" Header="Add New Project" />
                             <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
@@ -138,19 +138,19 @@
                             <Expander x:Name="expSubmitAfterHoursReport" Header="Submit After Hours Report" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" FontSize="14">
+                    <Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" FontSize="14" Expanded="expJSIDataEntry_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expCreateJSIEntry" Header="Create JSI Entry" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expJSIReports" Header="JSI Reports" FontSize="14">
+                    <Expander x:Name="expJSIReports" Header="JSI Reports" FontSize="14" Expanded="expJSIReports_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expJSIProjectReports" Header="JSI Project Reports" />
                             <Expander x:Name="expJSIDateReports" Header="JSI Date Reports" />
                             <Expander x:Name="expViewJSIInspection" Header="View JSI Inspection" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expProjectReports" Header="Project Reports" FontSize="14">
+                    <Expander x:Name="expProjectReports" Header="Project Reports" FontSize="14" Expanded="expProjectReports_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expCreateProductivitySheets" Header="Create Productivity Sheets" />
                             <Expander x:Name="expDepartmentOpenProjectReport" Header="Department Open Project Report" />
@@ -165,9 +165,9 @@
                             <Expander x:Name="expSortedWorkTaskReport" Header="Sorted Work Task Report" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expProjectAdministration" Header="Project Administration" FontSize="14">
+                    <Expander x:Name="expProjectAdministration" Header="Project Administration" FontSize="14" Expanded="expProjectAdministration_Expanded">
                         <StackPanel Margin="10,1,1,1">
-                            <Expander x:Name="expAddNonProductionTask" Header="Add Non-ProductionTask" />
+                            <Expander x:Name="expAddNonProductionTask" Header="Add Non-ProductionTask" Expanded="expAddNonProductionTask_Expanded" />
                             <Expander x:Name="expAddProductionTask" Header="Add Production Task" />
                             <Expander x:Name="expAddWorkTask" Header="Add Work Task" />
                             <Expander x:Name="expAddWOVBillingCode" Header="Add WOV Billing Code" />

@@ -192,9 +192,9 @@ namespace NewBlueJayERPBrowser
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Main Window // Set Employee Security " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Main Window // Set Employee Security " + Ex.Message);
 
-                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Main Window // Set Employee Security " + Ex.ToString());
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Main Window // Set Employee Security " + Ex.ToString());
             }
 
         }
@@ -561,6 +561,75 @@ namespace NewBlueJayERPBrowser
                 TheMessagesClass.InformationMessage("You Have Failed The Sign In Process");
                 return;
             }
+        }
+
+        private void expAddNonProductionTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddNonProductionTask AddNonProductionTask = new AddNonProductionTask();
+            fraMainWindow.Navigate(AddNonProductionTask);
+            expAddNonProductionTask.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expProjects.IsExpanded = false;
+        }
+
+        private void expProjectDashboards_Expanded(object sender, RoutedEventArgs e)
+        {
+            //expProjectDashboards.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
+        }
+
+        private void expProjectDataEntry_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectDashboards.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            //expProjectDataEntry.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
+        }
+
+        private void expJSIDataEntry_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectDashboards.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            //expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
+        }
+
+        private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectDashboards.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            //expJSIReports.IsExpanded = false;
+        }
+
+        private void expProjectReports_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectDashboards.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            //expProjectReports.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
+        }
+
+        private void expProjectAdministration_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectDashboards.IsExpanded = false;
+            //expProjectAdministration.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
         }
     }
 }
