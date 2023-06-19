@@ -50,6 +50,12 @@
     <Reference Include="NewEventLogDLL">
       <HintPath>..\..\Blue Jay Class Library\NewEventLogDLL.dll</HintPath>
     </Reference>
+    <Reference Include="NonProductionProductivityDLL">
+      <HintPath>..\..\Blue Jay Class Library\NonProductionProductivityDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProductivityDataEntryDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProductivityDataEntryDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectMatrixDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectMatrixDLL.dll</HintPath>
     </Reference>
