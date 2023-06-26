@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000" Loaded="Window_Loaded" >
+        Title="MainWindow" Height="1000" Width="1600" Loaded="Window_Loaded" >
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#358AB1" />
@@ -78,7 +78,8 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,20,1,1" >
-            <Expander x:Name="expEmployees" Header="Employees" FontSize="16" Expanded="expEmployees_Expanded">
+            <Expander x:Name="expHome" Header="Home Page" FontSize="16" Margin="0,5,0,0" ></Expander>
+            <Expander x:Name="expEmployees" Header="Employees" Margin="0,5,0,0" FontSize="16" Expanded="expEmployees_Expanded">
                 <StackPanel Margin="10,0,0,0">
                     <Expander x:Name="expEmployeeDataEntry" Header="Data Entry" FontSize="14">
                         <StackPanel Margin="10,0,0,0">
@@ -131,7 +132,7 @@
                     </Expander>
                     <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" FontSize="14" Expanded="expProjectDataEntry_Expanded">
                         <StackPanel Margin="10,1,1,1">
-                            <Expander x:Name="expAddNewProject" Header="Add New Project" />
+                            <Expander x:Name="expAddNewProject" Header="Add New Project" Expanded="expAddNewProject_Expanded" />
                             <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
                             <Expander x:Name="expEditProject" Header="Edit Project" />
                             <Expander x:Name="expProjectMangementSheet" Header="Project Management Sheet" />
@@ -275,7 +276,7 @@
                     <Expander x:Name="expMyTasks" FontSize="14" Header="My Tasks" />
                     <Expander x:Name="expMyOriginatingTasks" FontSize="14" Header="My Originating Tasks" />
                 </StackPanel>
-            </Expander>
+            </Expander>            
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="0,5,0,0" Expanded="expHelp_Expanded">
                 <StackPanel Margin="10,1,1,1">
                     <Expander x:Name="expCreateHelpDeskTicket" FontSize="14" Header="Create Help Desk Ticket" />

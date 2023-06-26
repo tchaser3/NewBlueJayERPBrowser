@@ -36,7 +36,7 @@ namespace NewBlueJayERPBrowser
 
         //setting up the data
         FindSortedNonProductionTaskDataSet TheFindSortedNonProductionTaskDataSet = new FindSortedNonProductionTaskDataSet();
-        FindNonProductionTaskByWorkTaskDataSet TheFindNonProductionTaskByWorkTaskDataSet = new FindNonProductionTaskByWorkTaskDataSet();
+        FindNonProductionTaskByWorkTaskDataSet TheFindNonProductionTaskByWorkTaskDataSet = new FindNonProductionTaskByWorkTaskDataSet();       
 
         //setting global variables
         bool gblnAddRecord;
@@ -48,22 +48,19 @@ namespace NewBlueJayERPBrowser
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "//New Blue Jay ERP Browser / Add Non-Production Productivity Task ");
+
             ResetControls();
         }
         private void ResetControls()
         {
             txtEnterProductivityTask.Text = "";
-
-            cboSelectProductivityTask.Items.Clear();
-            cboSelectProductivityTask.Items.Add("Select Work Task");
-
-            txtEnterProductivityTask.IsEnabled = false;
-            cboSelectProductivityTask.IsEnabled = false;
-            expProcess.IsEnabled = false;
+            txtEnterProductivityTask.Focus();
 
             TheFindSortedNonProductionTaskDataSet = TheNonProductionProductivityClass.FindSortedNonProductionTask();
 
             dgrNonProductivityTasks.ItemsSource = TheFindSortedNonProductionTaskDataSet.FindSortedNonProductionTask;
+
 
         }
 
@@ -73,12 +70,51 @@ namespace NewBlueJayERPBrowser
             ResetControls();
         }
 
-        private void expAddProductivity_Expanded(object sender, RoutedEventArgs e)
+        private void expProcess_Expanded(object sender, RoutedEventArgs e)
         {
-            expAddProductivity.IsExpanded = false;
-            cboSelectProductivityTask.IsEnabled = false;
-            txtEnterProductivityTask.IsEnabled = true;
-            gblnAddRecord = true;
+            string strWorkTask;
+            int intRecordsReturned;
+            bool blnFatalError = false;
+
+            expProcess.IsExpanded = false;
+
+            try
+            {
+                strWorkTask = txtEnterProductivityTask.Text;
+
+                if(strWorkTask.Length < 5)
+                {
+                    TheMessagesClass.ErrorMessage("The Task Description Is Not Long Enough");
+                    return;
+                }
+
+                TheFindNonProductionTaskByWorkTaskDataSet = TheNonProductionProductivityClass.FindNOnProductionTaskByWorkTask(strWorkTask);
+
+                intRecordsReturned = TheFindNonProductionTaskByWorkTaskDataSet.FindNonProductionTaskByWorkTask.Rows.Count;
+
+                if(intRecordsReturned > 0)
+                {
+                    TheMessagesClass.ErrorMessage("The Work Task Has Already Been Added");
+                    return;
+                }
+
+                blnFatalError = TheNonProductionProductivityClass.InsertNonProductionTask(strWorkTask);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("The Task Has Been Entered");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Non-Production Productivity Task // Process Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Brownser // Add Non-Production Productivity Task // Process Expander " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

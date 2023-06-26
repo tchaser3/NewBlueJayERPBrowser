@@ -80,6 +80,7 @@ namespace NewBlueJayERPBrowser
             expTasks.IsEnabled = blnExpanderStatus;
             expTrailers.IsEnabled = blnExpanderStatus;
             expVehicles.IsEnabled = blnExpanderStatus;
+            expHome.IsEnabled = blnExpanderStatus;
         }
         private void LoginComplete()
         {
@@ -630,6 +631,16 @@ namespace NewBlueJayERPBrowser
             expProjectReports.IsExpanded = false;
             expJSIDataEntry.IsExpanded = false;
             expJSIReports.IsExpanded = false;
+        }
+
+        private void expAddNewProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddProject AddProject = new AddProject();
+            fraMainWindow.Navigate(AddProject);
+            expAddNewProject.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            
         }
     }
 }
