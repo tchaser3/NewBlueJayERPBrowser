@@ -78,7 +78,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,20,1,1" >
-            <Expander x:Name="expHome" Header="Home Page" FontSize="16" Margin="0,5,0,0" ></Expander>
+            <Expander x:Name="expHome" Header="Home Page" FontSize="16" Margin="0,5,0,0" Expanded="expHome_Expanded" ></Expander>
             <Expander x:Name="expEmployees" Header="Employees" Margin="0,5,0,0" FontSize="16" Expanded="expEmployees_Expanded">
                 <StackPanel Margin="10,0,0,0">
                     <Expander x:Name="expEmployeeDataEntry" Header="Data Entry" FontSize="14">
@@ -133,8 +133,12 @@
                     <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" FontSize="14" Expanded="expProjectDataEntry_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expAddNewProject" Header="Add New Project" Expanded="expAddNewProject_Expanded" />
+                            <Expander x:Name="expAddOutageProject" Header="Add Outage Project" Expanded="expAddOutageProject_Expanded" />
+                            <Expander x:Name="expAddOutageProjectStatus" Header="Add Outage Project Status" Expanded="expAddOutageProjectStatus_Expanded" />
+                            <Expander x:Name="expAddOutageProductivity" Header="Add Outage Productivity" Expanded="expAddOutageProductivity_Expanded" />
                             <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
-                            <Expander x:Name="expEditProject" Header="Edit Project" />
+                            <Expander x:Name="expEditOutageProject" Header="Edit Outage Project" />
+                            <Expander x:Name="expEditProject" Header="Edit Project" />                            
                             <Expander x:Name="expProjectMangementSheet" Header="Project Management Sheet" />
                             <Expander x:Name="expSubmitAfterHoursReport" Header="Submit After Hours Report" />
                         </StackPanel>

@@ -38,14 +38,35 @@
     <ApplicationIcon>blue_jay_icon_CM1_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AfterHoursWorkDLL">
+      <HintPath>..\..\Blue Jay Class Library\AfterHoursWorkDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ATTProjectNumberAssignmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\ATTProjectNumberAssignmentDLL.dll</HintPath>
+    </Reference>
     <Reference Include="DataValidationDLL">
       <HintPath>..\..\Blue Jay Class Library\DataValidationDLL.dll</HintPath>
     </Reference>
     <Reference Include="DateSearchDLL">
       <HintPath>..\..\Blue Jay Class Library\DateSearchDLL.dll</HintPath>
     </Reference>
+    <Reference Include="DepartmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\DepartmentDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="DesignProjectsDLL">
+      <HintPath>..\..\Blue Jay Class Library\DesignProjectsDLL.dll</HintPath>
+    </Reference>
     <Reference Include="EmployeeDateEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\EmployeeDateEntryDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="EmployeePunchedHoursDLL">
+      <HintPath>..\..\Blue Jay Class Library\EmployeePunchedHoursDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="IncentivePayDLL">
+      <HintPath>..\..\Blue Jay Class Library\IncentivePayDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="JobTypeDLL">
+      <HintPath>..\..\Blue Jay Class Library\JobTypeDLL.dll</HintPath>
     </Reference>
     <Reference Include="NewEmployeeDLL">
       <HintPath>..\..\Blue Jay Class Library\NewEmployeeDLL.dll</HintPath>
@@ -56,11 +77,26 @@
     <Reference Include="NonProductionProductivityDLL">
       <HintPath>..\..\Blue Jay Class Library\NonProductionProductivityDLL.dll</HintPath>
     </Reference>
+    <Reference Include="OutageProjectDLL">
+      <HintPath>..\..\Blue Jay Class Library\OutageProjectDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProductionProjectDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProductionProjectDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProductivityDataEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductivityDataEntryDLL.dll</HintPath>
     </Reference>
     <Reference Include="ProjectMatrixDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectMatrixDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectNumberAssignmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectNumberAssignmentDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectsDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectTaskDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectTaskDLL.dll</HintPath>
     </Reference>
     <Reference Include="RentalTrackingDLL">
       <HintPath>..\..\Blue Jay Class Library\RentalTrackingDLL.dll</HintPath>
@@ -79,9 +115,24 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="VehicleMainDLL">
+      <HintPath>..\..\Blue Jay Class Library\VehicleMainDLL.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WorkOrderDLL">
+      <HintPath>..\..\Blue Jay Class Library\WorkOrderDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="WorkTaskDLL">
+      <HintPath>..\..\Blue Jay Class Library\WorkTaskDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="WorkTaskStatsDLL">
+      <HintPath>..\..\Blue Jay Class Library\WorkTaskStatsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="WorkTypeDLL">
+      <HintPath>..\..\Blue Jay Class Library\WorkTypeDLL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -90,6 +141,15 @@
     </ApplicationDefinition>
     <Compile Include="AddNonProductionTask.xaml.cs">
       <DependentUpon>AddNonProductionTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddOutageProductivity.xaml.cs">
+      <DependentUpon>AddOutageProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddOutageProject.xaml.cs">
+      <DependentUpon>AddOutageProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddOutageProjectStatus.xaml.cs">
+      <DependentUpon>AddOutageProjectStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
@@ -104,6 +164,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNonProductionTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddOutageProductivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddOutageProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddOutageProjectStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,6 +19,7 @@ using ProjectMatrixDLL;
 using DateSearchDLL;
 using DataValidationDLL;
 using EmployeeDateEntryDLL;
+using System.Windows.Media.Animation;
 
 namespace NewBlueJayERPBrowser
 {
@@ -49,6 +50,7 @@ namespace NewBlueJayERPBrowser
         public static bool gblnLoggedIn;
         public static int gintNoOfMisses;
         public static string gstrEmployeeGroup;
+        public static string gstrUserName;
 
         public MainWindow()
         {
@@ -66,6 +68,7 @@ namespace NewBlueJayERPBrowser
             ResetSecurity();
             EnableExpanders(false);
             SendNewProjectReport();
+            gstrUserName = System.Environment.UserName; ;
         }
         private void EnableExpanders(bool blnExpanderStatus)
         {
@@ -641,6 +644,50 @@ namespace NewBlueJayERPBrowser
             expProjectDataEntry.IsExpanded = false;
             expProjects.IsExpanded = false;
             
+        }
+
+        private void expAddOutageProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddOutageProject addOutageProject = new AddOutageProject();
+            fraMainWindow.Navigate(addOutageProject);
+            expAddOutageProject.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
+        }
+
+        private void expAddOutageProjectStatus_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddOutageProjectStatus addOutageProjectStatus = new AddOutageProjectStatus();
+            fraMainWindow.Navigate(addOutageProjectStatus);
+            expAddOutageProjectStatus.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
+        }
+
+        private void expAddOutageProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddOutageProductivity addOutageProductivity = new AddOutageProductivity();
+            fraMainWindow.Navigate(addOutageProductivity);
+            expAddOutageProductivity.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
+        }
+
+        private void expHome_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHome.IsExpanded = false;
+            fraMainWindow.Content = new HomePage();
+            ResetAssetExpanders();
+            ResetEmployeeExpanders();
+            ResetInventoryExpanders();
+            ResetITExpanders();
+            ResetProjectExpanders();
+            ResetRentalExpanders();
+            ResetTaskExpanders();
+            ResetTrailerExpanders();
+            ResetVehicleExpanders();
+            ResetHelpExpanders();
+
         }
     }
 }
