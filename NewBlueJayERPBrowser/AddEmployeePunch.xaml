@@ -1,0 +1,143 @@
+﻿<Window x:Class="NewBlueJayERPBrowser.AddEmployeePunch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:NewBlueJayERPBrowser"
+        mc:Ignorable="d"
+        Title="AddEmployeePunch" Height="1000" Width="1200" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label x:Name="lblEditEmployeePunches" Content="Add Employee Punch" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="75"/>
+        </StackPanel>
+        <Rectangle x:Name="stpSideBar" Grid.Column="0" Grid.Row="1" Grid.RowSpan="13">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightBlue" Offset="0" />
+                    <GradientStop Color="AliceBlue" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="13">
+            <Expander x:Name="expAddPunch" Header="Add Punch" FontSize="14" Margin="10,5,1,1" />
+            <Expander x:Name="expValidatePunch" Header="Validate Punch" FontSize="14" Margin="10,5,1,1" />
+            <Expander x:Name="expProcess" Header="Process" FontSize="14" Margin="10,5,1,1" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="14" Margin="10,5,1,1" Expanded="expCloseWindow_Expanded" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Height="50">
+            <Label x:Name="lblEmployeeName" Content="Employee Name" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="txtEmployeeName" FontSize="16" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Background="LightGray" Width="175" Height="40" Margin="10,1,1,1"/>
+            <Label x:Name="lblEmployeeID" Content="Employee ID" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtEmployeeID" FontSize="16" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Background="LightGray" Width="100" Height="40" Margin="10,1,1,1"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Height="50">
+            <Label x:Name="lblPayID" Content="Pay ID" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBox x:Name="txtPayID" CharacterCasing="Upper" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Background="LightGray" Height="40" Width="75" Margin="10,1,1,1"/>
+            <Label x:Name="lblPayGroup" Content="Pay Group" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtPayGroup" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="125" Margin="10,1,1,1"/>
+            <Label x:Name="lblPunchMode" Content="Punch Mode" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtPunchMode" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="125" Margin="10,1,1,1"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Height="50">
+            <Label x:Name="lblPunchType" Content="Punch Type" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBox x:Name="txtPunchType" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
+            <Label x:Name="lblPunchSource" Content="Punch Source" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtPunchSource" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Height="50" >
+            <Label x:Name="lblPunchUser" Content="Punch User" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBox x:Name="txtPunchUser" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
+            <Label x:Name="lblPunchIPAddress" Content="Punch IP Address" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" />
+            <TextBox x:Name="txtPunchIPAddress" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" Height="50" >
+            <Label x:Name="lblPunchUpdateTime" Content="Punch Update Time" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="txtPunchUpdateTime" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+            <Label x:Name="lblEnterMissedPunch" Content="Enter Missed Punch" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtEnterMissedPunch" CharacterCasing="Upper" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" Height="50">
+            <Label x:Name="lblCurrentPunches" Content="Current Punches" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="7" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="5" >
+            <DataGrid x:Name="drgPunches" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="5" Height="50" >
+            <Label x:Name="lblEmployeePunchedTimeForWeek" Content="Employee Punched Time For The Week" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="12" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5 ">
+            <DataGrid x:Name="drgTime" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+        </StackPanel>
+    </Grid>
+</Window>

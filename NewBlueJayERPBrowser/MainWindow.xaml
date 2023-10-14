@@ -113,6 +113,7 @@
                             <Expander x:Name="expCreateFuelCardNumber" Header="Create Fuel Card Number" FontSize="14"/>
                             <Expander x:Name="expEditEmployee" Header="Edit Employee" FontSize="14"/>
                             <Expander x:Name="expEditEmployeeHours" Header="Edit Employee Hours" FontSize="14"/>
+                            <Expander x:Name="expEditEmployeePunches" Header="Edit Employe Punches" FontSize="14" Expanded="expEditEmployeePunches_Expanded" />
                             <Expander x:Name="expEditFuelCard" Header="Edit Fuel Card" FontSize="14"/>
                             <Expander x:Name="expEditFuelCardPIN" Header="Edit Fuel Card PIN" FontSize="14"/>
                             <Expander x:Name="expManuallyAddFuelPIN" Header="Manually Add Fuel PIN" FontSize="14"/>

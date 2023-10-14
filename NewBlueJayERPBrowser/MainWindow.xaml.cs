@@ -51,6 +51,8 @@ namespace NewBlueJayERPBrowser
         public static int gintNoOfMisses;
         public static string gstrEmployeeGroup;
         public static string gstrUserName;
+        public static int gintLoggedInEmployeeID;
+        public static int gintEmployeeID;
 
         public MainWindow()
         {
@@ -492,7 +494,6 @@ namespace NewBlueJayERPBrowser
         {
             //setting local variables
             string strValueForValidation;
-            int intEmployeeID = 0;
             string strLastName;
             bool blnFatalError = false;
             int intRecordsReturned;
@@ -508,7 +509,7 @@ namespace NewBlueJayERPBrowser
             }
             else
             {
-                intEmployeeID = Convert.ToInt32(strValueForValidation);
+                gintLoggedInEmployeeID = Convert.ToInt32(strValueForValidation);
             }
             if (strLastName == "")
             {
@@ -522,7 +523,7 @@ namespace NewBlueJayERPBrowser
             }
 
             //filling the data set
-            MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(intEmployeeID, strLastName);
+            MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(gintLoggedInEmployeeID, strLastName);
 
             intRecordsReturned = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
 
@@ -532,7 +533,7 @@ namespace NewBlueJayERPBrowser
             }
             else
             {
-                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(intEmployeeID, "NEW BLUE JAY ERP BROWSER // USER LOGIN");
+                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(gintLoggedInEmployeeID, "NEW BLUE JAY ERP BROWSER // USER LOGIN");
 
                 gblnLoggedIn = true;
                 gstrEmployeeGroup = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup;
@@ -688,6 +689,15 @@ namespace NewBlueJayERPBrowser
             ResetVehicleExpanders();
             ResetHelpExpanders();
 
+        }
+
+        private void expEditEmployeePunches_Expanded(object sender, RoutedEventArgs e)
+        {
+            EditEmployeePunches editEmployeePunches = new EditEmployeePunches();
+            fraMainWindow.Navigate(editEmployeePunches);
+            expEditEmployeePunches.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
         }
     }
 }

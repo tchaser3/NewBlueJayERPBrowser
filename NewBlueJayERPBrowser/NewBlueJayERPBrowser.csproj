@@ -68,6 +68,9 @@
     <Reference Include="JobTypeDLL">
       <HintPath>..\..\Blue Jay Class Library\JobTypeDLL.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="NewEmployeeDLL">
       <HintPath>..\..\Blue Jay Class Library\NewEmployeeDLL.dll</HintPath>
     </Reference>
@@ -139,6 +142,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEmployeePunch.xaml.cs">
+      <DependentUpon>AddEmployeePunch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddNonProductionTask.xaml.cs">
       <DependentUpon>AddNonProductionTask.xaml</DependentUpon>
     </Compile>
@@ -154,12 +160,29 @@
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CurrentEmployeePunchesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentEmployeePunchesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentEmployeeTimeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentEmployeeTimeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmployeePunches.xaml.cs">
+      <DependentUpon>EditEmployeePunches.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEmployeePunch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditEmployeePunches.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +255,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="CurrentEmployeePunchesDataSet.xsc">
+      <DependentUpon>CurrentEmployeePunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentEmployeePunchesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CurrentEmployeePunchesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CurrentEmployeePunchesDataSet.xss">
+      <DependentUpon>CurrentEmployeePunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentEmployeeTimeDataSet.xsc">
+      <DependentUpon>CurrentEmployeeTimeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentEmployeeTimeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CurrentEmployeeTimeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CurrentEmployeeTimeDataSet.xss">
+      <DependentUpon>CurrentEmployeeTimeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
