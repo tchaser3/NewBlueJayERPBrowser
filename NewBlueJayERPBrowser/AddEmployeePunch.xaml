@@ -90,8 +90,8 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="13">
-            <Expander x:Name="expAddPunch" Header="Add Punch" FontSize="14" Margin="10,5,1,1" />
-            <Expander x:Name="expValidatePunch" Header="Validate Punch" FontSize="14" Margin="10,5,1,1" />
+            <Expander x:Name="expAddPunch" Header="Add Punch" FontSize="14" Margin="10,5,1,1" Expanded="expAddPunch_Expanded" />
+            <Expander x:Name="expValidatePunch" Header="Validate Punch" FontSize="14" Margin="10,5,1,1" Expanded="expValidatePunch_Expanded" />
             <Expander x:Name="expProcess" Header="Process" FontSize="14" Margin="10,5,1,1" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="14" Margin="10,5,1,1" Expanded="expCloseWindow_Expanded" />
         </StackPanel>
@@ -111,7 +111,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Height="50">
             <Label x:Name="lblPunchType" Content="Punch Type" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBox x:Name="txtPunchType" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
+            <ComboBox x:Name="cboPunchType" FontSize="16" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1" SelectionChanged="cboPunchType_SelectionChanged"/>
             <Label x:Name="lblPunchSource" Content="Punch Source" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
             <TextBox x:Name="txtPunchSource" CharacterCasing="Upper" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
         </StackPanel>

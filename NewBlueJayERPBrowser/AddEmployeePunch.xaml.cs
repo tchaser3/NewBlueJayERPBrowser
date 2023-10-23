@@ -58,6 +58,8 @@ namespace NewBlueJayERPBrowser
          * 
          */
 
+        string gstrPunchType;
+
         public AddEmployeePunch()
         {
             InitializeComponent();
@@ -99,13 +101,18 @@ namespace NewBlueJayERPBrowser
                     throw new Exception("NO RECORDS FOUND");
                 }
 
+                cboPunchType.Items.Clear();
+                cboPunchType.Items.Add("Select Punch Type");
+                cboPunchType.Items.Add("IN");
+                cboPunchType.Items.Add("OUT");
+                cboPunchType.SelectedIndex = 0;
+
                 strFullName = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName + " " + TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].LastName;
                 txtEmployeeName.Text = strFullName;
                 txtEmployeeID.Text = Convert.ToString(MainWindow.gintEmployeeID);
                 txtPayID.Text = Convert.ToString(TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].PayID);
                 txtPayGroup.Text = "HOURLY";
                 txtPunchMode.Text = "MANUAL";
-                txtPunchType.Text = "ADDPERHR";
                 txtPunchUpdateTime.Text = Convert.ToString(DateTime.Now);
                 txtPunchSource.Text = "BLUEJAYERP";
                 txtPunchUser.Text = strUserName.ToUpper();
@@ -173,9 +180,130 @@ namespace NewBlueJayERPBrowser
             }
         }
 
-        private void lblPunchUpdatetime_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void expAddPunch_Expanded(object sender, RoutedEventArgs e)
         {
+            string strValueForValidation;
+            bool blnThereIsAProblem = false;
+            bool blnFatalError = false;
+            string strErrorMessage = "";
+            DateTime datNewPunchDate = DateTime.Now;
+            int intNumberOfRecords;
+            int intTransactionID;
+            int intCounter;
 
+            expAddPunch.IsExpanded = false;
+
+            try
+            {
+                if(cboPunchType.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Punch Type Was Not Selected\n";
+                }
+                strValueForValidation = txtEnterMissedPunch.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if(blnThereIsAProblem == true)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Information Entered is not a Date\n";
+                }
+                else
+                {
+                    datNewPunchDate = Convert.ToDateTime(strValueForValidation);
+                    blnThereIsAProblem = TheDataValidationClass.verifyDateRange(datNewPunchDate, DateTime.Now);
+                    if(blnThereIsAProblem == true)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The Punch Date is after Today\n";
+                    }
+                    else
+                    {
+                        if(datNewPunchDate < EditEmployeePunches.gdatStartDate)
+                        {
+                            blnFatalError = true;
+                            strErrorMessage += "The Punch Date Is Before The Beginning of the Pay Period\n";
+                        }
+                        else
+                        {
+                            if(datNewPunchDate > EditEmployeePunches.gdatPayPeriodEndingDate)
+                            {
+                                blnFatalError = true;
+                                strErrorMessage += "The Punche Date Is After The PayPeriod\n";
+                            }
+                        }
+                    }
+                }
+
+                intNumberOfRecords = TheCurrentEmployeePunchesData.currentpunches.Rows.Count;
+
+                if (intNumberOfRecords > 0)
+                {
+                    for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        if (datNewPunchDate == TheCurrentEmployeePunchesData.currentpunches[intCounter].PunchedDateTime)
+                        {
+                            blnFatalError = true;
+                            strErrorMessage += "The Punch Time already exists\n";
+                        }
+                    }
+                }
+
+                if (blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage(strErrorMessage);
+                    return;
+                }                
+
+                intTransactionID = (intNumberOfRecords * -1) - 1;
+
+                //this will add the punch to the punch table
+                CurrentEmployeePunchesDataSet.currentpunchesRow NewPunchRow = TheCurrentEmployeePunchesData.currentpunches.NewcurrentpunchesRow();
+
+                NewPunchRow.TransactionID = intTransactionID;
+                NewPunchRow.EmployeeID = MainWindow.gintEmployeeID;
+                NewPunchRow.PayID = Convert.ToInt32(txtPayID.Text);
+                NewPunchRow.ActualDateTime = datNewPunchDate;
+                NewPunchRow.PunchedDateTime = datNewPunchDate;
+                NewPunchRow.PayGroup = txtPayGroup.Text;
+                NewPunchRow.PunchMode = txtPunchMode.Text;
+                NewPunchRow.PunchType = gstrPunchType;
+                NewPunchRow.PunchSource = txtPunchSource.Text;
+                NewPunchRow.PunchUser = txtPunchUser.Text;
+                NewPunchRow.PunchIPAddress = txtPunchIPAddress.Text;
+
+                TheCurrentEmployeePunchesData.currentpunches.Rows.Add(NewPunchRow);
+
+                txtEnterMissedPunch.Text = "";
+                cboPunchType.SelectedIndex = 0;
+                
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Employee Punch // Add Punch Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Add Employee Punch // Add Punch Expander " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void cboPunchType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cboPunchType.SelectedIndex == 1)
+            {
+                gstrPunchType = "IN";
+            }
+            else if(cboPunchType.SelectedIndex == 2)
+            {
+                gstrPunchType = "OUT";
+            }
+        }
+
+        private void expValidatePunch_Expanded(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            int intCounter;
+            int intNumberOfRecords;
         }
     }
 }
