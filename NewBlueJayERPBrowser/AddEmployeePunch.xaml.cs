@@ -18,6 +18,7 @@ using EmployeeDateEntryDLL;
 using EmployeePunchedHoursDLL;
 using NewEventLogDLL;
 using System.ComponentModel;
+using IncentivePayDLL.FindIncentivePayStatusByTransactionStatusDataSetTableAdapters;
 
 namespace NewBlueJayERPBrowser
 {
@@ -42,6 +43,8 @@ namespace NewBlueJayERPBrowser
         FindAholaEmployeePunchHoursDataSet TheFindAholaEmployeePunchHoursDataSet = new FindAholaEmployeePunchHoursDataSet();
         CurrentEmployeePunchesDataSet TheCurrentEmployeePunchesData = new CurrentEmployeePunchesDataSet();
         CurrentEmployeeTimeDataSet TheCurrentEmployeeTimeDataSet = new CurrentEmployeeTimeDataSet();
+
+        int gintTransactionID;
 
         /*
          * Items needed for the punch to be inserted
@@ -73,6 +76,7 @@ namespace NewBlueJayERPBrowser
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            gintTransactionID = 0;
             ResetControls();
         }
         private void ResetControls()
@@ -163,6 +167,7 @@ namespace NewBlueJayERPBrowser
                         NewEmployeeTime.LastName = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours[intCounter].LastName;
                         NewEmployeeTime.StartDate = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours[intCounter].StartDate;
                         NewEmployeeTime.TransactionID = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours[intCounter].TransactionID;
+                        NewEmployeeTime.TransactionComplete = true;
 
                         TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Add(NewEmployeeTime);
                     }
@@ -190,6 +195,7 @@ namespace NewBlueJayERPBrowser
             int intNumberOfRecords;
             int intTransactionID;
             int intCounter;
+            bool blnPunchExists;
 
             expAddPunch.IsExpanded = false;
 
@@ -252,7 +258,15 @@ namespace NewBlueJayERPBrowser
                 {
                     TheMessagesClass.ErrorMessage(strErrorMessage);
                     return;
-                }                
+                }
+
+                blnPunchExists = CheckDate(datNewPunchDate);
+
+                if(blnPunchExists == true)
+                {
+                    TheMessagesClass.ErrorMessage("Punch Exists Within an Already Existing Range");
+                    return;
+                }
 
                 intTransactionID = (intNumberOfRecords * -1) - 1;
 
@@ -298,12 +312,251 @@ namespace NewBlueJayERPBrowser
                 gstrPunchType = "OUT";
             }
         }
+        private bool CheckDate(DateTime datPunchedDate)
+        {
+            bool blnPunchExists = false;
+            int intCounter;
+            int intNumberOfRecords;
 
+            try
+            {
+                intNumberOfRecords = TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Count;
+
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        if(datPunchedDate >= TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].StartDate)
+                        {
+                            if(datPunchedDate <= TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].EndDate)
+                            {
+                                blnPunchExists = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                blnPunchExists = true;
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Employee Punch // Add Punch Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Add Employee Punch // Add Punch Expander " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+            
+            return blnPunchExists;
+        }
         private void expValidatePunch_Expanded(object sender, RoutedEventArgs e)
         {
             //setting local variables
+            int intPunchCounter;
+            int intPunchNumberOfRecords;
+            bool blnPunchFound;
+            bool blnHoursFound;
+            int intHoursCounter;
+            int intHoursNumberOfRecords;
+            DateTime datPunchedDate = DateTime.Now;
+            string strPunchType = "";
+            DateTime datEndDate = DateTime.Now;
+            TimeSpan tspTotalHours;
+            decimal decTotalHours;
+            decimal decMinutes;
+            decimal decSeconds;
+            decimal decHours;
+            int intTransactionID;
+            
+            try
+            {
+                expValidatePunch.IsExpanded = false;
+                TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Clear();
+                intPunchNumberOfRecords = TheCurrentEmployeePunchesData.currentpunches.Rows.Count;
+
+                if(intPunchNumberOfRecords > 0)
+                {
+                    for (intPunchCounter = 0; intPunchCounter < intPunchNumberOfRecords; intPunchCounter++)
+                    {
+                        blnPunchFound = false;
+                        blnHoursFound = false;
+                        gintTransactionID -= 1;
+
+                        intHoursNumberOfRecords = TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Count;
+                        datPunchedDate = TheCurrentEmployeePunchesData.currentpunches[intPunchCounter].PunchedDateTime;
+                        strPunchType = TheCurrentEmployeePunchesData.currentpunches[intPunchCounter].PunchType; 
+
+                        for (intHoursCounter = 0; intHoursCounter < intHoursNumberOfRecords; intHoursCounter++)
+                        {
+                            if (TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].TransactionComplete == false)
+                            {
+                                if (TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].EndDate.Date == datEndDate.Date)
+                                {
+                                    blnPunchFound = true;
+                                    TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].EndDate = datPunchedDate;
+                                    tspTotalHours = datPunchedDate - TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].StartDate;
+                                    decMinutes = (tspTotalHours.Minutes) / 60;
+                                    decSeconds = (tspTotalHours.Seconds) / 129;
+                                    decHours = tspTotalHours.Hours;
+                                    //strTotalHours = Convert.ToString(tspTotalHours.Hours) + "." + Convert.ToString(tspTotalHours.Minutes);
+                                    decTotalHours = decHours + decMinutes + decSeconds;
+                                    TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].DailyHours = decTotalHours;
+                                    TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].TransactionComplete = true;
+                                }
+                            }
+                            
+                        }
+
+                        blnHoursFound = false;
+
+                        if ((strPunchType == "IN") && (blnPunchFound == false))
+                        {
+                            if (TheCurrentEmployeePunchesData.currentpunches[intPunchCounter].TransactionID > 0)
+                            {
+                                blnHoursFound = CheckDate(datPunchedDate);
+                            }
+
+                            if(blnHoursFound == false)
+                            {
+                                CurrentEmployeeTimeDataSet.currentemployeetimeRow NewTimeEntry = TheCurrentEmployeeTimeDataSet.currentemployeetime.NewcurrentemployeetimeRow();
+
+                                NewTimeEntry.DailyHours = 0;
+                                NewTimeEntry.EmployeeID = MainWindow.gintEmployeeID;
+
+                                if (strPunchType == "IN")
+                                {
+                                    NewTimeEntry.StartDate = datPunchedDate;
+                                    NewTimeEntry.EndDate = datEndDate;
+                                }
+
+                                NewTimeEntry.FirstName = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName;
+                                NewTimeEntry.LastName = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].LastName;
+                                NewTimeEntry.TransactionID = gintTransactionID;
+                                NewTimeEntry.TransactionComplete = false;
+
+                                TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Add(NewTimeEntry);
+                            }
+                        }
+                    }
+                }
+
+                intHoursNumberOfRecords = TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Count;
+                blnHoursFound = true;
+
+                for(intHoursCounter = 0; intHoursCounter < intHoursNumberOfRecords; intHoursCounter++)
+                {
+                    if (TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].TransactionComplete == false)
+                    {
+                        intTransactionID = TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].TransactionID;
+
+                        TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].EndDate = TheCurrentEmployeeTimeDataSet.currentemployeetime[intHoursCounter].StartDate;
+
+                        blnHoursFound = false;
+                    }
+                }
+
+                if(blnHoursFound == false) 
+                {
+                    TheMessagesClass.ErrorMessage("There Are Uncompleted Transactions In The Table");
+                    return;
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Employee Punch // Validate Punch Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Add Employee Punch // Validate Punch Expander " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expProcess_Expanded(object sender, RoutedEventArgs e)
+        {
             int intCounter;
             int intNumberOfRecords;
+            bool blnFatalError = false;
+            int intEmployeeID;
+            int intPayID;
+            DateTime datActualDateTime;
+            string strPayGroup;
+            string strPunchMode;
+            string strPunchType;
+            string strPunchSource;
+            string strPunchUser;
+            string strPunchIPAddress;
+            DateTime datPunchTimeUpdated;
+            DateTime datPunchDateTime;
+            DateTime datStartDate;
+            DateTime datEndDate;
+            decimal decTotalHours;
+
+            try
+            {
+                expProcess.IsExpanded = false;
+                intNumberOfRecords = TheCurrentEmployeePunchesData.currentpunches.Rows.Count;                
+
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        if (TheCurrentEmployeePunchesData.currentpunches[intCounter].TransactionID < 0)
+                        {
+                            intEmployeeID = TheCurrentEmployeePunchesData.currentpunches[intCounter].EmployeeID;
+                            intPayID = TheCurrentEmployeePunchesData.currentpunches[intCounter].PayID;
+                            datActualDateTime = TheCurrentEmployeePunchesData.currentpunches[intCounter].ActualDateTime;
+                            strPayGroup = txtPayGroup.Text;
+                            strPunchIPAddress = txtPunchIPAddress.Text;
+                            strPunchMode = txtPunchMode.Text;
+                            strPunchSource = txtPunchSource.Text;
+                            strPunchType = TheCurrentEmployeePunchesData.currentpunches[intCounter].PunchType;
+                            strPunchUser = txtPunchUser.Text;
+                            datPunchTimeUpdated = DateTime.Now;
+                            datPunchDateTime = TheCurrentEmployeePunchesData.currentpunches[intCounter].PunchedDateTime;
+
+                            blnFatalError = TheEmployeePunchedHoursClass.InsertAholaClockPunches(intEmployeeID, intPayID, datActualDateTime, datPunchDateTime, DateTime.Now, strPayGroup, strPunchMode, strPunchType, strPunchSource, strPunchUser, strPunchIPAddress, datPunchTimeUpdated);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+
+                intNumberOfRecords = TheCurrentEmployeeTimeDataSet.currentemployeetime.Rows.Count;
+
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        if (TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].TransactionID < 0)
+                        {
+                            intEmployeeID = TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].EmployeeID;
+                            datStartDate = TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].StartDate;
+                            datEndDate = TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].EndDate;
+                            decTotalHours = TheCurrentEmployeeTimeDataSet.currentemployeetime[intCounter].DailyHours;
+
+                            blnFatalError = TheEmployeePunchedHoursClass.InsertIntoAholaEmployeePunch(intEmployeeID, datStartDate, datEndDate, decTotalHours);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                        
+                    }
+                }
+
+                TheMessagesClass.InformationMessage("The Missing Punches Have Been Entered");
+
+                this.Close();
+
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Employee Punch // Process Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Add Employee Punch // Process Expander " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

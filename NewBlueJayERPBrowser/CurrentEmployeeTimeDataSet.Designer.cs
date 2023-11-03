@@ -293,6 +293,8 @@ namespace NewBlueJayERPBrowser {
             
             private global::System.Data.DataColumn columnDailyHours;
             
+            private global::System.Data.DataColumn columnTransactionComplete;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public currentemployeetimeDataTable() {
@@ -384,6 +386,14 @@ namespace NewBlueJayERPBrowser {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TransactionCompleteColumn {
+                get {
+                    return this.columnTransactionComplete;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +429,7 @@ namespace NewBlueJayERPBrowser {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public currentemployeetimeRow AddcurrentemployeetimeRow(int TransactionID, int EmployeeID, string FirstName, string LastName, System.DateTime StartDate, System.DateTime EndDate, decimal DailyHours) {
+            public currentemployeetimeRow AddcurrentemployeetimeRow(int TransactionID, int EmployeeID, string FirstName, string LastName, System.DateTime StartDate, System.DateTime EndDate, decimal DailyHours, bool TransactionComplete) {
                 currentemployeetimeRow rowcurrentemployeetimeRow = ((currentemployeetimeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TransactionID,
@@ -428,7 +438,8 @@ namespace NewBlueJayERPBrowser {
                         LastName,
                         StartDate,
                         EndDate,
-                        DailyHours};
+                        DailyHours,
+                        TransactionComplete};
                 rowcurrentemployeetimeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcurrentemployeetimeRow);
                 return rowcurrentemployeetimeRow;
@@ -465,6 +476,7 @@ namespace NewBlueJayERPBrowser {
                 this.columnStartDate = base.Columns["StartDate"];
                 this.columnEndDate = base.Columns["EndDate"];
                 this.columnDailyHours = base.Columns["DailyHours"];
+                this.columnTransactionComplete = base.Columns["TransactionComplete"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +496,8 @@ namespace NewBlueJayERPBrowser {
                 base.Columns.Add(this.columnEndDate);
                 this.columnDailyHours = new global::System.Data.DataColumn("DailyHours", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDailyHours);
+                this.columnTransactionComplete = new global::System.Data.DataColumn("TransactionComplete", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionComplete);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionID}, true));
                 this.columnTransactionID.AllowDBNull = false;
@@ -494,6 +508,7 @@ namespace NewBlueJayERPBrowser {
                 this.columnStartDate.AllowDBNull = false;
                 this.columnEndDate.AllowDBNull = false;
                 this.columnDailyHours.AllowDBNull = false;
+                this.columnTransactionComplete.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -708,6 +723,17 @@ namespace NewBlueJayERPBrowser {
                 }
                 set {
                     this[this.tablecurrentemployeetime.DailyHoursColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool TransactionComplete {
+                get {
+                    return ((bool)(this[this.tablecurrentemployeetime.TransactionCompleteColumn]));
+                }
+                set {
+                    this[this.tablecurrentemployeetime.TransactionCompleteColumn] = value;
                 }
             }
         }

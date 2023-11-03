@@ -92,7 +92,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="13">
             <Expander x:Name="expAddPunch" Header="Add Punch" FontSize="14" Margin="10,5,1,1" Expanded="expAddPunch_Expanded" />
             <Expander x:Name="expValidatePunch" Header="Validate Punch" FontSize="14" Margin="10,5,1,1" Expanded="expValidatePunch_Expanded" />
-            <Expander x:Name="expProcess" Header="Process" FontSize="14" Margin="10,5,1,1" />
+            <Expander x:Name="expProcess" Header="Process" FontSize="14" Margin="10,5,1,1" Expanded="expProcess_Expanded" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="14" Margin="10,5,1,1" Expanded="expCloseWindow_Expanded" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Height="50">
