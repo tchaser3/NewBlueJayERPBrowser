@@ -699,5 +699,14 @@ namespace NewBlueJayERPBrowser
             expProjectDataEntry.IsExpanded = false;
             expProjects.IsExpanded = false;
         }
+
+        private void expAfterHoursSummaryReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            AfterHoursSummaryReport afterHoursSummaryReport = new AfterHoursSummaryReport();
+            fraMainWindow.Navigate(afterHoursSummaryReport);
+            expProjectReports.IsEnabled = false;
+            expProjects.IsExpanded = false;
+            expAfterHoursSummaryReport.IsExpanded = false;
+        }
     }
 }

@@ -158,6 +158,7 @@
                     </Expander>
                     <Expander x:Name="expProjectReports" Header="Project Reports" FontSize="14" Expanded="expProjectReports_Expanded">
                         <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expAfterHoursSummaryReport" Header="After Hours Summary Report" FontSize="14" Expanded="expAfterHoursSummaryReport_Expanded" />
                             <Expander x:Name="expCreateProductivitySheets" Header="Create Productivity Sheets" />
                             <Expander x:Name="expDepartmentOpenProjectReport" Header="Department Open Project Report" />
                             <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" />

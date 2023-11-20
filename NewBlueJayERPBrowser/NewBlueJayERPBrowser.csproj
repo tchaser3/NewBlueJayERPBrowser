@@ -160,6 +160,9 @@
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AfterHoursSummaryReport.xaml.cs">
+      <DependentUpon>AfterHoursSummaryReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentEmployeePunchesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -172,6 +175,11 @@
     </Compile>
     <Compile Include="EditEmployeePunches.xaml.cs">
       <DependentUpon>EditEmployeePunches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeAfterHourWorkReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -203,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AfterHoursSummaryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +288,17 @@
     </None>
     <None Include="CurrentEmployeeTimeDataSet.xss">
       <DependentUpon>CurrentEmployeeTimeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeAfterHourWorkReportDataSet.xsc">
+      <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeAfterHourWorkReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeAfterHourWorkReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeAfterHourWorkReportDataSet.xss">
+      <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
