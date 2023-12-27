@@ -19,6 +19,7 @@ using NewEmployeeDLL;
 using IncentivePayDLL;
 using Microsoft.Win32;
 using System.Security.Cryptography;
+using DataValidationDLL;
 
 namespace NewBlueJayERPBrowser
 {
@@ -33,10 +34,15 @@ namespace NewBlueJayERPBrowser
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         SendEmailClass TheSendEmailClass = new SendEmailClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
+        DataValidationClass TheDataValidationClass = new DataValidationClass();
 
         FindEmployeeAfterHoursWorkThiryDayReportDataSet TheFindEmployeeAfterHoursWorkThiryDayReportDataSet = new FindEmployeeAfterHoursWorkThiryDayReportDataSet();
         FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
         EmployeeAfterHourWorkReportDataSet TheEmployeeAfterHourWorkReportDataSet = new EmployeeAfterHourWorkReportDataSet();
+        FindEmployeeAfterHoursReportNotEnteredDataSet TheFindEmployeesAfterHoursNotEnteredDataSet = new FindEmployeeAfterHoursReportNotEnteredDataSet();
+        NoRecordDataSet TheNoRecordDataSet = new NoRecordDataSet();
+
+        int gintNumberOfRecords;
 
         public AfterHoursSummaryReport()
         {
@@ -200,7 +206,10 @@ namespace NewBlueJayERPBrowser
                         TheEmployeeAfterHourWorkReportDataSet.employeeafterhourwork.Rows.Add(NewAfterWork);
                     }
                 }
+                 
+                TheNoRecordDataSet.norecord.Rows.Clear();
 
+                dgrNoReport.ItemsSource = TheNoRecordDataSet.norecord;
                
             }
             catch (Exception Ex)
@@ -285,6 +294,134 @@ namespace NewBlueJayERPBrowser
                 workbook = null;
                 excel = null;
             }
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //setting up the variables
+            string strValueForValidation;
+            bool blnFatalError = false;
+            DateTime datPayPeriod;
+            int intCounter;
+            int intNumberOfRecords;
+            int intManagerID;
+            string strManagerName;
+            int intEmployeeID;
+            string strOffice;
+            DateTime datPunchDate = DateTime.Now;
+            string strManagerExplaination = "";
+            string strEmployeeName;
+            int intTransactionID;
+            bool blnItemFound;
+            int intSecondCounter;
+
+            try
+            {
+                TheNoRecordDataSet.norecord.Rows.Clear();
+                gintNumberOfRecords = 0;
+
+                strValueForValidation = txtEnterPayPeriod.Text;
+                blnFatalError = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if(blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage("The Date Entered is not a Date");
+                    return;
+                }
+
+                datPayPeriod = Convert.ToDateTime(strValueForValidation);
+
+                blnFatalError = TheDataValidationClass.verifyDateRange(datPayPeriod, DateTime.Now);
+
+                if(blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage("The Date Entered is in the Future");
+                    return;
+                }
+
+                if(datPayPeriod.Date.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    TheMessagesClass.ErrorMessage("The Pay Period is not a Sunday");
+                    return;
+                }
+
+                TheFindEmployeesAfterHoursNotEnteredDataSet = TheAfterHoursWorkClass.FindEmployeeAfterHoursReportNotEntered(datPayPeriod);
+
+                intNumberOfRecords = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered.Rows.Count;
+
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        intEmployeeID = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].EmployeeID;
+                        intManagerID = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].ManagerID;
+                        strEmployeeName = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].EmployeeName;
+                        datPunchDate = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].PunchDate;
+                        intTransactionID = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].TransactionID;
+
+                        if(intEmployeeID != 20007)
+                        {
+                            if (TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].IsManagerExplainationNull() == true)
+                            {
+                                strManagerExplaination = "";
+                            }
+                            else
+                            {
+                                strManagerExplaination = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].ManagerExplaination;
+                            }
+
+                            TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intEmployeeID);
+
+                            strOffice = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].HomeOffice;
+
+                            TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intManagerID);
+                            strManagerName = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName + " ";
+                            strManagerName += TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].LastName;
+                            blnItemFound = false;
+
+                            if (gintNumberOfRecords > 0)
+                            {
+                                for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
+                                {
+                                    if (datPunchDate == TheNoRecordDataSet.norecord[intSecondCounter].PunchDate)
+                                    {
+                                        if (strEmployeeName == TheNoRecordDataSet.norecord[intSecondCounter].EmployeeName)
+                                        {
+                                            blnItemFound = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (blnItemFound == false)
+                            {
+                                NoRecordDataSet.norecordRow NewEmployeeRow = TheNoRecordDataSet.norecord.NewnorecordRow();
+
+                                NewEmployeeRow.EmployeeName = strEmployeeName;
+                                NewEmployeeRow.Location = strOffice;
+                                NewEmployeeRow.ManagerExplaination = strManagerExplaination;
+                                NewEmployeeRow.ManagerName = strManagerName;
+                                NewEmployeeRow.PunchDate = datPunchDate;
+                                NewEmployeeRow.TransactionID = intTransactionID;
+
+                                TheNoRecordDataSet.norecord.Rows.Add(NewEmployeeRow);
+                                gintNumberOfRecords++;
+                            }
+                        }                     
+
+                    }
+                }
+
+                dgrNoReport.ItemsSource = TheNoRecordDataSet.norecord;
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // After Hours Summary Report // Search Button " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // After Hours Summary Report // Search Button " + Ex.Message);
+
+                MessageBox.Show(Ex.ToString());
+            }
+
         }
     }
 }

@@ -704,7 +704,7 @@ namespace NewBlueJayERPBrowser
         {
             AfterHoursSummaryReport afterHoursSummaryReport = new AfterHoursSummaryReport();
             fraMainWindow.Navigate(afterHoursSummaryReport);
-            expProjectReports.IsEnabled = false;
+            expProjectReports.IsExpanded = false;
             expProjects.IsExpanded = false;
             expAfterHoursSummaryReport.IsExpanded = false;
         }

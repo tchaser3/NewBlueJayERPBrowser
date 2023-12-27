@@ -184,6 +184,11 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NoRecordDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SendEmailClass.cs" />
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddEmployee.xaml">
@@ -299,6 +304,17 @@
     </None>
     <None Include="EmployeeAfterHourWorkReportDataSet.xss">
       <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NoRecordDataSet.xsc">
+      <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NoRecordDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NoRecordDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="NoRecordDataSet.xss">
+      <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
