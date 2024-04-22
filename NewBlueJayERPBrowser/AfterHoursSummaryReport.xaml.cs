@@ -20,6 +20,8 @@ using IncentivePayDLL;
 using Microsoft.Win32;
 using System.Security.Cryptography;
 using DataValidationDLL;
+using System.Data.Odbc;
+using DateSearchDLL;
 
 namespace NewBlueJayERPBrowser
 {
@@ -35,14 +37,17 @@ namespace NewBlueJayERPBrowser
         SendEmailClass TheSendEmailClass = new SendEmailClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
 
         FindEmployeeAfterHoursWorkThiryDayReportDataSet TheFindEmployeeAfterHoursWorkThiryDayReportDataSet = new FindEmployeeAfterHoursWorkThiryDayReportDataSet();
         FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
         EmployeeAfterHourWorkReportDataSet TheEmployeeAfterHourWorkReportDataSet = new EmployeeAfterHourWorkReportDataSet();
         FindEmployeeAfterHoursReportNotEnteredDataSet TheFindEmployeesAfterHoursNotEnteredDataSet = new FindEmployeeAfterHoursReportNotEnteredDataSet();
         NoRecordDataSet TheNoRecordDataSet = new NoRecordDataSet();
+        bool gblnNoRecord;
 
         int gintNumberOfRecords;
+        DateTime gdatPayPeriod;
 
         public AfterHoursSummaryReport()
         {
@@ -52,6 +57,8 @@ namespace NewBlueJayERPBrowser
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAfterHoursDataSet();
+
+            gblnNoRecord = false;
 
             dgrResults.ItemsSource = TheEmployeeAfterHourWorkReportDataSet.employeeafterhourwork;
         }
@@ -141,6 +148,41 @@ namespace NewBlueJayERPBrowser
 
                 TheSendEmailClass.SendEmail(strEmailAddress, strHeader, strBody);
 
+                if(gblnNoRecord == true)
+                {
+                    strHeader = "After Hours Punches Not Reported For Pay Period " + Convert.ToString(gdatPayPeriod);
+                    strBody = "<h1>" + strHeader + "</h1>";
+
+                    strBody += "<table>";
+                    strBody += "<tr>";
+                    strBody += "<td><b>Employee Name</b></td>";
+                    strBody += "<td><b>Manager Name</b></td>";
+                    strBody += "<td><b>Location</b></td>";
+                    strBody += "<td><b>Punch Date</b></td>";
+                    strBody += "</tr>";
+
+                    intNumberOfRecords = TheNoRecordDataSet.norecord.Rows.Count;
+
+                    if (intNumberOfRecords > 0)
+                    {
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            strWorkDate = Convert.ToString(TheNoRecordDataSet.norecord[intCounter].PunchDate);
+                            strEmployee = TheNoRecordDataSet.norecord[intCounter].EmployeeName;
+                            strManager = TheNoRecordDataSet.norecord[intCounter].ManagerName;
+                            strAssignedOffice = TheNoRecordDataSet.norecord[intCounter].Location;
+
+                            strBody += "<tr>";
+                            strBody += "<td>" + strEmployee + "</td>";
+                            strBody += "<td>" + strManager + "</td>";
+                            strBody += "<td>" + strAssignedOffice + "</td>";
+                            strBody += "<td>" + strWorkDate + "</td>";
+                            strBody += "</tr>";
+                        }
+                    }
+
+                    TheSendEmailClass.SendEmail(strEmailAddress, strHeader, strBody);
+                }
             }
             catch (Exception Ex)
             {
@@ -151,6 +193,10 @@ namespace NewBlueJayERPBrowser
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
 
+        }
+        private void SendNoRecordReport()
+        {
+            TheMessagesClass.ErrorMessage("Fuck You");
         }
         private void LoadAfterHoursDataSet()
         {
@@ -206,11 +252,13 @@ namespace NewBlueJayERPBrowser
                         TheEmployeeAfterHourWorkReportDataSet.employeeafterhourwork.Rows.Add(NewAfterWork);
                     }
                 }
-                 
-                TheNoRecordDataSet.norecord.Rows.Clear();
+                if(gblnNoRecord == false)
+                {
+                    TheNoRecordDataSet.norecord.Rows.Clear();
+                }               
 
-                dgrNoReport.ItemsSource = TheNoRecordDataSet.norecord;
-               
+                dgrNoReport.ItemsSource = TheNoRecordDataSet.norecord;                
+
             }
             catch (Exception Ex)
             {
@@ -294,6 +342,7 @@ namespace NewBlueJayERPBrowser
                 workbook = null;
                 excel = null;
             }
+
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -301,7 +350,6 @@ namespace NewBlueJayERPBrowser
             //setting up the variables
             string strValueForValidation;
             bool blnFatalError = false;
-            DateTime datPayPeriod;
             int intCounter;
             int intNumberOfRecords;
             int intManagerID;
@@ -309,6 +357,7 @@ namespace NewBlueJayERPBrowser
             int intEmployeeID;
             string strOffice;
             DateTime datPunchDate = DateTime.Now;
+            DateTime datSecondPunchDate = DateTime.Now;
             string strManagerExplaination = "";
             string strEmployeeName;
             int intTransactionID;
@@ -328,9 +377,9 @@ namespace NewBlueJayERPBrowser
                     return;
                 }
 
-                datPayPeriod = Convert.ToDateTime(strValueForValidation);
+                gdatPayPeriod = Convert.ToDateTime(strValueForValidation);
 
-                blnFatalError = TheDataValidationClass.verifyDateRange(datPayPeriod, DateTime.Now);
+                blnFatalError = TheDataValidationClass.verifyDateRange(gdatPayPeriod, DateTime.Now);
 
                 if(blnFatalError == true)
                 {
@@ -338,13 +387,13 @@ namespace NewBlueJayERPBrowser
                     return;
                 }
 
-                if(datPayPeriod.Date.DayOfWeek != DayOfWeek.Sunday)
+                if(gdatPayPeriod.Date.DayOfWeek != DayOfWeek.Sunday)
                 {
                     TheMessagesClass.ErrorMessage("The Pay Period is not a Sunday");
                     return;
                 }
 
-                TheFindEmployeesAfterHoursNotEnteredDataSet = TheAfterHoursWorkClass.FindEmployeeAfterHoursReportNotEntered(datPayPeriod);
+                TheFindEmployeesAfterHoursNotEnteredDataSet = TheAfterHoursWorkClass.FindEmployeeAfterHoursReportNotEntered(gdatPayPeriod);
 
                 intNumberOfRecords = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered.Rows.Count;
 
@@ -357,6 +406,8 @@ namespace NewBlueJayERPBrowser
                         strEmployeeName = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].EmployeeName;
                         datPunchDate = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].PunchDate;
                         intTransactionID = TheFindEmployeesAfterHoursNotEnteredDataSet.FindEmployeeAfterHoursReportNotEntered[intCounter].TransactionID;
+
+                        datPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
 
                         if(intEmployeeID != 20007)
                         {
@@ -382,7 +433,10 @@ namespace NewBlueJayERPBrowser
                             {
                                 for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
                                 {
-                                    if (datPunchDate == TheNoRecordDataSet.norecord[intSecondCounter].PunchDate)
+                                    datSecondPunchDate = TheNoRecordDataSet.norecord[intSecondCounter].PunchDate;
+                                    datSecondPunchDate = TheDateSearchClass.RemoveTime(datSecondPunchDate);
+
+                                    if (datPunchDate == datSecondPunchDate) 
                                     {
                                         if (strEmployeeName == TheNoRecordDataSet.norecord[intSecondCounter].EmployeeName)
                                         {
@@ -398,7 +452,7 @@ namespace NewBlueJayERPBrowser
 
                                 NewEmployeeRow.EmployeeName = strEmployeeName;
                                 NewEmployeeRow.Location = strOffice;
-                                NewEmployeeRow.ManagerExplaination = strManagerExplaination;
+                                NewEmployeeRow.ManagerExplanation = strManagerExplaination;
                                 NewEmployeeRow.ManagerName = strManagerName;
                                 NewEmployeeRow.PunchDate = datPunchDate;
                                 NewEmployeeRow.TransactionID = intTransactionID;
@@ -412,6 +466,15 @@ namespace NewBlueJayERPBrowser
                 }
 
                 dgrNoReport.ItemsSource = TheNoRecordDataSet.norecord;
+                
+                if(TheNoRecordDataSet.norecord.Rows.Count > 0)
+                {
+                    gblnNoRecord = true;
+                }
+                else
+                {
+                    gblnNoRecord = false;
+                }
             }
             catch (Exception Ex)
             {
@@ -422,6 +485,29 @@ namespace NewBlueJayERPBrowser
                 MessageBox.Show(Ex.ToString());
             }
 
+        }
+
+        private void dgrNoReport_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            try
+            {
+                intSelectedIndex = dgrNoReport.SelectedIndex;
+
+                MainWindow.gintTransactionID = TheNoRecordDataSet.norecord[intSelectedIndex].TransactionID;
+
+                EditAfterHoursPunch editAfterHoursPunch = new EditAfterHoursPunch();
+                editAfterHoursPunch.ShowDialog();
+            }
+            catch(Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // After Hours Summary Report // No Records Grid Selection " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // After Hours Summary Report // No Records Grid Selection " + Ex.Message);
+
+                MessageBox.Show(Ex.ToString());
+            }
         }
     }
 }

@@ -163,6 +163,9 @@
     <Compile Include="AfterHoursSummaryReport.xaml.cs">
       <DependentUpon>AfterHoursSummaryReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CompareCrews.xaml.cs">
+      <DependentUpon>CompareCrews.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentEmployeePunchesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -172,6 +175,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CurrentEmployeeTimeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EditAfterHoursPunch.xaml.cs">
+      <DependentUpon>EditAfterHoursPunch.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditEmployeePunches.xaml.cs">
       <DependentUpon>EditEmployeePunches.xaml</DependentUpon>
@@ -220,6 +226,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AfterHoursSummaryReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CompareCrews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditAfterHoursPunch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

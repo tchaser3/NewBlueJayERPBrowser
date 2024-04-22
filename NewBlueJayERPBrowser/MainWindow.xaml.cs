@@ -53,6 +53,7 @@ namespace NewBlueJayERPBrowser
         public static string gstrUserName;
         public static int gintLoggedInEmployeeID;
         public static int gintEmployeeID;
+        public static int gintTransactionID;
 
         public MainWindow()
         {
@@ -707,6 +708,20 @@ namespace NewBlueJayERPBrowser
             expProjectReports.IsExpanded = false;
             expProjects.IsExpanded = false;
             expAfterHoursSummaryReport.IsExpanded = false;
+        }
+
+        private void expAddNonProductionProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void expCompareEmployeeCrews_Expanded(object sender, RoutedEventArgs e)
+        {
+            CompareCrews compareCrews = new CompareCrews();
+            fraMainWindow.Navigate(compareCrews);
+            expEmployeeReports.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expCompareEmployeeCrews.IsExpanded = false;
         }
     }
 }

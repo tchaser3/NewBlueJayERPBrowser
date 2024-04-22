@@ -83,7 +83,7 @@
                 <StackPanel Margin="10,0,0,0">
                     <Expander x:Name="expEmployeeDataEntry" Header="Data Entry" FontSize="14">
                         <StackPanel Margin="10,0,0,0">
-                            <Expander x:Name="expAddNonProductionProductivity" Header="Add Non-Production Productivity" FontSize="14"/>
+                            <Expander x:Name="expAddNonProductionProductivity" Header="Add Non-Production Productivity" FontSize="14" Expanded="expAddNonProductionProductivity_Expanded"/>
                             <Expander x:Name="expAddIncentivePayStatus" Header="Add Incentive Pay Status" FontSize="14"/>
                             <Expander x:Name="expAddIncentivePayTitle" Header="Add Inventive Pay Title" FontSize="14"/>
                             <Expander x:Name="expVerifyIncentivePay" Header="Verify Incentive Pay" FontSize="14"/>
@@ -91,7 +91,7 @@
                     </Expander>
                     <Expander x:Name="expEmployeeReports" Header="Reports" FontSize="14">
                         <StackPanel Margin="10,0,0,0">
-                            <Expander x:Name="expCompareEmployeeCrews" Header="Compare Employee Crews" FontSize="14"/>
+                            <Expander x:Name="expCompareEmployeeCrews" Header="Compare Employee Crews" FontSize="14" Expanded="expCompareEmployeeCrews_Expanded"/>
                             <Expander x:Name="expDesignEmployeeProductivity" Header="Design Employee Productivity" FontSize="14"/>
                             <Expander x:Name="expEmployeeHoursPunched" Header="Employee Hours Punched" FontSize="14"/>
                             <Expander x:Name="expEmployeeLookup" Header="Employee Lookup" FontSize="14"/>

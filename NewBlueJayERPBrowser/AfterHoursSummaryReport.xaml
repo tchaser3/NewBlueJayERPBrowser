@@ -68,7 +68,7 @@
             <Label x:Name="lblAfterHoursNoRecord" Content="After Hours Report No Record" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="6" Margin="1,10,1,1">
-            <DataGrid x:Name="dgrNoReport" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+            <DataGrid x:Name="dgrNoReport" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrNoReport_SelectionChanged"/>
         </StackPanel>
     </Grid>
 </Page>

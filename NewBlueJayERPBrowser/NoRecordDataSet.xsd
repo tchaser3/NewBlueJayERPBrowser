@@ -9,18 +9,18 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="NoRecordDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="NoRecordDataSet" msprop:Generator_DataSetName="NoRecordDataSet">
+  <xs:element name="NoRecordDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="NoRecordDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NoRecordDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="norecord" msprop:Generator_RowEvHandlerName="norecordRowChangeEventHandler" msprop:Generator_RowDeletedName="norecordRowDeleted" msprop:Generator_RowDeletingName="norecordRowDeleting" msprop:Generator_RowEvArgName="norecordRowChangeEvent" msprop:Generator_TablePropName="norecord" msprop:Generator_RowChangedName="norecordRowChanged" msprop:Generator_RowChangingName="norecordRowChanging" msprop:Generator_TableClassName="norecordDataTable" msprop:Generator_RowClassName="norecordRow" msprop:Generator_TableVarName="tablenorecord" msprop:Generator_UserTableName="norecord">
+        <xs:element name="norecord" msprop:Generator_RowClassName="norecordRow" msprop:Generator_RowEvHandlerName="norecordRowChangeEventHandler" msprop:Generator_RowDeletedName="norecordRowDeleted" msprop:Generator_RowDeletingName="norecordRowDeleting" msprop:Generator_RowEvArgName="norecordRowChangeEvent" msprop:Generator_TablePropName="norecord" msprop:Generator_RowChangedName="norecordRowChanged" msprop:Generator_UserTableName="norecord" msprop:Generator_RowChangingName="norecordRowChanging" msprop:Generator_TableClassName="norecordDataTable" msprop:Generator_TableVarName="tablenorecord">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="TransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
-              <xs:element name="EmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" />
-              <xs:element name="ManagerName" msprop:Generator_ColumnPropNameInRow="ManagerName" msprop:Generator_ColumnPropNameInTable="ManagerNameColumn" msprop:Generator_ColumnVarNameInTable="columnManagerName" msprop:Generator_UserColumnName="ManagerName" type="xs:string" />
-              <xs:element name="Location" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_UserColumnName="Location" type="xs:string" />
-              <xs:element name="PunchDate" msprop:Generator_ColumnPropNameInRow="PunchDate" msprop:Generator_ColumnPropNameInTable="PunchDateColumn" msprop:Generator_ColumnVarNameInTable="columnPunchDate" msprop:Generator_UserColumnName="PunchDate" type="xs:dateTime" />
-              <xs:element name="ManagerExplaination" msprop:Generator_ColumnPropNameInRow="ManagerExplaination" msprop:Generator_ColumnPropNameInTable="ManagerExplainationColumn" msprop:Generator_ColumnVarNameInTable="columnManagerExplaination" msprop:Generator_UserColumnName="ManagerExplaination" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionID" msprop:Generator_UserColumnName="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnVarNameInTable="columnTransactionID" type="xs:int" />
+              <xs:element name="EmployeeName" msprop:Generator_UserColumnName="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" type="xs:string" />
+              <xs:element name="ManagerName" msprop:Generator_UserColumnName="ManagerName" msprop:Generator_ColumnPropNameInTable="ManagerNameColumn" msprop:Generator_ColumnPropNameInRow="ManagerName" msprop:Generator_ColumnVarNameInTable="columnManagerName" type="xs:string" />
+              <xs:element name="Location" msprop:Generator_UserColumnName="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" type="xs:string" />
+              <xs:element name="PunchDate" msprop:Generator_UserColumnName="PunchDate" msprop:Generator_ColumnPropNameInTable="PunchDateColumn" msprop:Generator_ColumnPropNameInRow="PunchDate" msprop:Generator_ColumnVarNameInTable="columnPunchDate" type="xs:dateTime" />
+              <xs:element name="ManagerExplanation" msprop:Generator_UserColumnName="ManagerExplanation" msprop:Generator_ColumnPropNameInTable="ManagerExplanationColumn" msprop:Generator_ColumnPropNameInRow="ManagerExplanation" msprop:Generator_ColumnVarNameInTable="columnManagerExplanation" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -289,7 +289,7 @@ namespace NewBlueJayERPBrowser {
             
             private global::System.Data.DataColumn columnPunchDate;
             
-            private global::System.Data.DataColumn columnManagerExplaination;
+            private global::System.Data.DataColumn columnManagerExplanation;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -366,9 +366,9 @@ namespace NewBlueJayERPBrowser {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ManagerExplainationColumn {
+            public global::System.Data.DataColumn ManagerExplanationColumn {
                 get {
-                    return this.columnManagerExplaination;
+                    return this.columnManagerExplanation;
                 }
             }
             
@@ -409,7 +409,7 @@ namespace NewBlueJayERPBrowser {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public norecordRow AddnorecordRow(int TransactionID, string EmployeeName, string ManagerName, string Location, System.DateTime PunchDate, string ManagerExplaination) {
+            public norecordRow AddnorecordRow(int TransactionID, string EmployeeName, string ManagerName, string Location, System.DateTime PunchDate, string ManagerExplanation) {
                 norecordRow rownorecordRow = ((norecordRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TransactionID,
@@ -417,7 +417,7 @@ namespace NewBlueJayERPBrowser {
                         ManagerName,
                         Location,
                         PunchDate,
-                        ManagerExplaination};
+                        ManagerExplanation};
                 rownorecordRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rownorecordRow);
                 return rownorecordRow;
@@ -452,7 +452,7 @@ namespace NewBlueJayERPBrowser {
                 this.columnManagerName = base.Columns["ManagerName"];
                 this.columnLocation = base.Columns["Location"];
                 this.columnPunchDate = base.Columns["PunchDate"];
-                this.columnManagerExplaination = base.Columns["ManagerExplaination"];
+                this.columnManagerExplanation = base.Columns["ManagerExplanation"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -468,8 +468,8 @@ namespace NewBlueJayERPBrowser {
                 base.Columns.Add(this.columnLocation);
                 this.columnPunchDate = new global::System.Data.DataColumn("PunchDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPunchDate);
-                this.columnManagerExplaination = new global::System.Data.DataColumn("ManagerExplaination", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnManagerExplaination);
+                this.columnManagerExplanation = new global::System.Data.DataColumn("ManagerExplanation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnManagerExplanation);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionID}, true));
                 this.columnTransactionID.AllowDBNull = false;
@@ -675,30 +675,30 @@ namespace NewBlueJayERPBrowser {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ManagerExplaination {
+            public string ManagerExplanation {
                 get {
                     try {
-                        return ((string)(this[this.tablenorecord.ManagerExplainationColumn]));
+                        return ((string)(this[this.tablenorecord.ManagerExplanationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ManagerExplaination\' in table \'norecord\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ManagerExplanation\' in table \'norecord\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablenorecord.ManagerExplainationColumn] = value;
+                    this[this.tablenorecord.ManagerExplanationColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsManagerExplainationNull() {
-                return this.IsNull(this.tablenorecord.ManagerExplainationColumn);
+            public bool IsManagerExplanationNull() {
+                return this.IsNull(this.tablenorecord.ManagerExplanationColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetManagerExplainationNull() {
-                this[this.tablenorecord.ManagerExplainationColumn] = global::System.Convert.DBNull;
+            public void SetManagerExplanationNull() {
+                this[this.tablenorecord.ManagerExplanationColumn] = global::System.Convert.DBNull;
             }
         }
         
