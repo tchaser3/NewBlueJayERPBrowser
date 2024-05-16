@@ -723,5 +723,13 @@ namespace NewBlueJayERPBrowser
             expEmployees.IsExpanded = false;
             expCompareEmployeeCrews.IsExpanded = false;
         }
+
+        private void expEditProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            EditProject editProject = new EditProject();
+            fraMainWindow.Navigate(editProject);
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
+        }
     }
 }

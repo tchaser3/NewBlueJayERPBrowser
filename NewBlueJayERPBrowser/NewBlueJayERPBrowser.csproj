@@ -86,6 +86,9 @@
     <Reference Include="ProductionProjectDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductionProjectDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProductionProjectUpdatesDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProductionProjectUpdatesDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProductivityDataEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductivityDataEntryDLL.dll</HintPath>
     </Reference>
@@ -182,6 +185,9 @@
     <Compile Include="EditEmployeePunches.xaml.cs">
       <DependentUpon>EditEmployeePunches.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditProject.xaml.cs">
+      <DependentUpon>EditProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeAfterHourWorkReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditEmployeePunches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
