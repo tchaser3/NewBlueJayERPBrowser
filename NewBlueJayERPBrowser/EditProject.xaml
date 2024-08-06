@@ -48,13 +48,13 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="9" >
-            <Expander x:Name="expEditProjectID" Header="Edit Project ID" FontSize="16"/>
-            <Expander x:Name="expSave" Header="Save" FontSize="16" />
-            <Expander x:Name="expAddDocuments" Header="Add Documents" FontSize="16" />
-            <Expander x:Name="expAddUnderground" Header="Add Underground" FontSize="16" />
-            <Expander x:Name="expViewDocuments" Header="View Documents" FontSize="16" />
-            <Expander x:Name="expEditECDDate" Header="Edit ECD Date" FontSize="16" />
-            <Expander x:Name="expEditProjectInfo" Header="Edit Project Info" FontSize="16" />
+            <Expander x:Name="expEditProjectID" Header="Edit Project ID" FontSize="16" Expanded="expEditProjectID_Expanded"/>
+            <Expander x:Name="expSave" Header="Save" FontSize="16" Expanded="expSave_Expanded" />
+            <Expander x:Name="expAddDocuments" Header="Add Documents" FontSize="16" Expanded="expAddDocuments_Expanded" />
+            <Expander x:Name="expAddUnderground" Header="Add Underground" FontSize="16" Expanded="expAddUnderground_Expanded" />
+            <Expander x:Name="expViewDocuments" Header="View Documents" FontSize="16" Expanded="expViewDocuments_Expanded" />
+            <Expander x:Name="expEditECDDate" Header="Edit ECD Date" FontSize="16" Expanded="expEditECDDate_Expanded" />
+            <Expander x:Name="expEditProjectInfo" Header="Edit Project Info" FontSize="16" Expanded="expEditProjectInfo_Expanded" />
             <Expander x:Name="expResetPage" Header="Reset Page" FontSize="16" Expanded="expResetPage_Expanded" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" >

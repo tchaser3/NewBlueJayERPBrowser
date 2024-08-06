@@ -145,6 +145,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEditPO.xaml.cs">
+      <DependentUpon>AddEditPO.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployeePunch.xaml.cs">
       <DependentUpon>AddEmployeePunch.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,9 @@
     </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddProjectUnderground.xaml.cs">
+      <DependentUpon>AddProjectUnderground.xaml</DependentUpon>
     </Compile>
     <Compile Include="AfterHoursSummaryReport.xaml.cs">
       <DependentUpon>AfterHoursSummaryReport.xaml</DependentUpon>
@@ -188,6 +194,15 @@
     <Compile Include="EditProject.xaml.cs">
       <DependentUpon>EditProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditProjectID.xaml.cs">
+      <DependentUpon>EditProjectID.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditProjectInfo.xaml.cs">
+      <DependentUpon>EditProjectInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditProjectUnderground.xaml.cs">
+      <DependentUpon>EditProjectUnderground.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeAfterHourWorkReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -201,8 +216,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectPOSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SendEmailClass.cs" />
+    <Compile Include="ViewProjectDocumentation.xaml.cs">
+      <DependentUpon>ViewProjectDocumentation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFMessagesClass.cs" />
+    <Page Include="AddEditPO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddProjectUnderground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AfterHoursSummaryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -252,6 +283,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProjectID.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProjectInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProjectUnderground.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,6 +320,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ViewProjectDocumentation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -339,6 +386,17 @@
     </None>
     <None Include="NoRecordDataSet.xss">
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectPOSDataSet.xsc">
+      <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectPOSDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectPOSDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectPOSDataSet.xss">
+      <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

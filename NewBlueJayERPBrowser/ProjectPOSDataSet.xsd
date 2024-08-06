@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProjectPOSDataSet" targetNamespace="http://tempuri.org/ProjectPOSDataSet.xsd" xmlns:mstns="http://tempuri.org/ProjectPOSDataSet.xsd" xmlns="http://tempuri.org/ProjectPOSDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProjectPOSDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="ProjectPOSDataSet" msprop:Generator_DataSetName="ProjectPOSDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="projectpos" msprop:Generator_RowEvHandlerName="projectposRowChangeEventHandler" msprop:Generator_RowDeletedName="projectposRowDeleted" msprop:Generator_RowDeletingName="projectposRowDeleting" msprop:Generator_RowEvArgName="projectposRowChangeEvent" msprop:Generator_TablePropName="projectpos" msprop:Generator_RowChangedName="projectposRowChanged" msprop:Generator_RowChangingName="projectposRowChanging" msprop:Generator_TableClassName="projectposDataTable" msprop:Generator_RowClassName="projectposRow" msprop:Generator_TableVarName="tableprojectpos" msprop:Generator_UserTableName="projectpos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="PONumber" msprop:Generator_ColumnPropNameInRow="PONumber" msprop:Generator_ColumnPropNameInTable="PONumberColumn" msprop:Generator_ColumnVarNameInTable="columnPONumber" msprop:Generator_UserColumnName="PONumber" type="xs:string" />
+              <xs:element name="POAmount" msprop:Generator_ColumnPropNameInRow="POAmount" msprop:Generator_ColumnPropNameInTable="POAmountColumn" msprop:Generator_ColumnVarNameInTable="columnPOAmount" msprop:Generator_UserColumnName="POAmount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:projectpos" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

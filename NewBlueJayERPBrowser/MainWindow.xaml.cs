@@ -54,6 +54,10 @@ namespace NewBlueJayERPBrowser
         public static int gintLoggedInEmployeeID;
         public static int gintEmployeeID;
         public static int gintTransactionID;
+        public static int gintProjectID;
+        public static string gstrCustomerProjectID;
+        public static string gstrAssignedProjectID;
+
 
         public MainWindow()
         {
