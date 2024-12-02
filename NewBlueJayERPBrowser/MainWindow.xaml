@@ -217,7 +217,11 @@
                 <StackPanel Margin="10,1,1,1">
                     <Expander x:Name="expVehicleDataEntry" FontSize="14" Header="Vehicle Data Entry"></Expander>
                     <Expander x:Name="expVehicleReports" FontSize="14" Header="Vehicle Reports" ></Expander>
-                    <Expander x:Name="expVehicleAdministration" FontSize="14" Header="Vehicle Administration"></Expander>
+                    <Expander x:Name="expVehicleAdministration" FontSize="14" Header="Vehicle Administration">
+                        <StackPanel Margin="10,1,1,1">
+                            <Expander x:Name="expImportFleetIOVehicles"  Header="Import Fleet IO Vehicles" Expanded="expImportFleetIOVehicles_Expanded" />
+                        </StackPanel>
+                    </Expander>
                 </StackPanel>
             </Expander>
             <Expander x:Name="expTrailers" Header="Trailers" FontSize="16" Margin="0,5,0,0" Expanded="expTrailers_Expanded">
@@ -305,6 +309,6 @@
                 <Button x:Name="btnCancel" Content="Cancel" FontSize="24" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="50" Width="125" Margin="10,1,1,1" Click="btnCancel_Click"/>
             </StackPanel>
         </StackPanel>
-        <Frame x:Name="fraMainWindow" Grid.Column="1" Grid.Row="1" />
+        <Frame x:Name="fraMainWindow" Grid.Column="1" Grid.Row="1" Navigated="fraMainWindow_Navigated" />
     </Grid>
 </Window>

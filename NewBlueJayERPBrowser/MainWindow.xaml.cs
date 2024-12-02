@@ -542,6 +542,7 @@ namespace NewBlueJayERPBrowser
 
                 gblnLoggedIn = true;
                 gstrEmployeeGroup = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup;
+                
                 LoginComplete();
             }
         }
@@ -734,6 +735,19 @@ namespace NewBlueJayERPBrowser
             fraMainWindow.Navigate(editProject);
             expProjectDataEntry.IsExpanded = false;
             expProjects.IsExpanded = false;
+        }
+
+        private void fraMainWindow_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void expImportFleetIOVehicles_Expanded(object sender, RoutedEventArgs e)
+        {
+            ImportFleetIOVehicles importFleetIOVehicles = new ImportFleetIOVehicles();
+            fraMainWindow.Navigate(importFleetIOVehicles);
+            expVehicleAdministration.IsExpanded = false;
+            expVehicles.IsExpanded = false;
         }
     }
 }

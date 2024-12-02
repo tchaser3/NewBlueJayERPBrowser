@@ -62,6 +62,9 @@
     <Reference Include="EmployeePunchedHoursDLL">
       <HintPath>..\..\Blue Jay Class Library\EmployeePunchedHoursDLL.dll</HintPath>
     </Reference>
+    <Reference Include="FleetIOVehicleDLL">
+      <HintPath>..\..\Blue Jay Class Library\FleetIOVehicleDLL.dll</HintPath>
+    </Reference>
     <Reference Include="IncentivePayDLL">
       <HintPath>..\..\Blue Jay Class Library\IncentivePayDLL.dll</HintPath>
     </Reference>
@@ -208,13 +211,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FleetIOVehicleImportDataSet.cs">
+      <DependentUpon>FleetIOVehicleImportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FleetIOVehicleImportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetIOVehicleImportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFleetIOVehicles.xaml.cs">
+      <DependentUpon>ImportFleetIOVehicles.xaml</DependentUpon>
     </Compile>
     <Compile Include="NoRecordDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PleaseWait.xaml.cs">
+      <DependentUpon>PleaseWait.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectPOSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -302,6 +319,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportFleetIOVehicles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -320,6 +341,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PleaseWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewProjectDocumentation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -375,6 +400,17 @@
     </None>
     <None Include="EmployeeAfterHourWorkReportDataSet.xss">
       <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FleetIOVehicleImportDataSet.xsc">
+      <DependentUpon>FleetIOVehicleImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FleetIOVehicleImportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FleetIOVehicleImportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FleetIOVehicleImportDataSet.xss">
+      <DependentUpon>FleetIOVehicleImportDataSet.xsd</DependentUpon>
     </None>
     <None Include="NoRecordDataSet.xsc">
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>

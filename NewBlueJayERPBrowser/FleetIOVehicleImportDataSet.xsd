@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FleetIOVehicleImportDataSet" targetNamespace="http://tempuri.org/FleetIOVehicleImportDataSet.xsd" xmlns:mstns="http://tempuri.org/FleetIOVehicleImportDataSet.xsd" xmlns="http://tempuri.org/FleetIOVehicleImportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FleetIOVehicleImportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="FleetIOVehicleImportDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FleetIOVehicleImportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vehiclesforimport" msprop:Generator_RowEvHandlerName="vehiclesforimportRowChangeEventHandler" msprop:Generator_RowDeletedName="vehiclesforimportRowDeleted" msprop:Generator_RowDeletingName="vehiclesforimportRowDeleting" msprop:Generator_RowEvArgName="vehiclesforimportRowChangeEvent" msprop:Generator_TablePropName="vehiclesforimport" msprop:Generator_RowChangedName="vehiclesforimportRowChanged" msprop:Generator_UserTableName="vehiclesforimport" msprop:Generator_RowChangingName="vehiclesforimportRowChanging" msprop:Generator_RowClassName="vehiclesforimportRow" msprop:Generator_TableClassName="vehiclesforimportDataTable" msprop:Generator_TableVarName="tablevehiclesforimport">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_UserColumnName="TransactionID" msprop:Generator_ColumnVarNameInTable="columnTransactionID" type="xs:int" />
+              <xs:element name="FleetIOVehicleID" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleIDColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleID" msprop:Generator_UserColumnName="FleetIOVehicleID" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleID" type="xs:int" />
+              <xs:element name="FleetIOVehicleYear" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleYearColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleYear" msprop:Generator_UserColumnName="FleetIOVehicleYear" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleYear" type="xs:int" />
+              <xs:element name="FleetIOVehicleNumber" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleNumberColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleNumber" msprop:Generator_UserColumnName="FleetIOVehicleNumber" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleNumber" type="xs:string" />
+              <xs:element name="FleetIOVehicleMake" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleMakeColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleMake" msprop:Generator_UserColumnName="FleetIOVehicleMake" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleMake" type="xs:string" minOccurs="0" />
+              <xs:element name="FleetIOVehicleModel" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleModelColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleModel" msprop:Generator_UserColumnName="FleetIOVehicleModel" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleModel" type="xs:string" />
+              <xs:element name="FleetIOVehicleStatus" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleStatus" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleStatusColumn" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleStatus" msprop:Generator_UserColumnName="FleetIOVehicleStatus" type="xs:string" />
+              <xs:element name="FleetIOVehicleVIN" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleVINColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleVIN" msprop:Generator_UserColumnName="FleetIOVehicleVIN" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleVIN" type="xs:string" />
+              <xs:element name="FleetIOVehicleType" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleTypeColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleType" msprop:Generator_UserColumnName="FleetIOVehicleType" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleType" type="xs:string" />
+              <xs:element name="FleetIOVehicleGroup" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleGroupColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleGroup" msprop:Generator_UserColumnName="FleetIOVehicleGroup" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleGroup" type="xs:string" minOccurs="0" />
+              <xs:element name="FleetIOVehicleLicensePlate" msprop:Generator_ColumnPropNameInTable="FleetIOVehicleLicensePlateColumn" msprop:Generator_ColumnPropNameInRow="FleetIOVehicleLicensePlate" msprop:Generator_UserColumnName="FleetIOVehicleLicensePlate" msprop:Generator_ColumnVarNameInTable="columnFleetIOVehicleLicensePlate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vehiclesforimport" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

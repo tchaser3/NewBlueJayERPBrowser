@@ -371,7 +371,7 @@ namespace NewBlueJayERPBrowser
                         {
                             strDocumentPath = dlg.FileNames[intCounter].ToUpper();
 
-                            blnFatalError = TheProductionProjectClass.InsertProductionProjectDocumentation(MainWindow.gintProjectID, MainWindow.gintEmployeeID, DateTime.Now, strDocumentPath);
+                            blnFatalError = TheProductionProjectClass.InsertProductionProjectDocumentation(MainWindow.gintProjectID, MainWindow.gintLoggedInEmployeeID, DateTime.Now, strDocumentPath);
 
                             if (blnFatalError == true)
                                 throw new Exception();
@@ -451,7 +451,7 @@ namespace NewBlueJayERPBrowser
                     if (blnFatalError == true)
                         throw new Exception();
 
-                    blnFatalError = TheProductionProjectUpdatesClass.InsertProductionProjectUpdate(MainWindow.gintProjectID, MainWindow.gintEmployeeID, strProjectNotes);
+                    blnFatalError = TheProductionProjectUpdatesClass.InsertProductionProjectUpdate(MainWindow.gintProjectID, MainWindow.gintLoggedInEmployeeID, strProjectNotes);
 
                     if (blnFatalError == true)
                         throw new Exception();
