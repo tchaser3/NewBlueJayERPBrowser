@@ -145,7 +145,7 @@ namespace NewBlueJayERPBrowser
                         throw new Exception();
                     }
                 }
-
+                MainWindow.gstrCustomerProjectID = strNewCustomerProjectID;
                 this.Close();
 
             }

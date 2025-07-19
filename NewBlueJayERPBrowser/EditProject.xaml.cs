@@ -547,6 +547,7 @@ namespace NewBlueJayERPBrowser
             MainWindow.gintProjectID = Convert.ToInt32(txtProjectID.Text);
             EditProjectID EditProjectID = new EditProjectID();
             EditProjectID.ShowDialog();
+            txtCustomerProjectID.Text = MainWindow.gstrCustomerProjectID;
         }
     }
 }
