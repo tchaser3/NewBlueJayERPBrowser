@@ -21,6 +21,7 @@ using DateSearchDLL;
 using NewEmployeeDLL;
 using WorkOrderDLL;
 using ProjectsDLL;
+using OutageProjectDLL;
 
 namespace NewBlueJayERPBrowser
 {
@@ -39,12 +40,14 @@ namespace NewBlueJayERPBrowser
         SendEmailClass TheSendEmailClass = new SendEmailClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
         ProjectClass TheProjectClass = new ProjectClass();
+        OutageProjectClass TheOutageProjectClass = new OutageProjectClass();
 
         //Setting up the data
         FindProjectMatrixByProjectIDDataSet TheFindProjectMatrixByProjectIDDataSet = new FindProjectMatrixByProjectIDDataSet();
         FindProjectByProjectIDDataSet TheFindProjectByProjectIDDataSet = new FindProjectByProjectIDDataSet();
         FindProjectMatrixByCustomerAssignedIDDataSet TheFindProjectMatrixByCustomerAssignedIDDataSet = new FindProjectMatrixByCustomerAssignedIDDataSet();
-        
+        FindOutageProjectByProjectIDDataSet TheFindOutageProjectByProjectIDDataSet = new FindOutageProjectByProjectIDDataSet();
+
         int gintTransactionID;
 
         public EditProjectID()
@@ -130,6 +133,17 @@ namespace NewBlueJayERPBrowser
                 if (blnFatalError == true)
                 {
                     throw new Exception();
+                }
+
+                TheFindOutageProjectByProjectIDDataSet = TheOutageProjectClass.FindOutageProjectByProjectID(MainWindow.gintProjectID);
+
+                if(TheFindOutageProjectByProjectIDDataSet.FindOutageProjectByProjectID.Rows.Count > 0)
+                {
+                    blnFatalError = TheOutageProjectClass.DeleteOutageProject(MainWindow.gintProjectID);
+                    if (blnFatalError == true)
+                    {
+                        throw new Exception();
+                    }
                 }
 
                 this.Close();

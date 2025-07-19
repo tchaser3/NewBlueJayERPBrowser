@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NewEventLogDLL;
 using ProductionProjectDLL;
@@ -25,9 +24,9 @@ using EmployeeDateEntryDLL;
 namespace NewBlueJayERPBrowser
 {
     /// <summary>
-    /// Interaction logic for EditProject.xaml
+    /// Interaction logic for EditOutageProject.xaml
     /// </summary>
-    public partial class EditProject : Page
+    public partial class EditOutageProject : Window
     {
         //setting up the classes
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
@@ -43,6 +42,7 @@ namespace NewBlueJayERPBrowser
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data        
+        FindProjectMatrixByProjectIDDataSet TheFindProjectMatrixByProjectIDDataSet = new FindProjectMatrixByProjectIDDataSet();
         FindProjectMatrixByCustomerAssignedIDDataSet TheFindProjectMatrixByCustomerAssignedIDDataSet = new FindProjectMatrixByCustomerAssignedIDDataSet();
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
         FindWorkOrderStatusSortedDataSet TheFindWorkOrderStatusSortedDataSet = new FindWorkOrderStatusSortedDataSet();
@@ -57,13 +57,18 @@ namespace NewBlueJayERPBrowser
         int gintTransactionID;
         bool gblnEditUnderground;
         bool gblnECDDateChanged;
-        string gstrCustomerProjectID;
-
-        public EditProject()
+        
+        public EditOutageProject()
         {
             InitializeComponent();
         }
-         private void ResetControls()
+
+        private void expCloseWindow_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCloseWindow.IsExpanded = false;
+            this.Close();
+        }
+        private void ResetControls()
         {
             int intCounter;
             int intNumberOfRecords;
@@ -78,10 +83,9 @@ namespace NewBlueJayERPBrowser
             txtDepartment.Text = "";
             txtECDDate.Text = "";
             txtEnterNewNotes.Text = "";
-            txtEnterProjectID.Text = "";
             txtProjectID.Text = "";
             txtProjectName.Text = "";
-            MainWindow.gblnOutageProject = false;
+            MainWindow.gblnOutageProject = true;
 
             TheFindWarehousesDataSet = TheEmployeeClass.FindWarehouses();
 
@@ -92,7 +96,7 @@ namespace NewBlueJayERPBrowser
             cboProjectStatus.Items.Clear();
             cboProjectStatus.Items.Add("Select Status");
 
-            for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+            for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
             {
                 cboAssignedOffice.Items.Add(TheFindWarehousesDataSet.FindWarehouses[intCounter].FirstName);
             }
@@ -103,7 +107,7 @@ namespace NewBlueJayERPBrowser
 
             intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count;
 
-            for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+            for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
             {
                 cboProjectStatus.Items.Add(TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].WorkOrderStatus);
             }
@@ -111,49 +115,28 @@ namespace NewBlueJayERPBrowser
             cboProjectStatus.SelectedIndex = 0;
             txtCurrentNotes.Background = Brushes.White;
             txtCurrentNotes.Foreground = Brushes.Black;
+
+            FindProject();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ResetControls();
         }
-
-        private void expResetPage_Expanded(object sender, RoutedEventArgs e)
-        {
-            expResetPage.IsExpanded = false;
-            ResetControls();
-        }
-
-        private void btnFind_Click(object sender, RoutedEventArgs e)
+        private void FindProject()
         {
             int intCounter;
             int intNumberOfRecords;
             string strProjectNotes = "";
+            string strCustomerProjectID;
 
             try
             {
-                gstrCustomerProjectID = txtEnterProjectID.Text;
-                if(gstrCustomerProjectID.Length < 2)
-                {
-                    TheMessagesClass.ErrorMessage("The Project ID is not Long Enough");
-                    return;
-                }
+                TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(MainWindow.gintProjectID);
+                strCustomerProjectID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
+                TheFindProjectMatrixByCustomerAssignedIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerAssignedID(strCustomerProjectID);
 
-                TheFindProjectMatrixByCustomerAssignedIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerAssignedID(gstrCustomerProjectID);
-
-                intNumberOfRecords = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID.Rows.Count;
-
-                if(intNumberOfRecords == 0)
-                {
-                    TheMessagesClass.ErrorMessage("Project Not Found");
-                    return;
-                }
-                else
-                {
-                    MainWindow.gintProjectID = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].ProjectID;
-                }
-
-                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.gintLoggedInEmployeeID, "New Blue Jay ERP Browser // Edit Project for Project " + gstrCustomerProjectID);
+                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.gintLoggedInEmployeeID, "New Blue Jay ERP Browser // Edit Project for Project " + TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID);
 
                 TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(MainWindow.gintProjectID);
                 TheFindProductionProjectUndergroundByProjectID = TheProductionProjectClass.FindProductionProjectUndergroundByProjectID(MainWindow.gintProjectID);
@@ -173,9 +156,9 @@ namespace NewBlueJayERPBrowser
 
                 gintTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
 
-                txtProjectID.Text = Convert.ToString(TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].ProjectID);
-                txtBlueJayID.Text = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].AssignedProjectID;
-                txtCustomerProjectID.Text = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].CustomerAssignedID;
+                txtProjectID.Text = Convert.ToString(TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].ProjectID);
+                txtBlueJayID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].AssignedProjectID;
+                txtCustomerProjectID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
                 txtProjectName.Text = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].ProjectName;
 
                 gintWarehouseID = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].AssignedOfficeID;
@@ -197,7 +180,7 @@ namespace NewBlueJayERPBrowser
                 TheFindWorkOrderStatusSortedDataSet = TheWorkOrderClass.FindWorkOrderStatusSorted();
 
                 intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count;
-                
+
                 gstrWorkOrderStatus = TheFindProjectMatrixByCustomerAssignedIDDataSet.FindProjectMatrixByCustomerAssignedID[0].WorkOrderStatus;
 
                 for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
@@ -271,77 +254,27 @@ namespace NewBlueJayERPBrowser
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Find Button " + Ex.ToString());
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Outage Project // Find Project " + Ex.ToString());
 
-                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Edit Project // Find Button " + Ex.ToString());
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Edit Outate Project // Find Project " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
 
-        private void cboAssignedOffice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void expEditProjectID_Expanded(object sender, RoutedEventArgs e)
         {
-            //this will set the warehouse id
-            int intSelectedIndex;
-
-            try
-            {
-                intSelectedIndex = cboAssignedOffice.SelectedIndex - 1;
-
-                if (intSelectedIndex > -1)
-                {
-                    gintWarehouseID = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].EmployeeID;
-                    MainWindow.gstrAssignedProjectID = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].FirstName;
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Select Office Combo Box " + Ex.ToString());
-
-                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Enter Project // Select Office Combo Box " + Ex.ToString());
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
+            expEditProjectID.IsExpanded = false;
+            MainWindow.gintProjectID = Convert.ToInt32(txtProjectID.Text);
+            EditProjectID EditProjectID = new EditProjectID();
+            EditProjectID.ShowDialog();
         }
 
-        private void cboProjectStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void expAddDocuments_Expanded(object sender, RoutedEventArgs e)
         {
-            int intSelectedIndex;
-
-            try
-            {
-                intSelectedIndex = cboProjectStatus.SelectedIndex - 1;
-
-                if (intSelectedIndex > -1)
-                {
-                    gstrWorkOrderStatus = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intSelectedIndex].WorkOrderStatus;
-                    gintStatusID = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intSelectedIndex].StatusID;
-
-                    if ((gintStatusID == 1002) || (gintStatusID == 1007))
-                    {
-                        TheFindProductionProjectUndergroundByProjectID = TheProductionProjectClass.FindProductionProjectUndergroundByProjectID(MainWindow.gintProjectID);
-
-                        if (TheFindProductionProjectUndergroundByProjectID.FindProductionProjectUndergroundByProjectID.Rows.Count > 0)
-                        {
-                            if (TheFindProductionProjectUndergroundByProjectID.FindProductionProjectUndergroundByProjectID[0].IsDateCompletedNull() == true)
-                            {
-                                TheMessagesClass.ErrorMessage("Underground for this Project is not Complete");
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Select Status Combo Box " + Ex.ToString());
-
-                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Enter Project // Select Status Combo Box " + Ex.ToString());
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
+            expAddDocuments.IsExpanded = false;
+            AddDocuments();
         }
-
         private void AddDocuments()
         {
             //setting local variables
@@ -388,12 +321,50 @@ namespace NewBlueJayERPBrowser
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Add Documents Method " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Outage Project // Add Documents Method " + Ex.Message);
 
-                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Edit Project // Add Documents Method " + Ex.ToString());
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Edit Outage Project // Add Documents Method " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void expAddUnderground_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddUnderground.IsExpanded = false;
+
+            if (gblnEditUnderground == false)
+            {
+                AddProjectUnderground AddProjectUnderground = new AddProjectUnderground();
+                AddProjectUnderground.ShowDialog();
+            }
+            else if (gblnEditUnderground == true)
+            {
+                EditProjectUnderground editProjectUnderground = new EditProjectUnderground();
+                editProjectUnderground.ShowDialog();
+            }
+        }
+
+        private void expViewDocuments_Expanded(object sender, RoutedEventArgs e)
+        {
+            expViewDocuments.IsExpanded = false;
+            ViewProjectDocumentation ViewProjectDocumentation = new ViewProjectDocumentation();
+            ViewProjectDocumentation.ShowDialog();
+        }
+
+        private void expEditECDDate_Expanded(object sender, RoutedEventArgs e)
+        {
+            txtECDDate.IsReadOnly = false;
+            txtECDDate.Background = Brushes.White;
+            gblnECDDateChanged = true;
+            expEditECDDate.IsExpanded = false;
+        }
+
+        private void expEditProjectInfo_Expanded(object sender, RoutedEventArgs e)
+        {
+            expEditProjectInfo.IsExpanded = false;
+            EditProjectInfo EditProjectInfo = new EditProjectInfo();
+            EditProjectInfo.ShowDialog();
         }
 
         private void expSave_Expanded(object sender, RoutedEventArgs e)
@@ -464,11 +435,11 @@ namespace NewBlueJayERPBrowser
                         if (blnFatalError == true)
                             throw new Exception();
 
-                        TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.gintLoggedInEmployeeID, "Employee is Updating the ECD Date for Project " + gstrCustomerProjectID);
+                        TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.gintLoggedInEmployeeID, "Employee is Updating the ECD Date for Project " + txtCustomerProjectID.Text);
 
-                        TheSendEmailClass.SendEventLog("Employee is Editing the ECD Date For Project " + gstrCustomerProjectID);
+                        TheSendEmailClass.SendEventLog("Employee is Editing the ECD Date For Project " + txtCustomerProjectID.Text);
 
-                        TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Save Expander // Employee Is Editing the ECD Date For Project " + gstrCustomerProjectID);
+                        TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Save Expander // Employee Is Editing the ECD Date For Project " + txtCustomerProjectID.Text);
 
                     }
 
@@ -478,7 +449,7 @@ namespace NewBlueJayERPBrowser
 
                     TheMessagesClass.InformationMessage("The Project Has Been Updated");
 
-                    ResetControls();
+                    this.Close();
 
                 }
                 else
@@ -489,64 +460,75 @@ namespace NewBlueJayERPBrowser
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Project // Save Expander " + Ex.ToString());
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Outage Project // Save Expander " + Ex.ToString());
 
-                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Enter Project // Save Expander " + Ex.ToString());
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Enter Outage Project // Save Expander " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
 
-        private void expAddDocuments_Expanded(object sender, RoutedEventArgs e)
+        private void cboProjectStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            expAddDocuments.IsExpanded = false;
-            AddDocuments();
-        }
+            int intSelectedIndex;
 
-        private void expAddUnderground_Expanded(object sender, RoutedEventArgs e)
-        {
-            expAddUnderground.IsExpanded = false;
-
-            if (gblnEditUnderground == false)
+            try
             {
-                AddProjectUnderground AddProjectUnderground = new AddProjectUnderground();
-                AddProjectUnderground.ShowDialog();
+                intSelectedIndex = cboProjectStatus.SelectedIndex - 1;
+
+                if (intSelectedIndex > -1)
+                {
+                    gstrWorkOrderStatus = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intSelectedIndex].WorkOrderStatus;
+                    gintStatusID = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intSelectedIndex].StatusID;
+
+                    if ((gintStatusID == 1002) || (gintStatusID == 1007))
+                    {
+                        TheFindProductionProjectUndergroundByProjectID = TheProductionProjectClass.FindProductionProjectUndergroundByProjectID(MainWindow.gintProjectID);
+
+                        if (TheFindProductionProjectUndergroundByProjectID.FindProductionProjectUndergroundByProjectID.Rows.Count > 0)
+                        {
+                            if (TheFindProductionProjectUndergroundByProjectID.FindProductionProjectUndergroundByProjectID[0].IsDateCompletedNull() == true)
+                            {
+                                TheMessagesClass.ErrorMessage("Underground for this Project is not Complete");
+                                return;
+                            }
+                        }
+                    }
+                }
             }
-            else if (gblnEditUnderground == true)
+            catch (Exception Ex)
             {
-                EditProjectUnderground editProjectUnderground = new EditProjectUnderground();
-                editProjectUnderground.ShowDialog();
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Outage Project // Select Status Combo Box " + Ex.ToString());
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Enter Outage Project // Select Status Combo Box " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
 
-        private void expEditECDDate_Expanded(object sender, RoutedEventArgs e)
+        private void cboAssignedOffice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtECDDate.IsReadOnly = false;
-            txtECDDate.Background = Brushes.White;
-            gblnECDDateChanged = true;
-            expEditECDDate.IsExpanded = false;
-        }
+            //this will set the warehouse id
+            int intSelectedIndex;
 
-        private void expEditProjectInfo_Expanded(object sender, RoutedEventArgs e)
-        {
-            expEditProjectInfo.IsExpanded = false;
-            EditProjectInfo EditProjectInfo = new EditProjectInfo();
-            EditProjectInfo.ShowDialog();
-        }
+            try
+            {
+                intSelectedIndex = cboAssignedOffice.SelectedIndex - 1;
 
-        private void expViewDocuments_Expanded(object sender, RoutedEventArgs e)
-        {
-            expViewDocuments.IsExpanded = false;
-            ViewProjectDocumentation ViewProjectDocumentation = new ViewProjectDocumentation();
-            ViewProjectDocumentation.ShowDialog();
-        }
+                if (intSelectedIndex > -1)
+                {
+                    gintWarehouseID = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].EmployeeID;
+                    MainWindow.gstrAssignedProjectID = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].FirstName;
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Edit Outage Project // Select Office Combo Box " + Ex.ToString());
 
-        private void expEditProjectID_Expanded(object sender, RoutedEventArgs e)
-        {
-            expEditProjectID.IsExpanded = false;
-            MainWindow.gintProjectID = Convert.ToInt32(txtProjectID.Text);
-            EditProjectID EditProjectID = new EditProjectID();
-            EditProjectID.ShowDialog();
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Edit Outage Project // Select Office Combo Box " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

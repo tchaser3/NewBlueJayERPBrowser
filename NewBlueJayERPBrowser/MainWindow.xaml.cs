@@ -57,7 +57,7 @@ namespace NewBlueJayERPBrowser
         public static int gintProjectID;
         public static string gstrCustomerProjectID;
         public static string gstrAssignedProjectID;
-
+        public static bool gblnOutageProject;
 
         public MainWindow()
         {
@@ -748,6 +748,16 @@ namespace NewBlueJayERPBrowser
             fraMainWindow.Navigate(importFleetIOVehicles);
             expVehicleAdministration.IsExpanded = false;
             expVehicles.IsExpanded = false;
+        }
+
+        private void expEditOutageProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            SelectOutageProject selectOutageProject = new SelectOutageProject();
+            fraMainWindow.Navigate(selectOutageProject);
+            expEditOutageProject.IsExpanded = false;
+            expEditProject.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
         }
     }
 }

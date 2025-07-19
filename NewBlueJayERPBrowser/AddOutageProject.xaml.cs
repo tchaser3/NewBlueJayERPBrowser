@@ -68,12 +68,13 @@ namespace NewBlueJayERPBrowser
         int gintManagerID;
         int gintOfficeID;
         int gintStatusID;
-        int gintProjectID;
+        //int gintProjectID;
         bool gblnProjectExists;
         bool gblnProjectMatrixExists;
         bool gblnOver2500;
         int gintJobTypeID;
         string gstrOutageStatus;
+        bool gblnNeedsUnderground;
 
         public AddOutageProject()
         {
@@ -191,6 +192,12 @@ namespace NewBlueJayERPBrowser
 
                 cboSelectJobtype.SelectedIndex = 0;
 
+                cboNeedsUnderground.Items.Clear();
+                cboNeedsUnderground.Items.Add("Select Underground Needs");
+                cboNeedsUnderground.Items.Add("Yes");
+                cboNeedsUnderground.Items.Add("No");
+                cboNeedsUnderground.SelectedIndex = 0;
+
                 strCustomerProjectID = Convert.ToString(datProjectID.Year);
                 strCustomerProjectID += Convert.ToString(datProjectID.Month);
                 strCustomerProjectID += Convert.ToString(datProjectID.Day);
@@ -200,6 +207,12 @@ namespace NewBlueJayERPBrowser
 
                 txtAssignedProjectID.Text = Convert.ToString(datProjectID.Year) + "-003";
 
+                txtDateReceived.Text = Convert.ToString(DateTime.Now);
+                txtECDDate.Text = Convert.ToString(DateTime.Now.AddDays(180));
+                txtPOAmount.Text = "0.00";
+                txtPONumber.Text = "UNKNOWN";
+                txtProjectName.Text = "OUTAGE FOR ";
+                txtEnterProjectNotes.Text = "OUTAGE PROJECT FOR " + Convert.ToString(DateTime.Now);
             }
             catch (Exception Ex)
             {
@@ -269,7 +282,14 @@ namespace NewBlueJayERPBrowser
 
         private void cboNeedsUnderground_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           if (cboNeedsUnderground.SelectedIndex == 1)
+            {
+                gblnNeedsUnderground = true;
+            }
+            else if (cboNeedsUnderground.SelectedIndex == 2)
+            {
+                gblnNeedsUnderground = false;
+            }
         }
 
         private void cboSelectStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -288,6 +308,237 @@ namespace NewBlueJayERPBrowser
                 gintStatusID = TheFindWorkOrderStatusByStatusDataSet.FindWorkOrderStatusByStatus[0].StatusID;
             }
                 
+        }
+
+        private void expProcess_Expanded(object sender, RoutedEventArgs e)
+        {
+            string strCustomerProjectID;
+            string strAssignedProjectID;
+            string strProjectName;
+            string strProjectAddress;
+            string strProjectCity;
+            string strProjectState;
+            DateTime datDateReceived;
+            DateTime datECDDate;
+            string strPointOfContact;
+            string strPONumber;
+            decimal decPOAmount;
+            string strProjectNotes;
+            bool blnFatalError = false;
+            string strErrorMessage = "";
+            int intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
+
+            try
+            {
+                
+                if(cboSelectDepartment.SelectedIndex < 1)
+                {
+                    blnFatalError= true;
+                    strErrorMessage += "You Must Select a Department\n";
+                }
+                strCustomerProjectID = txtCustomerProjectID.Text;
+                if (strCustomerProjectID.Length < 7)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Customer Project ID\n";
+                }
+                strAssignedProjectID = txtAssignedProjectID.Text;
+                if (strAssignedProjectID.Length < 7)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Assigned Project ID\n";
+                }
+                strProjectName = txtProjectName.Text;
+                if (strProjectName.Length < 8)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Project Name\n";
+                }
+                strProjectAddress = txtProjectAddress.Text;
+                if (strProjectAddress.Length < 5)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Project Address\n";
+                }
+                strProjectCity = txtProjectCity.Text;
+                if (strProjectCity.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Project City\n";
+                }
+                strProjectState = txtProjectState.Text;
+                if (strProjectState.Length < 2)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Project State\n";
+                }
+                if(cboSelectManager.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must Select a Manager\n";
+                }
+                if (cboSelectOffice.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must Select an Office\n";
+                }
+                if(cboSelectJobtype.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must Select a Job Type\n";
+                }
+                datDateReceived = Convert.ToDateTime(txtDateReceived.Text);
+                datECDDate = Convert.ToDateTime(txtECDDate.Text);
+                if(cboNeedsUnderground.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must Select Underground Needs\n";
+                }
+                strPointOfContact = txtPointOfContact.Text;
+                if (strPointOfContact.Length < 7)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Point Of Contact\n";
+                }
+                strPONumber = txtPONumber.Text;
+                decPOAmount = Convert.ToDecimal(txtPOAmount.Text);
+                strProjectNotes = txtEnterProjectNotes.Text;
+                if (strProjectNotes.Length < 10)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "You Must enter Project Notes\n";
+                }
+                if (blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage(strErrorMessage);
+                    return;
+                }
+
+                blnFatalError = TheProjectClass.InsertProject(strCustomerProjectID, strProjectName);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strCustomerProjectID);
+
+                MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
+
+                blnFatalError = TheProductionProjectClass.InsertProdutionProject(MainWindow.gintProjectID, gintDepartmentID, strProjectAddress, strProjectCity, strProjectState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheOutageProjectClass.InsertOutageProject(MainWindow.gstrUserName, DateTime.Now, strCustomerProjectID, MainWindow.gintProjectID, strProjectAddress, "", strProjectCity, strProjectState, "", "OPEN");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectClass.InsertProductionProjectUpdate(MainWindow.gintProjectID, intEmployeeID, DateTime.Now, strProjectNotes);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(intEmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProjectMatrixClass.InsertProjectMatrix(MainWindow.gintProjectID, strAssignedProjectID, strCustomerProjectID, DateTime.Now, intEmployeeID, gintOfficeID, gintDepartmentID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectClass.InsertProductionProjectInfo(MainWindow.gintProjectID, gintJobTypeID, strPointOfContact, strPONumber, decPOAmount);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectClass.InsertProductionProjectNTP(MainWindow.gstrUserName, strPONumber, decPOAmount, MainWindow.gintProjectID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                if (gblnNeedsUnderground == true)
+                {
+                    AddProjectUnderground AddProjectUnderground = new AddProjectUnderground();
+                    AddProjectUnderground.ShowDialog();
+                }
+
+                AddDocuments(intEmployeeID);
+                expAddDocuments.IsEnabled = true;
+
+                TheMessagesClass.InformationMessage("Project Has Been Entered");
+
+                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(MainWindow.gintProjectID);
+
+                MainWindow.gintTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
+
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectStatusDate(MainWindow.gintTransactionID, DateTime.Now);
+
+                ResetControls();
+
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Outage Project // expProcess_Expanded " + Ex.ToString());
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Add Outage Project // expProcess_Expanded " + Ex.ToString());
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }            
+        }
+        private void AddDocuments(int intEmployeeID)
+        {
+            //setting local variables
+            string strDocumentPath;
+            bool blnFatalError = false;
+            DateTime datTransactionDate = DateTime.Now;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.Multiselect = true;
+                dlg.FileName = "Document"; // Default file name
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    intNumberOfRecords = dlg.FileNames.Length - 1;
+
+                    if (intNumberOfRecords > -1)
+                    {
+                        for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            strDocumentPath = dlg.FileNames[intCounter].ToUpper();
+
+                            blnFatalError = TheProductionProjectClass.InsertProductionProjectDocumentation(MainWindow.gintProjectID, intEmployeeID, DateTime.Now, strDocumentPath);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                TheMessagesClass.InformationMessage("The Documents have been Added");
+
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Add Project // Add Documents Method " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Add Project // Add Documents Method " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

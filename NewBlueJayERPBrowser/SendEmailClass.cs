@@ -136,7 +136,7 @@ namespace NewBlueJayERPBrowser
             string strMessage;
             bool blnFatalError = false;
             string strHeader = "Event Log Entry";
-            string strEmailAddress = "bjc-it@bluejaycommunications.com";
+            string strEmailAddress = "itadmin@bluejaycommunications.com";
 
             try
             {

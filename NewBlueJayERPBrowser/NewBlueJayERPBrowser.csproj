@@ -194,6 +194,9 @@
     <Compile Include="EditEmployeePunches.xaml.cs">
       <DependentUpon>EditEmployeePunches.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditOutageProject.xaml.cs">
+      <DependentUpon>EditOutageProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditProject.xaml.cs">
       <DependentUpon>EditProject.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SelectOutageProject.xaml.cs">
+      <DependentUpon>SelectOutageProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
     <Compile Include="ViewProjectDocumentation.xaml.cs">
@@ -299,6 +305,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditOutageProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -342,6 +352,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PleaseWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectOutageProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

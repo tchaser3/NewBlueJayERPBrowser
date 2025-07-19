@@ -138,7 +138,7 @@
                             <Expander x:Name="expAddOutageProjectStatus" Header="Add Outage Project Status" Expanded="expAddOutageProjectStatus_Expanded" />
                             <Expander x:Name="expAddOutageProductivity" Header="Add Outage Productivity" Expanded="expAddOutageProductivity_Expanded" />
                             <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
-                            <Expander x:Name="expEditOutageProject" Header="Edit Outage Project" />
+                            <Expander x:Name="expEditOutageProject" Header="Edit Outage Project" Expanded="expEditOutageProject_Expanded" />
                             <Expander x:Name="expEditProject" Header="Edit Project" Expanded="expEditProject_Expanded" />                            
                             <Expander x:Name="expProjectMangementSheet" Header="Project Management Sheet" />
                             <Expander x:Name="expSubmitAfterHoursReport" Header="Submit After Hours Report" />
