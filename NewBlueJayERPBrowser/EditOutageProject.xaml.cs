@@ -531,5 +531,12 @@ namespace NewBlueJayERPBrowser
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
+
+        private void expProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProductivity.IsExpanded = false;
+            EnterProductivity EnterProductivity = new EnterProductivity();
+            EnterProductivity.ShowDialog();
+        }
     }
 }

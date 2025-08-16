@@ -56,8 +56,17 @@
     <Reference Include="DesignProjectsDLL">
       <HintPath>..\..\Blue Jay Class Library\DesignProjectsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="EmployeeCrewAssignmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\EmployeeCrewAssignmentDLL.dll</HintPath>
+    </Reference>
     <Reference Include="EmployeeDateEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\EmployeeDateEntryDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="EmployeeLaborRateDLL">
+      <HintPath>..\..\Blue Jay Class Library\EmployeeLaborRateDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="EmployeeProjectAssignmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\EmployeeProjectAssignmentDLL.dll</HintPath>
     </Reference>
     <Reference Include="EmployeePunchedHoursDLL">
       <HintPath>..\..\Blue Jay Class Library\EmployeePunchedHoursDLL.dll</HintPath>
@@ -115,6 +124,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -130,6 +141,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WorkOrderDLL">
       <HintPath>..\..\Blue Jay Class Library\WorkOrderDLL.dll</HintPath>
     </Reference>
@@ -209,10 +221,19 @@
     <Compile Include="EditProjectUnderground.xaml.cs">
       <DependentUpon>EditProjectUnderground.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditSelectedProject.xaml.cs">
+      <DependentUpon>EditSelectedProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeAfterHourWorkReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EnterProductivity.xaml.cs">
+      <DependentUpon>EnterProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExistingEmployees.xaml.cs">
+      <DependentUpon>ExistingEmployees.xaml</DependentUpon>
     </Compile>
     <Compile Include="FleetIOVehicleImportDataSet.cs">
       <DependentUpon>FleetIOVehicleImportDataSet.xsd</DependentUpon>
@@ -233,18 +254,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="OfficeInfoDashboard.xaml.cs">
+      <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenProjectDashboard.xaml.cs">
+      <DependentUpon>OpenProjectDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManagementPage.xaml.cs">
+      <DependentUpon>ProjectManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManagementProjectsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectManagementProjectsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ProjectPOSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectWorkCompletedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SelectOutageProject.xaml.cs">
       <DependentUpon>SelectOutageProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
+    <Compile Include="ViewProductivity.xaml.cs">
+      <DependentUpon>ViewProductivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewProjectDocumentation.xaml.cs">
       <DependentUpon>ViewProjectDocumentation.xaml</DependentUpon>
     </Compile>
@@ -325,6 +368,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditSelectedProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnterProductivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExistingEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -351,11 +406,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OfficeInfoDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenProjectDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PleaseWait.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SelectOutageProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewProductivity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -437,6 +508,17 @@
     <None Include="NoRecordDataSet.xss">
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ProjectManagementProjectsDataSet.xsc">
+      <DependentUpon>ProjectManagementProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectManagementProjectsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectManagementProjectsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectManagementProjectsDataSet.xss">
+      <DependentUpon>ProjectManagementProjectsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ProjectPOSDataSet.xsc">
       <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
     </None>
@@ -447,6 +529,17 @@
     </None>
     <None Include="ProjectPOSDataSet.xss">
       <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectWorkCompletedDataSet.xsc">
+      <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectWorkCompletedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectWorkCompletedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectWorkCompletedDataSet.xss">
+      <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -5,9 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NewBlueJayERPBrowser"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEmployee">
-
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="AddEmployee" Loaded="Page_Loaded">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -15,6 +14,57 @@
                 <GradientStop Color="LightBlue" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="lblTesting" Content="Testing" FontSize="72" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image x:Name="imgLogo" Source="logo.png" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Label x:Name="lblTitle" Content="Add Employee" FontSize="20"  HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="8" Background="LightBlue" Width="200">
+            <Expander x:Name="expCreateNewEmployee" Header="Add Employee" FontSize="16" Margin="10,1,1,1" Expanded="expCreateNewEmployee_Expanded" />
+            <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,1,1,1" Expanded="expResetWindow_Expanded" />            
+        </StackPanel>
+        <Label x:Name="lblEmployeeID" Grid.Row="1" Grid.Column="1" Content="Employee ID" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox x:Name="txtEmployeeID" Grid.Row="1" Grid.Column="2" IsReadOnly="True" Background="LightGray" FontSize="16" CharacterCasing="Upper" TabIndex="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="10,0,0,0" />
+        <Label x:Name="lblFirstName" Grid.Row="2" Grid.Column="1" Content="First Name" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox x:Name="txtFirstName" Grid.Row="2" Grid.Column="2" FontSize="16" CharacterCasing="Upper" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175"  Margin="10,0,0,0" />
+        <Label x:Name="lblLastName" Grid.Row="3" Grid.Column="1" Content="Last Name" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox x:Name="txtLastName" FontSize="16" Grid.Row="3" Grid.Column="2" CharacterCasing="Upper" TabIndex="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="10,0,0,0" />
+        <Label x:Name="lblPhoneNumber" Content="Phone Number" Grid.Row="4" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Margin="0,0,10,0"/>
+        <TextBox x:Name="txtPhoneNumber" Grid.Row="4" Grid.Column="2" FontSize="16" CharacterCasing="Upper" TabIndex="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="10,0,0,0" />
+        <Label x:Name="lblEmail" Content="Email" FontSize="16" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox x:Name="txtEmail" FontSize="16" Grid.Row="5" Grid.Column="2" CharacterCasing="Upper" TabIndex="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="10,0,0,0" TextWrapping="Wrap"/>
+        <Label x:Name="lblPayID" Content="Pay ID" Grid.Row="6" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox x:Name="txtPayID" FontSize="16" Grid.Row="6" Grid.Column="2" CharacterCasing="Upper" TabIndex="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="10,0,0,0" />
+        <Label x:Name="lblSelectGroup" Grid.Row="1" Grid.Column="3" Content="Select Group" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <ComboBox x:Name="cboSelectGroup" Grid.Row="1" Grid.Column="4" FontSize="16" IsReadOnly="True" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="5,1,1,1" SelectionChanged="cboSelectGroup_SelectionChanged"  />
+        <Label x:Name="lblHomeOffice" Content="Home Office" Grid.Row="2" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <ComboBox x:Name="cboHomeOffice" FontSize="16" Grid.Row="2" Grid.Column="4" IsReadOnly="True" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="5,1,1,1" SelectionChanged="cboHomeOffice_SelectionChanged" />
+        <Label x:Name="lblSelectType" Content="Select Type" Grid.Row="3" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <ComboBox x:Name="cboSelectType" FontSize="16" IsReadOnly="True" Grid.Row="3" Grid.Column="4" TabIndex="8" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="5,1,1,1" SelectionChanged="cboSelectType_SelectionChanged" />
+        <Label x:Name="lblSalaryType" Content="Salary Type" Grid.Row="4" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <ComboBox x:Name="cboSalaryType" FontSize="16" Grid.Row="4" Grid.Column="4" IsReadOnly="True" TabIndex="9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="5,1,1,1" SelectionChanged="cboSalaryType_SelectionChanged" />
+        <Label x:Name="lblDepartment" Content="Department" Grid.Row="5" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0" />
+        <ComboBox x:Name="cboDepartment" FontSize="16" Grid.Row="5" Grid.Column="4" IsReadOnly="True" TabIndex="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="5,1,1,1" SelectionChanged="cboDepartment_SelectionChanged" />
+        <Label x:Name="lblManager" Content="Manager" Grid.Row="6" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+        <ComboBox x:Name="cboManager" FontSize="16" Grid.Row="6" Grid.Column="4" IsReadOnly="True" TabIndex="11" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="175" Margin="5,1,1,1" SelectionChanged="cboManager_SelectionChanged" />
+        <Button x:Name="btnProcess" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Content="Process" FontSize="20" HorizontalAlignment="Center" TabIndex="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="55" Width="150"  Click="btnProcess_Click"/>
     </Grid>
 </Page>

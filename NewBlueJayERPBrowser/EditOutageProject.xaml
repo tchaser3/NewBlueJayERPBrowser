@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         mc:Ignorable="d"
-        Title="EditOutageProject" Height="1000" Width="1200" Loaded="Window_Loaded">
+        Title="EditOutageProject" Height="800" Width="1200" Loaded="Window_Loaded">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -30,14 +30,13 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />            
             <RowDefinition Height="200" />
             <RowDefinition Height="200" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4">
-            <Label x:Name="lblTitle" Content="Edit Outage Project" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="100"/>
+            <Label x:Name="lblTitle" Content="Edit Selected Project" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="100"/>
         </StackPanel>
         <Rectangle x:Name="stpSideBar" Grid.Column="0" Grid.Row="1" Grid.RowSpan="9">
             <Rectangle.Fill>
@@ -55,32 +54,33 @@
             <Expander x:Name="expViewDocuments" Header="View Documents" FontSize="16" Expanded="expViewDocuments_Expanded" />
             <Expander x:Name="expEditECDDate" Header="Edit ECD Date" FontSize="16" Expanded="expEditECDDate_Expanded" />
             <Expander x:Name="expEditProjectInfo" Header="Edit Project Info" FontSize="16" Expanded="expEditProjectInfo_Expanded" />
+            <Expander x:Name="expProductivity" Header="Productivity" FontSize="16" Expanded="expProductivity_Expanded" /> 
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Expanded="expCloseWindow_Expanded" />
         </StackPanel>        
-        <Label x:Name="lblProjectID" Content="Project ID" Grid.Row="2" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtProjectID" CharacterCasing="Upper" FontSize="16" Grid.Row="2" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
-        <Label x:Name="lblCustomerProjectID" Content="Customer Project ID" Grid.Row="2" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtCustomerProjectID" CharacterCasing="Upper" FontSize="16" Grid.Row="2" Grid.Column="4" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
-        <Label x:Name="lblBlueJayID" Content="Blue Jay ID" Grid.Row="3" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtBlueJayID" CharacterCasing="Upper" FontSize="16" Grid.Row="3" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
-        <Label x:Name="lblAssignedOffice" Content="Assigned Office" Grid.Row="4" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <ComboBox x:Name="cboAssignedOffice" FontSize="16" Grid.Row="4" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190" SelectionChanged="cboAssignedOffice_SelectionChanged" />
-        <Label x:Name="lblProjectName" Content="Project Name" Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtProjectName" CharacterCasing="Upper" FontSize="16" Grid.Row="3" Grid.Column="4" Grid.RowSpan="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="95" Width="190" TextWrapping="Wrap"/>
-        <Label x:Name="lblDepartment" Content="Department" Grid.Row="5" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtDepartment" CharacterCasing="Upper" FontSize="16" Grid.Row="5" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
-        <Label x:Name="lblProjectStatus" Content="Project Status" Grid.Row="6" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <ComboBox x:Name="cboProjectStatus" FontSize="16" Grid.Row="6" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190" SelectionChanged="cboProjectStatus_SelectionChanged" />
-        <Label x:Name="lblBusinessAddress" Content="Business Address" Grid.Row="5" Grid.Column="3" Grid.RowSpan="2" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtBusinessAddress" CharacterCasing="Upper" FontSize="16" Grid.Row="5" Grid.Column="4" Grid.RowSpan="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="95" Width="190" TextWrapping="Wrap"/>
-        <Label x:Name="lblDateReceived" Content="DateReceived" Grid.Row="7" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtDateReceived" CharacterCasing="Upper" FontSize="16" Grid.Row="7" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
-        <Label x:Name="lblECDDate" Content="ECD Date" Grid.Row="7" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtECDDate" CharacterCasing="Upper" FontSize="16" Grid.Row="7" Grid.Column="4" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
-        <Label x:Name="lblCurrentNotes" Content="Current Notes" Grid.Row="8" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtCurrentNotes" CharacterCasing="Upper" FontSize="16" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="195" Width="590" TextWrapping="Wrap"/>
-        <Label x:Name="lblEnterNewNotes" Content="Enter New Notes" Grid.Row="9" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
-        <TextBox x:Name="txtEnterNewNotes" CharacterCasing="Upper" FontSize="16" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="195" Width="590" TextWrapping="Wrap"/>
+        <Label x:Name="lblProjectID" Content="Project ID" Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtProjectID" CharacterCasing="Upper" FontSize="16" Grid.Row="1" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
+        <Label x:Name="lblCustomerProjectID" Content="Customer Project ID" Grid.Row="1" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtCustomerProjectID" CharacterCasing="Upper" FontSize="16" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
+        <Label x:Name="lblBlueJayID" Content="Blue Jay ID" Grid.Row="2" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtBlueJayID" CharacterCasing="Upper" FontSize="16" Grid.Row="2" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
+        <Label x:Name="lblAssignedOffice" Content="Assigned Office" Grid.Row="3" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <ComboBox x:Name="cboAssignedOffice" FontSize="16" Grid.Row="3" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190" SelectionChanged="cboAssignedOffice_SelectionChanged" />
+        <Label x:Name="lblProjectName" Content="Project Name" Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtProjectName" CharacterCasing="Upper" FontSize="16" Grid.Row="2" Grid.Column="4" Grid.RowSpan="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="95" Width="190" TextWrapping="Wrap"/>
+        <Label x:Name="lblDepartment" Content="Department" Grid.Row="4" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtDepartment" CharacterCasing="Upper" FontSize="16" Grid.Row="4" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
+        <Label x:Name="lblProjectStatus" Content="Project Status" Grid.Row="5" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <ComboBox x:Name="cboProjectStatus" FontSize="16" Grid.Row="5" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190" SelectionChanged="cboProjectStatus_SelectionChanged" />
+        <Label x:Name="lblBusinessAddress" Content="Business Address" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtBusinessAddress" CharacterCasing="Upper" FontSize="16" Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="95" Width="190" TextWrapping="Wrap"/>
+        <Label x:Name="lblDateReceived" Content="DateReceived" Grid.Row="6" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtDateReceived" CharacterCasing="Upper" FontSize="16" Grid.Row="6" Grid.Column="2" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
+        <Label x:Name="lblECDDate" Content="ECD Date" Grid.Row="6" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtECDDate" CharacterCasing="Upper" FontSize="16" Grid.Row="6" Grid.Column="4" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="190"/>
+        <Label x:Name="lblCurrentNotes" Content="Current Notes" Grid.Row="7" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtCurrentNotes" CharacterCasing="Upper" FontSize="16" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="190" Width="590" TextWrapping="Wrap"/>
+        <Label x:Name="lblEnterNewNotes" Content="Enter New Notes" Grid.Row="8" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>
+        <TextBox x:Name="txtEnterNewNotes" CharacterCasing="Upper" FontSize="16" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="190" Width="590" TextWrapping="Wrap"/>
 
     </Grid>
 </Window>

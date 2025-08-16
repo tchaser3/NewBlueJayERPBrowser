@@ -45,6 +45,9 @@ namespace NewBlueJayERPBrowser
         ProjectLastDateDataSet TheProjectLastDateDataSet = new ProjectLastDateDataSet();
         FindProjectMatrixByGreaterDateDataSet TheFindProjectMatrixByGreaterDateDataSet = new FindProjectMatrixByGreaterDateDataSet();
         public static VerifyEmployeeDataSet TheVerifyEmployeeDataSet = new VerifyEmployeeDataSet();
+        public static ProjectWorkCompletedDataSet TheEmployeeWorkCompleteDataSet = new ProjectWorkCompletedDataSet();
+        public static ProjectWorkCompletedDataSet TheProjectWorkCompletedDataSet = new ProjectWorkCompletedDataSet();
+        FindEmployeeByLastNameDataSet TheFindEmployeeByLastNameDataSet = new FindEmployeeByLastNameDataSet();
 
         //Setting up global variables
         public static bool gblnLoggedIn;
@@ -58,6 +61,16 @@ namespace NewBlueJayERPBrowser
         public static string gstrCustomerProjectID;
         public static string gstrAssignedProjectID;
         public static bool gblnOutageProject;
+        public static int gintDepartmentID;
+        public static int gintStatusID;
+        public static int gintOfficeID;
+        public static string gstrLastName;
+        public static string gstrFirstName;
+        public static int gintWorkTaskID;
+        public static string gstrWorkTask;
+        public static DateTime gdatProductionDate;
+        public static string gstrWarehouseName;
+        public static bool gblnKeepNewEmployee;
 
         public MainWindow()
         {
@@ -72,10 +85,35 @@ namespace NewBlueJayERPBrowser
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ResetSecurity();
-            EnableExpanders(false);
-            SendNewProjectReport();
-            gstrUserName = System.Environment.UserName; ;
+            //setting variables
+            int intCounter;
+            int intNumberOfRecords;
+            string strComputerName;
+
+            try
+            {
+                ResetSecurity();
+                EnableExpanders(false);
+                SendNewProjectReport();
+                strComputerName = System.Environment.MachineName;
+                gstrUserName = System.Environment.UserName;
+;
+                CheckEmployee(strComputerName, gstrUserName);
+                //LoginComplete();
+                
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay Project Management Class // Main Window // Window Loaded " + Ex.ToString());
+
+                TheSendEmailClass.SendEventLog("Blue Jay Project Management Class // Main Window // Window Loaded " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+                
+            }
+
+            
+            
         }
         private void EnableExpanders(bool blnExpanderStatus)
         {
@@ -91,6 +129,69 @@ namespace NewBlueJayERPBrowser
             expTrailers.IsEnabled = blnExpanderStatus;
             expVehicles.IsEnabled = blnExpanderStatus;
             expHome.IsEnabled = blnExpanderStatus;
+            expProjectManagement.IsEnabled = blnExpanderStatus;
+            expEmployeeProductivity.IsEnabled = blnExpanderStatus;
+        }
+        private void CheckEmployee(string strComputerName, string strUserName)
+        {
+            string strFirstName;
+            string strLastName;
+            int intCounter;
+            int intNumberOfRecords;
+            string strTempFirstName;
+
+            try
+            {
+
+                strLastName = strUserName.Substring(1).ToUpper();
+                strFirstName = strUserName.Substring(0, 1).ToUpper();
+
+                TheFindEmployeeByLastNameDataSet = TheEmployeeClass.FindEmployeesByLastNameKeyWord(strLastName);
+
+                intNumberOfRecords = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName.Rows.Count;
+
+                if (intNumberOfRecords == 1)
+                {
+                    gintEmployeeID = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[0].EmployeeID;
+                }
+                else if (intNumberOfRecords > 1)
+                {
+                    for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        strTempFirstName = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intCounter].FirstName.Substring(0, 1).ToUpper();
+
+                        if (strTempFirstName == strFirstName)
+                        {
+                            gintEmployeeID = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intCounter].EmployeeID;
+                        }
+                    }
+                }
+
+                MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(gintEmployeeID, strLastName);
+
+                intNumberOfRecords = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
+                if(intNumberOfRecords < 1)
+                {
+                    TheMessagesClass.ErrorMessage("The Employee ID and Last Name Do Not Match");
+                    throw new Exception("The Employee ID and Last Name Do Not Match");
+                }
+                else
+                {
+                    gstrEmployeeGroup = TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup;
+                }
+
+                    TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(gintEmployeeID, strUserName + " " + strComputerName + " New Bluejay ERP Browser");
+                LoginComplete();
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Bluejay ERP Browser // Main Window // Check Employee " + Ex.ToString());
+
+                TheSendEmailClass.SendEventLog("New Bluejay ERP Browser // Main Window // Check Employee " + Ex.ToString());
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
         private void LoginComplete()
         {
@@ -495,84 +596,84 @@ namespace NewBlueJayERPBrowser
             TheMessagesClass.CloseTheProgram();
         }
 
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
-        {
-            //setting local variables
-            string strValueForValidation;
-            string strLastName;
-            bool blnFatalError = false;
-            int intRecordsReturned;
-            string strErrorMessage = "";
+        //private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //setting local variables
+        //    string strValueForValidation;
+        //    string strLastName;
+        //    bool blnFatalError = false;
+        //    int intRecordsReturned;
+        //    string strErrorMessage = "";
 
-            //beginning data validation
-            strValueForValidation = pbxEmployeeID.Password;
-            strLastName = txtLastName.Text;
-            blnFatalError = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
-            if (blnFatalError == true)
-            {
-                strErrorMessage = "The Employee ID is not an Integer\n";
-            }
-            else
-            {
-                gintLoggedInEmployeeID = Convert.ToInt32(strValueForValidation);
-            }
-            if (strLastName == "")
-            {
-                blnFatalError = true;
-                strErrorMessage += "The Last Name Was Not Entered\n";
-            }
-            if (blnFatalError == true)
-            {
-                TheMessagesClass.ErrorMessage(strErrorMessage);
-                return;
-            }
+        //    //beginning data validation
+        //    strValueForValidation = pbxEmployeeID.Password;
+        //    strLastName = txtLastName.Text;
+        //    blnFatalError = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
+        //    if (blnFatalError == true)
+        //    {
+        //        strErrorMessage = "The Employee ID is not an Integer\n";
+        //    }
+        //    else
+        //    {
+        //        gintLoggedInEmployeeID = Convert.ToInt32(strValueForValidation);
+        //    }
+        //    if (strLastName == "")
+        //    {
+        //        blnFatalError = true;
+        //        strErrorMessage += "The Last Name Was Not Entered\n";
+        //    }
+        //    if (blnFatalError == true)
+        //    {
+        //        TheMessagesClass.ErrorMessage(strErrorMessage);
+        //        return;
+        //    }
 
-            //filling the data set
-            MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(gintLoggedInEmployeeID, strLastName);
+        //    //filling the data set
+        //    MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(gintLoggedInEmployeeID, strLastName);
 
-            intRecordsReturned = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
+        //    intRecordsReturned = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
 
-            if (intRecordsReturned == 0)
-            {
-                LogonFailed();
-            }
-            else
-            {
-                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(gintLoggedInEmployeeID, "NEW BLUE JAY ERP BROWSER // USER LOGIN");
+        //    if (intRecordsReturned == 0)
+        //    {
+        //        LogonFailed();
+        //    }
+        //    else
+        //    {
+        //        blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(gintLoggedInEmployeeID, "NEW BLUE JAY ERP BROWSER // USER LOGIN");
 
-                gblnLoggedIn = true;
-                gstrEmployeeGroup = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup;
+        //        gblnLoggedIn = true;
+        //        gstrEmployeeGroup = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup;
                 
-                LoginComplete();
-            }
-        }
-        private void LogonFailed()
-        {
-            string strLogEntry;
+        //        LoginComplete();
+        //    }
+        //}
+        //private void LogonFailed()
+        //{
+        //    string strLogEntry;
 
 
-            gintNoOfMisses++;
+        //    gintNoOfMisses++;
 
-            if (gintNoOfMisses == 3)
-            {
-                strLogEntry = "There Have Been Three Attemps to Sign Into New Blue Jay ERP - Browser System";
+        //    if (gintNoOfMisses == 3)
+        //    {
+        //        strLogEntry = "There Have Been Three Attemps to Sign Into New Blue Jay ERP - Browser System";
 
-                //TheSendEmailClass.SendEventLog(strLogEntry);
+        //        //TheSendEmailClass.SendEventLog(strLogEntry);
 
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, strLogEntry);
+        //        TheEventLogClass.InsertEventLogEntry(DateTime.Now, strLogEntry);
 
-                TheSendEmailClass.SendEventLog(strLogEntry);
+        //        TheSendEmailClass.SendEventLog(strLogEntry);
 
-                TheMessagesClass.ErrorMessage("You Have Tried To Sign In Three Times\nThe Program Will Now Close");
+        //        TheMessagesClass.ErrorMessage("You Have Tried To Sign In Three Times\nThe Program Will Now Close");
 
-                Application.Current.Shutdown();
-            }
-            else
-            {
-                TheMessagesClass.InformationMessage("You Have Failed The Sign In Process");
-                return;
-            }
-        }
+        //        Application.Current.Shutdown();
+        //    }
+        //    else
+        //    {
+        //        TheMessagesClass.InformationMessage("You Have Failed The Sign In Process");
+        //        return;
+        //    }
+        //}
 
         private void expAddNonProductionTask_Expanded(object sender, RoutedEventArgs e)
         {
@@ -758,6 +859,27 @@ namespace NewBlueJayERPBrowser
             expEditProject.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             expProjects.IsExpanded = false;
+        }
+
+        private void expProjectManagement_Expanded(object sender, RoutedEventArgs e)
+        {
+            ProjectManagementPage projectManagementPage = new ProjectManagementPage();
+            fraMainWindow.Navigate(projectManagementPage);
+            expProjectManagement.IsExpanded = false;
+        }
+
+        private void expAddEmployee_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddEmployee addEmployee = new AddEmployee();
+            fraMainWindow.Navigate(addEmployee);
+            expAddEmployee.IsExpanded = false;
+        }
+
+        private void expOpenProjectsDashboard_Expanded(object sender, RoutedEventArgs e)
+        {
+            OpenProjectDashboard openProjectDashboard = new OpenProjectDashboard();
+            fraMainWindow.Navigate(openProjectDashboard);
+            expOpenProjectsDashboard.IsExpanded = false;
         }
     }
 }
