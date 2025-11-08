@@ -676,6 +676,97 @@ namespace NewBlueJayERPBrowser
             }
 
         }
+
+        private void expCreateAfterHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            MainWindow.gstrModule = "AFTERHOURS";
+            expCreateAfterHours.IsExpanded = false;
+            EnterProjectID EnterProjectID = new EnterProjectID();
+            EnterProjectID.ShowDialog();
+        }
+
+        private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
+        {
+            //this will export the dataset to Excel
+            int intRowCounter;
+            int intRowNumberOfRecords;
+            int intColumnCounter;
+            int intColumnNumberOfRecords;
+
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+                worksheet = workbook.ActiveSheet;
+                expExportToExcel.IsExpanded = false;
+
+                worksheet.Name = "OpenOrders";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+                intRowNumberOfRecords = TheProjectManagemenProjectsDataSet.projectmanagementprojects.Rows.Count;
+                intColumnNumberOfRecords = TheProjectManagemenProjectsDataSet.projectmanagementprojects.Columns.Count;
+
+                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheProjectManagemenProjectsDataSet.projectmanagementprojects.Columns[intColumnCounter].ColumnName;
+
+                    cellColumnIndex++;
+                }
+
+                cellRowIndex++;
+                cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
+                {
+                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                    {
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheProjectManagemenProjectsDataSet.projectmanagementprojects.Rows[intRowCounter][intColumnCounter].ToString();
+
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+
+                saveDialog.ShowDialog();
+
+                workbook.SaveAs(saveDialog.FileName);
+                MessageBox.Show("Export Successful");
+
+            }
+            catch (System.Exception ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP Browser // Project Management Sheet // Export To Excel " + ex.ToString());
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP Browser // Project Management Sheet // Export To Excel " + ex.ToString());
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
+            }
+        }
+
+        private void expEnterProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            MainWindow.gstrModule = "ENTER PRODUCTIVITY";
+            EnterProjectID EnterProjectID = new EnterProjectID();
+            EnterProjectID.ShowDialog();
+            expEnterProductivity.IsExpanded = false;
+        }
     }
     
 }

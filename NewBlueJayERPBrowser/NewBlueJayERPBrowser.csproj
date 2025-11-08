@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -104,6 +119,9 @@
     <Reference Include="ProductivityDataEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductivityDataEntryDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProjectCostingDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectCostingDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectMatrixDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectMatrixDLL.dll</HintPath>
     </Reference>
@@ -187,8 +205,21 @@
     <Compile Include="AfterHoursSummaryReport.xaml.cs">
       <DependentUpon>AfterHoursSummaryReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AfterWorkEmployeesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AgedOverdueProjectsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CompareCrews.xaml.cs">
       <DependentUpon>CompareCrews.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAfterHoursReport.xaml.cs">
+      <DependentUpon>CreateAfterHoursReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="CurrentEmployeePunchesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -229,8 +260,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeProjectLaborReport.xaml.cs">
+      <DependentUpon>EmployeeProjectLaborReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesAssignedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EnterProductivity.xaml.cs">
       <DependentUpon>EnterProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnterProjectID.xaml.cs">
+      <DependentUpon>EnterProjectID.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExistingEmployees.xaml.cs">
       <DependentUpon>ExistingEmployees.xaml</DependentUpon>
@@ -260,8 +302,27 @@
     <Compile Include="OpenProjectDashboard.xaml.cs">
       <DependentUpon>OpenProjectDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OverdueProjectDashboard.xaml.cs">
+      <DependentUpon>OverdueProjectDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OverdueProjectReport.xaml.cs">
+      <DependentUpon>OverdueProjectReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OverdueProjectReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintProductivitySheets.xaml.cs">
+      <DependentUpon>PrintProductivitySheets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionTaskForSheetsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductionTaskForSheetsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ProjectManagementPage.xaml.cs">
       <DependentUpon>ProjectManagementPage.xaml</DependentUpon>
@@ -271,10 +332,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectManagementProjectsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectOpenInvoicing.xaml.cs">
+      <DependentUpon>ProjectOpenInvoicing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectPOSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectPOSDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectProductivityReport.xaml.cs">
+      <DependentUpon>ProjectProductivityReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectWorkCompletedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -285,6 +352,19 @@
       <DependentUpon>SelectOutageProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
+    <Compile Include="SubmitAfterHoursWorkDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TopAgedOverdueProjectsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TotalFootages.xaml.cs">
+      <DependentUpon>TotalFootages.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewProductivity.xaml.cs">
       <DependentUpon>ViewProductivity.xaml</DependentUpon>
     </Compile>
@@ -336,6 +416,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateAfterHoursReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditAfterHoursPunch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,7 +456,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EmployeeProjectLaborReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EnterProductivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnterProjectID.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -414,7 +506,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OverdueProjectDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverdueProjectReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PleaseWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintProductivitySheets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -422,7 +526,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectOpenInvoicing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectProductivityReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SelectOutageProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TotalFootages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -453,6 +569,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AfterWorkEmployeesDataSet.xsc">
+      <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AfterWorkEmployeesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AfterWorkEmployeesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AfterWorkEmployeesDataSet.xss">
+      <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AgedOverdueProjectsDataSet.xsc">
+      <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AgedOverdueProjectsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AgedOverdueProjectsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AgedOverdueProjectsDataSet.xss">
+      <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CurrentEmployeePunchesDataSet.xsc">
       <DependentUpon>CurrentEmployeePunchesDataSet.xsd</DependentUpon>
     </None>
@@ -486,6 +624,17 @@
     <None Include="EmployeeAfterHourWorkReportDataSet.xss">
       <DependentUpon>EmployeeAfterHourWorkReportDataSet.xsd</DependentUpon>
     </None>
+    <None Include="EmployeesAssignedDataSet.xsc">
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeesAssignedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeesAssignedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeesAssignedDataSet.xss">
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </None>
     <None Include="FleetIOVehicleImportDataSet.xsc">
       <DependentUpon>FleetIOVehicleImportDataSet.xsd</DependentUpon>
     </None>
@@ -507,6 +656,28 @@
     </None>
     <None Include="NoRecordDataSet.xss">
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OverdueProjectReportDataSet.xsc">
+      <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OverdueProjectReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OverdueProjectReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="OverdueProjectReportDataSet.xss">
+      <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductionTaskForSheetsDataSet.xsc">
+      <DependentUpon>ProductionTaskForSheetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductionTaskForSheetsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductionTaskForSheetsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProductionTaskForSheetsDataSet.xss">
+      <DependentUpon>ProductionTaskForSheetsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectManagementProjectsDataSet.xsc">
       <DependentUpon>ProjectManagementProjectsDataSet.xsd</DependentUpon>
@@ -545,6 +716,28 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SubmitAfterHoursWorkDataSet.xsc">
+      <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SubmitAfterHoursWorkDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SubmitAfterHoursWorkDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SubmitAfterHoursWorkDataSet.xss">
+      <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TopAgedOverdueProjectsDataSet.xsc">
+      <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TopAgedOverdueProjectsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TopAgedOverdueProjectsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TopAgedOverdueProjectsDataSet.xss">
+      <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -554,6 +747,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="blue_jay_icon_CM1_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

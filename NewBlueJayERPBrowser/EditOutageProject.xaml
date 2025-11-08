@@ -54,7 +54,8 @@
             <Expander x:Name="expViewDocuments" Header="View Documents" FontSize="16" Expanded="expViewDocuments_Expanded" />
             <Expander x:Name="expEditECDDate" Header="Edit ECD Date" FontSize="16" Expanded="expEditECDDate_Expanded" />
             <Expander x:Name="expEditProjectInfo" Header="Edit Project Info" FontSize="16" Expanded="expEditProjectInfo_Expanded" />
-            <Expander x:Name="expProductivity" Header="Productivity" FontSize="16" Expanded="expProductivity_Expanded" /> 
+            <Expander x:Name="expProductivity" Header="Productivity" FontSize="16" Expanded="expProductivity_Expanded" />
+            <Expander x:Name="expCreateAfterHours" Header="Create After Hours" FontSize="16" Expanded="expCreateAfterHours_Expanded" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Expanded="expCloseWindow_Expanded" />
         </StackPanel>        
         <Label x:Name="lblProjectID" Content="Project ID" Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="1,1,5,1"/>

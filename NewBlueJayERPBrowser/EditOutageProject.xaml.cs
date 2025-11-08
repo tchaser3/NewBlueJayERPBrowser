@@ -538,5 +538,12 @@ namespace NewBlueJayERPBrowser
             EnterProductivity EnterProductivity = new EnterProductivity();
             EnterProductivity.ShowDialog();
         }
+
+        private void expCreateAfterHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateAfterHours.IsExpanded = false;
+            CreateAfterHoursReport CreateAfterHours = new CreateAfterHoursReport();
+            CreateAfterHours.ShowDialog();
+        }
     }
 }

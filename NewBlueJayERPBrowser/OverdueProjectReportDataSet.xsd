@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OverdueProjectReportDataSet" targetNamespace="http://tempuri.org/OverdueProjectReportDataSet.xsd" xmlns:mstns="http://tempuri.org/OverdueProjectReportDataSet.xsd" xmlns="http://tempuri.org/OverdueProjectReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OverdueProjectReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="OverdueProjectReportDataSet" msprop:Generator_DataSetName="OverdueProjectReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="overdueprojectreport" msprop:Generator_RowEvHandlerName="overdueprojectreportRowChangeEventHandler" msprop:Generator_RowDeletedName="overdueprojectreportRowDeleted" msprop:Generator_RowDeletingName="overdueprojectreportRowDeleting" msprop:Generator_RowEvArgName="overdueprojectreportRowChangeEvent" msprop:Generator_TablePropName="overdueprojectreport" msprop:Generator_RowChangedName="overdueprojectreportRowChanged" msprop:Generator_RowChangingName="overdueprojectreportRowChanging" msprop:Generator_TableClassName="overdueprojectreportDataTable" msprop:Generator_RowClassName="overdueprojectreportRow" msprop:Generator_TableVarName="tableoverdueprojectreport" msprop:Generator_UserTableName="overdueprojectreport">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Customer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_UserColumnName="Customer" type="xs:string" />
+              <xs:element name="CustomerAssignedID" msprop:Generator_ColumnPropNameInRow="CustomerAssignedID" msprop:Generator_ColumnPropNameInTable="CustomerAssignedIDColumn" msprop:Generator_ColumnVarNameInTable="columnCustomerAssignedID" msprop:Generator_UserColumnName="CustomerAssignedID" type="xs:string" />
+              <xs:element name="AssignedProjectID" msprop:Generator_ColumnPropNameInRow="AssignedProjectID" msprop:Generator_ColumnPropNameInTable="AssignedProjectIDColumn" msprop:Generator_ColumnVarNameInTable="columnAssignedProjectID" msprop:Generator_UserColumnName="AssignedProjectID" type="xs:string" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_UserColumnName="ProjectName" type="xs:string" />
+              <xs:element name="DateReceived" msprop:Generator_ColumnPropNameInRow="DateReceived" msprop:Generator_ColumnPropNameInTable="DateReceivedColumn" msprop:Generator_ColumnVarNameInTable="columnDateReceived" msprop:Generator_UserColumnName="DateReceived" type="xs:dateTime" />
+              <xs:element name="ECDDate" msprop:Generator_ColumnPropNameInRow="ECDDate" msprop:Generator_ColumnPropNameInTable="ECDDateColumn" msprop:Generator_ColumnVarNameInTable="columnECDDate" msprop:Generator_UserColumnName="ECDDate" type="xs:dateTime" />
+              <xs:element name="AssignedOffice" msprop:Generator_ColumnPropNameInRow="AssignedOffice" msprop:Generator_ColumnPropNameInTable="AssignedOfficeColumn" msprop:Generator_ColumnVarNameInTable="columnAssignedOffice" msprop:Generator_UserColumnName="AssignedOffice" type="xs:string" />
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

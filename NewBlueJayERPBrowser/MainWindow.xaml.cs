@@ -71,6 +71,10 @@ namespace NewBlueJayERPBrowser
         public static DateTime gdatProductionDate;
         public static string gstrWarehouseName;
         public static bool gblnKeepNewEmployee;
+        public static int gintWarehouseID;
+        public static string gstrModule;
+        public static string gstrVehicleNumber;
+        public static int gintVehicleID;
 
         public MainWindow()
         {
@@ -223,7 +227,7 @@ namespace NewBlueJayERPBrowser
             expEditProject.IsEnabled = true;
             expAddIncentivePayTitle.IsEnabled = true;
             expVerifyIncentivePay.IsEnabled = true;
-            expEmployeeProjectLaborReport.IsExpanded = true;
+            expEmployeeProjectLaborReport.IsEnabled = true;
             expVehicles.IsEnabled = true;
 
         }
@@ -690,8 +694,8 @@ namespace NewBlueJayERPBrowser
             expProjectAdministration.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
-            expJSIReports.IsExpanded = false;
+            //expJSIDataEntry.IsExpanded = false;
+            //expJSIReports.IsExpanded = false;
         }
 
         private void expProjectDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -700,8 +704,8 @@ namespace NewBlueJayERPBrowser
             expProjectAdministration.IsExpanded = false;
             //expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
-            expJSIReports.IsExpanded = false;
+            //expJSIDataEntry.IsExpanded = false;
+            //expJSIReports.IsExpanded = false;
         }
 
         private void expJSIDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -711,7 +715,7 @@ namespace NewBlueJayERPBrowser
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
             //expJSIDataEntry.IsExpanded = false;
-            expJSIReports.IsExpanded = false;
+            //expJSIReports.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -720,7 +724,7 @@ namespace NewBlueJayERPBrowser
             expProjectAdministration.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
+            //expJSIDataEntry.IsExpanded = false;
             //expJSIReports.IsExpanded = false;
         }
 
@@ -730,8 +734,8 @@ namespace NewBlueJayERPBrowser
             expProjectAdministration.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             //expProjectReports.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
-            expJSIReports.IsExpanded = false;
+            //expJSIDataEntry.IsExpanded = false;
+            //expJSIReports.IsExpanded = false;
         }
 
         private void expProjectAdministration_Expanded(object sender, RoutedEventArgs e)
@@ -740,8 +744,8 @@ namespace NewBlueJayERPBrowser
             //expProjectAdministration.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
-            expJSIReports.IsExpanded = false;
+            //expJSIDataEntry.IsExpanded = false;
+            //expJSIReports.IsExpanded = false;
         }
 
         private void expAddNewProject_Expanded(object sender, RoutedEventArgs e)
@@ -880,6 +884,60 @@ namespace NewBlueJayERPBrowser
             OpenProjectDashboard openProjectDashboard = new OpenProjectDashboard();
             fraMainWindow.Navigate(openProjectDashboard);
             expOpenProjectsDashboard.IsExpanded = false;
+        }
+
+        private void expOverDueProjectsDashboard_Expanded(object sender, RoutedEventArgs e)
+        {
+            OverdueProjectDashboard overdueProjectsDashboard = new OverdueProjectDashboard();
+            fraMainWindow.Navigate(overdueProjectsDashboard);
+            expOverDueProjectsDashboard.IsExpanded = false;
+        }
+
+        private void expCreateProductivitySheets_Expanded(object sender, RoutedEventArgs e)
+        {
+            PrintProductivitySheets printProductivitySheets = new PrintProductivitySheets();
+            fraMainWindow.Navigate(printProductivitySheets);
+            expCreateProductivitySheets.IsExpanded = false;
+        }
+
+        private void expEmployeeProjectLaborReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            EmployeeProjectLaborReport employeeProjectLaborReport = new EmployeeProjectLaborReport();
+            fraMainWindow.Navigate(employeeProjectLaborReport);
+            expEmployeeProjectLaborReport.IsExpanded = false;
+        }
+
+        private void expOverdueProjectReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            OverdueProjectReport overdueProjectReport = new OverdueProjectReport();
+            fraMainWindow.Navigate(overdueProjectReport);
+            expOverdueProjectReport.IsExpanded = false;
+        }
+
+        private void expFootagesReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            TotalFootages totalFootages = new TotalFootages();
+            fraMainWindow.Navigate(totalFootages);
+            expFootagesReport.IsExpanded = false;
+        }
+
+        private void expInvoiceReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ProjectOpenInvoicing projectOpenInvoicing = new ProjectOpenInvoicing();
+            fraMainWindow.Navigate(projectOpenInvoicing);
+            expInvoiceReport.IsExpanded = false;
+        }
+
+        private void expProductivityCostingReport_Expanded(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void expProductivityReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProductivityReport.IsExpanded = false;
+            ProjectProductivityReport projectProductivityReport = new ProjectProductivityReport();
+            fraMainWindow.Navigate(projectProductivityReport);
         }
     }
 }

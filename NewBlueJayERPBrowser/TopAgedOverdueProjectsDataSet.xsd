@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TopAgedOverdueProjectsDataSet" targetNamespace="http://tempuri.org/TopAgedOverdueProjectsDataSet.xsd" xmlns:mstns="http://tempuri.org/TopAgedOverdueProjectsDataSet.xsd" xmlns="http://tempuri.org/TopAgedOverdueProjectsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TopAgedOverdueProjectsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="TopAgedOverdueProjectsDataSet" msprop:Generator_DataSetName="TopAgedOverdueProjectsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="topagedoverdueprojects" msprop:Generator_RowEvHandlerName="topagedoverdueprojectsRowChangeEventHandler" msprop:Generator_RowDeletedName="topagedoverdueprojectsRowDeleted" msprop:Generator_RowDeletingName="topagedoverdueprojectsRowDeleting" msprop:Generator_RowEvArgName="topagedoverdueprojectsRowChangeEvent" msprop:Generator_TablePropName="topagedoverdueprojects" msprop:Generator_RowChangedName="topagedoverdueprojectsRowChanged" msprop:Generator_RowChangingName="topagedoverdueprojectsRowChanging" msprop:Generator_TableClassName="topagedoverdueprojectsDataTable" msprop:Generator_RowClassName="topagedoverdueprojectsRow" msprop:Generator_TableVarName="tabletopagedoverdueprojects" msprop:Generator_UserTableName="topagedoverdueprojects">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomerAssignedID" msprop:Generator_ColumnPropNameInRow="CustomerAssignedID" msprop:Generator_ColumnPropNameInTable="CustomerAssignedIDColumn" msprop:Generator_ColumnVarNameInTable="columnCustomerAssignedID" msprop:Generator_UserColumnName="CustomerAssignedID" type="xs:string" />
+              <xs:element name="AssignedProjectID" msprop:Generator_ColumnPropNameInRow="AssignedProjectID" msprop:Generator_ColumnPropNameInTable="AssignedProjectIDColumn" msprop:Generator_ColumnVarNameInTable="columnAssignedProjectID" msprop:Generator_UserColumnName="AssignedProjectID" type="xs:string" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_UserColumnName="ProjectName" type="xs:string" />
+              <xs:element name="ECDDate" msprop:Generator_ColumnPropNameInRow="ECDDate" msprop:Generator_ColumnPropNameInTable="ECDDateColumn" msprop:Generator_ColumnVarNameInTable="columnECDDate" msprop:Generator_UserColumnName="ECDDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

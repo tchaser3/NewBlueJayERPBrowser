@@ -4,9 +4,98 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewBlueJayERPBrowser"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="OfficeInfoDashboard" Height="450" Width="800">
+        Title="OfficeInfoDashboard" Height="800" Width="1000" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="1000">
+            <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
+            <Label x:Name="lblTitle" Content="Open Project By Office and Business Line" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="640" Background="LightBlue">
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="630" Width="830" Margin="155,155,9,9">
+            <StackPanel Height="630" Width="415">
+                <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                    <Label x:Name="lblSelectOffice" Content="Select Office" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="50" Width="175"/>
+                    <ComboBox x:Name="cboSelectOffice" IsReadOnly="True" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectOffice_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                    <Label x:Name="lblTotalOpenProjects" Content="Total Open Projects" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" FontSize="16" Width="175"/>
+                    <TextBox x:Name="txtTotalOpenForOffice" FontSize="16" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Height="150" Width="415" >
+                    <DataGrid x:Name="dgrOpenProjects" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="140" Width="405" Margin="1,5,1,1" AlternatingRowBackground="LightBlue" AlternationCount="1" RowBackground="AliceBlue"/>
+                </StackPanel>
+                <StackPanel Height="375" Width="415">
+                    <DataGrid x:Name="dgrOpenProjectsList" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="365" Width="405" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrOpenProjectsList_SelectionChanged"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="630" Width="415">
+                <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                    <Label x:Name="lblSelectBusinessLine" Content="Select Busines Line" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" Width="175" />
+                    <ComboBox x:Name="cboSelectBusinessLine" IsReadOnly="True" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectBusinessLine_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                    <Label x:Name="lblTotalOverdueProjects" Content="Total Overdue Projects" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" Width="175"/>
+                    <TextBox x:Name="txtTotalOverdueProjects" IsReadOnly="True" FontSize="16" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Height="150" Width="415" >
+                    <DataGrid x:Name="dgrOverdueProjects" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="140" Width="405" Margin="1,5,1,1" AlternatingRowBackground="LightBlue" AlternationCount="1" RowBackground="AliceBlue"/>
+                </StackPanel>
+                <StackPanel Height="375" Width="415">
+                    <DataGrid x:Name="dgrOverdueProjectsList" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="365" Width="405" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrOverdueProjectsList_SelectionChanged"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

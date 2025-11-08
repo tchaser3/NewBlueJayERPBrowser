@@ -1,0 +1,37 @@
+﻿<Page x:Class="NewBlueJayERPBrowser.TotalFootages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NewBlueJayERPBrowser"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="TotalFootages" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="imgLogo" Grid.Row="0" Grid.Column="0" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
+        <Label x:Name="lblTitle" Grid.Row="0" Grid.Column="1" Content="Project Total Footage For The Last 180 Days" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <StackPanel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Width="250" Background="LightBlue">
+            <Expander x:Name="expFindTotalPurchaseOrders" Header="Find Total Purchase Orders" FontSize="16" Margin="10,0,0,0" Expanded="expFindTotalPurchaseOrders_Expanded" />
+            <Expander x:Name="expExportToExcel" Header="Export To Excel" FontSize="16" Margin="10,0,0,0" Expanded="expExportToExcel_Expanded" />
+            <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,0,0,0" Expanded="expResetWindow_Expanded" />
+        </StackPanel>
+        <DataGrid x:Name="dgrResults" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" Margin="0,10,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+    </Grid>
+    
+</Page>

@@ -75,8 +75,9 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" Background="LightBlue">
-            <Expander x:Name="expExportToExcel" Header="Export To Excel" FontSize="16" Margin="10,0,0,0" />
-            <Expander x:Name="expResetPage" Header="Reset Page" FontSize="16" Margin="10,0,0,0"/>
+            <Expander x:Name="expCreateAfterHours" Header="Create After Hours" FontSize="16" Margin="10,0,0,0" Expanded="expCreateAfterHours_Expanded"/>
+            <Expander x:Name="expEnterProductivity" Header="Enter Productivity" FontSize="16" Margin="10,0,0,0" Expanded="expEnterProductivity_Expanded" /> 
+            <Expander x:Name="expExportToExcel" Header="Export To Excel" FontSize="16" Margin="10,0,0,0" Expanded="expExportToExcel_Expanded" />
         </StackPanel>
         <Label x:Name="lblTitle" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="25" >
             <TextBlock TextWrapping="Wrap" Text="Project Management Sheet"/>

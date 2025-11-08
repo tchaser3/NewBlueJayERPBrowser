@@ -111,6 +111,7 @@ namespace NewBlueJayERPBrowser
             cboProjectStatus.SelectedIndex = 0;
             txtCurrentNotes.Background = Brushes.White;
             txtCurrentNotes.Foreground = Brushes.Black;
+            SetExpanders(false);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -268,6 +269,7 @@ namespace NewBlueJayERPBrowser
                 gblnECDDateChanged = false;
                 expEditProjectID.IsEnabled = true;
                 expSave.IsEnabled = true;
+                SetExpanders(true);
             }
             catch (Exception Ex)
             {
@@ -548,6 +550,31 @@ namespace NewBlueJayERPBrowser
             EditProjectID EditProjectID = new EditProjectID();
             EditProjectID.ShowDialog();
             txtCustomerProjectID.Text = MainWindow.gstrCustomerProjectID;
+        }
+        private void expProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProductivity.IsExpanded = false;
+            EnterProductivity EnterProductivity = new EnterProductivity();
+            EnterProductivity.ShowDialog();
+        }
+
+        private void expCreateAfterHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateAfterHours.IsExpanded = false;
+            CreateAfterHoursReport CreateAfterHours = new CreateAfterHoursReport();
+            CreateAfterHours.ShowDialog();
+        }
+        private void SetExpanders(bool blnValue)
+        {
+            expAddDocuments.IsEnabled = blnValue;
+            expAddUnderground.IsEnabled = blnValue;
+            expEditECDDate.IsEnabled = blnValue;
+            expEditProjectID.IsEnabled = blnValue;
+            expEditProjectInfo.IsEnabled = blnValue;
+            expProductivity.IsEnabled = blnValue;
+            expCreateAfterHours.IsEnabled = blnValue;
+            expSave.IsEnabled = blnValue;
+            expViewDocuments.IsEnabled = blnValue;
         }
     }
 }

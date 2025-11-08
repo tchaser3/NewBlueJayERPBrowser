@@ -1,0 +1,108 @@
+﻿<Window x:Class="NewBlueJayERPBrowser.CreateAfterHoursReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:NewBlueJayERPBrowser"
+        mc:Ignorable="d"
+        Title="CreateAfterHoursReport" Height="800" Width="1000" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="175" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="175" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" Background="LightBlue">
+            <Expander x:Name="expAddWork" Header="Add Work" FontSize="16" Margin="10,1,1,1" Expanded="expAddWork_Expanded" />
+            <Expander x:Name="expSubmitWork" Header="Submit Work" FontSize="16" Margin="10,1,1,1" Expanded="expSubmitWork_Expanded" />
+            <Expander x:Name="expViewAssignedEmployees" Header="Assigned Employees" FontSize="16" Margin="10,1,1,1" />
+            <Expander x:Name="expResetWindow" Header="ResetWindow" FontSize="16" Margin="10,1,1,1" Expanded="expResetWindow_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+        </StackPanel>
+        <Label x:Name="lblTitle" Content="Create After Hours Report" Grid.Row="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
+        <Image x:Name="imgLogo" Grid.RowSpan="2" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Margin="1,20,1,1"/>
+        <Label x:Name="lblSelectOffice" Content="Select Office" Grid.Row="2" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox x:Name="cboSelectOffice" TabIndex="0" FontSize="16" IsReadOnly="true" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" SelectionChanged="cboSelectOffice_SelectionChanged"/>
+        <Label x:Name="lblSelectDepartment" Content="Select Department" Grid.Row="2" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox x:Name="cboSelectDepartment" TabIndex="1" FontSize="16" IsReadOnly="true" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" SelectionChanged="cboSelectDepartment_SelectionChanged"/>
+        <Label x:Name="lblBuildingAccess" Content="Building Access" Grid.Row="3" Grid.Column="1" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox x:Name="cboBuidlingAccess" TabIndex="2" IsReadOnly="True" FontSize="16" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" SelectionChanged="cboBuidlingAccess_SelectionChanged"/>
+        <Label x:Name="lblEnterLastName" Content="Enter Last Name" Grid.Row="3" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="txtEnterLastName" TabIndex="2" Grid.Row="3" Grid.Column="4" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" TextChanged="txtEnterLastName_TextChanged"/>
+        <Label x:Name="lblSelectEmployee" Content="Select Employee" Grid.Row="4" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox x:Name="cboSelectEmployee" TabIndex="4" IsReadOnly="True" FontSize="16" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" SelectionChanged="cboSelectEmployee_SelectionChanged"/>
+        <Label x:Name="lblEnterVehicleNumber" Content="Enter Vehicle Number" Grid.Row="5" Grid.Column="3" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="txtEnterVehicleNumber" TabIndex="6" Grid.Row="5" Grid.Column="4" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" TextChanged="txtEnterVehicleNumber_TextChanged"/>
+        <Label x:Name="lblEnterWorkLocation" Content="Enter Work Location" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="txtEnterWorkLocation" TabIndex="5" Grid.Row="4" Grid.Column="2" Grid.RowSpan="2" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="140" Width="175" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4">
+            <Label x:Name="lblEnterDate" Content="Enter Date" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="50,1,1,1"/>
+            <TextBox x:Name="txtEnterDate" TabIndex="6" CharacterCasing="Upper" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="125" Margin="10,1,1,1"/>
+            <Label x:Name="lblStartTime" Content="Start Time" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtStartTime" TabIndex="7" CharacterCasing="Upper" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="125" Margin="10,1,1,1"/>
+            <Label x:Name="lblEndETA" Content="End ETA" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1"/>
+            <TextBox x:Name="txtEndETA" TabIndex="8" CharacterCasing="Upper" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="125" Margin="10,1,1,1"/>
+        </StackPanel>
+        <DataGrid x:Name="dgrAssignedEmployees" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" Margin="1,10,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+    </Grid>
+</Window>

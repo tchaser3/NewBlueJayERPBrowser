@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProductionTaskForSheetsDataSet" targetNamespace="http://tempuri.org/ProductionTaskForSheetsDataSet.xsd" xmlns:mstns="http://tempuri.org/ProductionTaskForSheetsDataSet.xsd" xmlns="http://tempuri.org/ProductionTaskForSheetsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProductionTaskForSheetsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="ProductionTaskForSheetsDataSet" msprop:Generator_DataSetName="ProductionTaskForSheetsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="productiontasks" msprop:Generator_RowEvHandlerName="productiontasksRowChangeEventHandler" msprop:Generator_RowDeletedName="productiontasksRowDeleted" msprop:Generator_RowDeletingName="productiontasksRowDeleting" msprop:Generator_RowEvArgName="productiontasksRowChangeEvent" msprop:Generator_TablePropName="productiontasks" msprop:Generator_RowChangedName="productiontasksRowChanged" msprop:Generator_RowChangingName="productiontasksRowChanging" msprop:Generator_TableClassName="productiontasksDataTable" msprop:Generator_RowClassName="productiontasksRow" msprop:Generator_TableVarName="tableproductiontasks" msprop:Generator_UserTableName="productiontasks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="WorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="UseCode" msprop:Generator_ColumnPropNameInRow="UseCode" msprop:Generator_ColumnPropNameInTable="UseCodeColumn" msprop:Generator_ColumnVarNameInTable="columnUseCode" msprop:Generator_UserColumnName="UseCode" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

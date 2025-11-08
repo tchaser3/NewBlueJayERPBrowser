@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AgedOverdueProjectsDataSet" targetNamespace="http://tempuri.org/AgedOverdueProjectsDataSet.xsd" xmlns:mstns="http://tempuri.org/AgedOverdueProjectsDataSet.xsd" xmlns="http://tempuri.org/AgedOverdueProjectsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AgedOverdueProjectsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="AgedOverdueProjectsDataSet" msprop:Generator_DataSetName="AgedOverdueProjectsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="agedoverdueprojects" msprop:Generator_RowEvHandlerName="agedoverdueprojectsRowChangeEventHandler" msprop:Generator_RowDeletedName="agedoverdueprojectsRowDeleted" msprop:Generator_RowDeletingName="agedoverdueprojectsRowDeleting" msprop:Generator_RowEvArgName="agedoverdueprojectsRowChangeEvent" msprop:Generator_TablePropName="agedoverdueprojects" msprop:Generator_RowChangedName="agedoverdueprojectsRowChanged" msprop:Generator_RowChangingName="agedoverdueprojectsRowChanging" msprop:Generator_TableClassName="agedoverdueprojectsDataTable" msprop:Generator_RowClassName="agedoverdueprojectsRow" msprop:Generator_TableVarName="tableagedoverdueprojects" msprop:Generator_UserTableName="agedoverdueprojects">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Office" msprop:Generator_ColumnPropNameInRow="Office" msprop:Generator_ColumnPropNameInTable="OfficeColumn" msprop:Generator_ColumnVarNameInTable="columnOffice" msprop:Generator_UserColumnName="Office" type="xs:string" />
+              <xs:element name="BusinessLine" msprop:Generator_ColumnPropNameInRow="BusinessLine" msprop:Generator_ColumnPropNameInTable="BusinessLineColumn" msprop:Generator_ColumnVarNameInTable="columnBusinessLine" msprop:Generator_UserColumnName="BusinessLine" type="xs:string" />
+              <xs:element name="LessThan30" msprop:Generator_ColumnPropNameInRow="LessThan30" msprop:Generator_ColumnPropNameInTable="LessThan30Column" msprop:Generator_ColumnVarNameInTable="columnLessThan30" msprop:Generator_UserColumnName="LessThan30" type="xs:int" />
+              <xs:element name="Between30and60" msprop:Generator_ColumnPropNameInRow="Between30and60" msprop:Generator_ColumnPropNameInTable="Between30and60Column" msprop:Generator_ColumnVarNameInTable="columnBetween30and60" msprop:Generator_UserColumnName="Between30and60" type="xs:int" />
+              <xs:element name="Over60" msprop:Generator_ColumnPropNameInRow="Over60" msprop:Generator_ColumnPropNameInTable="Over60Column" msprop:Generator_ColumnVarNameInTable="columnOver60" msprop:Generator_UserColumnName="Over60" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

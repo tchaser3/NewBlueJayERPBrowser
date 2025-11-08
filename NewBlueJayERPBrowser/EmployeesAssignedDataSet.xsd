@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeesAssignedDataSet" targetNamespace="http://tempuri.org/EmployeesAssignedDataSet.xsd" xmlns:mstns="http://tempuri.org/EmployeesAssignedDataSet.xsd" xmlns="http://tempuri.org/EmployeesAssignedDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeesAssignedDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="EmployeesAssignedDataSet" msprop:Generator_DataSetName="EmployeesAssignedDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="employeesassigned" msprop:Generator_RowEvHandlerName="employeesassignedRowChangeEventHandler" msprop:Generator_RowDeletedName="employeesassignedRowDeleted" msprop:Generator_RowDeletingName="employeesassignedRowDeleting" msprop:Generator_RowEvArgName="employeesassignedRowChangeEvent" msprop:Generator_TablePropName="employeesassigned" msprop:Generator_RowChangedName="employeesassignedRowChanged" msprop:Generator_RowChangingName="employeesassignedRowChanging" msprop:Generator_TableClassName="employeesassignedDataTable" msprop:Generator_RowClassName="employeesassignedRow" msprop:Generator_TableVarName="tableemployeesassigned" msprop:Generator_UserTableName="employeesassigned">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="WorkDate" msprop:Generator_ColumnPropNameInRow="WorkDate" msprop:Generator_ColumnPropNameInTable="WorkDateColumn" msprop:Generator_ColumnVarNameInTable="columnWorkDate" msprop:Generator_UserColumnName="WorkDate" type="xs:dateTime" />
+              <xs:element name="FirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="ProjectID" msprop:Generator_ColumnPropNameInRow="ProjectID" msprop:Generator_ColumnPropNameInTable="ProjectIDColumn" msprop:Generator_ColumnVarNameInTable="columnProjectID" msprop:Generator_UserColumnName="ProjectID" type="xs:string" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" />
+              <xs:element name="WorkLocation" msprop:Generator_ColumnPropNameInRow="WorkLocation" msprop:Generator_ColumnPropNameInTable="WorkLocationColumn" msprop:Generator_ColumnVarNameInTable="columnWorkLocation" msprop:Generator_UserColumnName="WorkLocation" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:employeesassigned" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

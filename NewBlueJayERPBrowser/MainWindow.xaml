@@ -83,8 +83,8 @@
                 <StackPanel Margin="10,1,1,1">
                     <Expander x:Name="expProjectDashboards" Header="Project Dashboards" FontSize="14" Expanded="expProjectDashboards_Expanded">
                         <StackPanel Margin="10,1,1,1">
-                            <Expander x:Name="expOpenProjectsDashboard" Header="Open Projects Dashboard" Expanded="expOpenProjectsDashboard_Expanded" />
-                            <Expander x:Name="expOverDueProjectsDashboard" Header="Over Due Projects Dashboard" />
+                            <Expander x:Name="expOpenProjectsDashboard" Header="Projects Dashboard" Expanded="expOpenProjectsDashboard_Expanded" />
+                            <Expander x:Name="expOverDueProjectsDashboard" Header="Overdue Projects Information" Expanded="expOverDueProjectsDashboard_Expanded" />
                         </StackPanel>
                     </Expander>
                     <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" FontSize="14" Expanded="expProjectDataEntry_Expanded">
@@ -96,11 +96,9 @@
                             <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
                             <Expander x:Name="expEditOutageProject" Header="Edit Outage Project" Expanded="expEditOutageProject_Expanded" />
                             <Expander x:Name="expEditProject" Header="Edit Project" Expanded="expEditProject_Expanded" />
-                            <Expander x:Name="expProjectMangementSheet" Header="Project Management Sheet" />
-                            <Expander x:Name="expSubmitAfterHoursReport" Header="Submit After Hours Report" />
                         </StackPanel>
                     </Expander>
-                    <Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" FontSize="14" Expanded="expJSIDataEntry_Expanded">
+                    <!--<Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" FontSize="14" Expanded="expJSIDataEntry_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expCreateJSIEntry" Header="Create JSI Entry" />
                         </StackPanel>
@@ -111,19 +109,17 @@
                             <Expander x:Name="expJSIDateReports" Header="JSI Date Reports" />
                             <Expander x:Name="expViewJSIInspection" Header="View JSI Inspection" />
                         </StackPanel>
-                    </Expander>
+                    </Expander>-->
                     <Expander x:Name="expProjectReports" Header="Project Reports" FontSize="14" Expanded="expProjectReports_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expAfterHoursSummaryReport" Header="After Hours Summary Report" FontSize="14" Expanded="expAfterHoursSummaryReport_Expanded" />
-                            <Expander x:Name="expCreateProductivitySheets" Header="Create Productivity Sheets" />
-                            <Expander x:Name="expDepartmentOpenProjectReport" Header="Department Open Project Report" />
-                            <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" />
-                            <Expander x:Name="expOverdueProjectReport" Header="Overdue Project Report" />
-                            <Expander x:Name="expFootagesReport" Header="Footages Report" />
-                            <Expander x:Name="expInvoiceReport" Header="Invoice Report" />
-                            <Expander x:Name="expProductionReport" Header="Production Report" />
-                            <Expander x:Name="expProductivityReport" Header="Productivity Report" />
-                            <Expander x:Name="expProductivityCostingReport" Header="Productivity Costing Report" />
+                            <Expander x:Name="expCreateProductivitySheets" Header="Create Productivity Sheets" Expanded="expCreateProductivitySheets_Expanded" />
+                            <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" Expanded="expEmployeeProjectLaborReport_Expanded" />
+                            <Expander x:Name="expOverdueProjectReport" Header="Overdue Project Report" Expanded="expOverdueProjectReport_Expanded" />
+                            <Expander x:Name="expFootagesReport" Header="Footages or PO Report" Expanded="expFootagesReport_Expanded" />
+                            <Expander x:Name="expInvoiceReport" Header="Invoice Report" Expanded="expInvoiceReport_Expanded" />                            
+                            <Expander x:Name="expProductivityReport" Header="Project Productivity Report" Expanded="expProductivityReport_Expanded" />
+                            <Expander x:Name="expProductivityCostingReport" Header="Productivity Costing Report" Expanded="expProductivityCostingReport_Expanded" />
                             <Expander x:Name="expShopAnalysis" Header="Shop Analysis" />
                             <Expander x:Name="expSortedWorkTaskReport" Header="Sorted Work Task Report" />
                         </StackPanel>
