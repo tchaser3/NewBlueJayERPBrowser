@@ -119,7 +119,6 @@
                             <Expander x:Name="expFootagesReport" Header="Footages or PO Report" Expanded="expFootagesReport_Expanded" />
                             <Expander x:Name="expInvoiceReport" Header="Invoice Report" Expanded="expInvoiceReport_Expanded" />                            
                             <Expander x:Name="expProductivityReport" Header="Project Productivity Report" Expanded="expProductivityReport_Expanded" />
-                            <Expander x:Name="expProductivityCostingReport" Header="Productivity Costing Report" Expanded="expProductivityCostingReport_Expanded" />
                             <Expander x:Name="expShopAnalysis" Header="Shop Analysis" />
                             <Expander x:Name="expSortedWorkTaskReport" Header="Sorted Work Task Report" />
                         </StackPanel>

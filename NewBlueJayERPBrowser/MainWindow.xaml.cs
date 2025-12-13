@@ -919,6 +919,8 @@ namespace NewBlueJayERPBrowser
             TotalFootages totalFootages = new TotalFootages();
             fraMainWindow.Navigate(totalFootages);
             expFootagesReport.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjects.IsExpanded = false;
         }
 
         private void expInvoiceReport_Expanded(object sender, RoutedEventArgs e)
@@ -926,16 +928,15 @@ namespace NewBlueJayERPBrowser
             ProjectOpenInvoicing projectOpenInvoicing = new ProjectOpenInvoicing();
             fraMainWindow.Navigate(projectOpenInvoicing);
             expInvoiceReport.IsExpanded = false;
-        }
-
-        private void expProductivityCostingReport_Expanded(object sender, RoutedEventArgs e)
-        {
-           
+            expProjectReports.IsExpanded = false;
+            expProjects.IsExpanded = false;
         }
 
         private void expProductivityReport_Expanded(object sender, RoutedEventArgs e)
         {
             expProductivityReport.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjects.IsExpanded = false;
             ProjectProductivityReport projectProductivityReport = new ProjectProductivityReport();
             fraMainWindow.Navigate(projectProductivityReport);
         }

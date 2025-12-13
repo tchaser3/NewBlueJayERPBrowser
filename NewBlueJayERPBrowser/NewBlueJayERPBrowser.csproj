@@ -134,6 +134,7 @@
     <Reference Include="ProjectTaskDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectTaskDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="RentalTrackingDLL">
       <HintPath>..\..\Blue Jay Class Library\RentalTrackingDLL.dll</HintPath>
     </Reference>
@@ -142,6 +143,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
