@@ -127,9 +127,9 @@ namespace NewBlueJayERPBrowser
 
             intCurrentStatus = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
 
-            if ((intCurrentStatus == 1002) || (intCurrentStatus == 1003) || (intCurrentStatus == 1004) || (intCurrentStatus == 1006) || (intCurrentStatus == 1011) || (intCurrentStatus == 1012) || (intCurrentStatus == 1013))
+            if ((intCurrentStatus == 1001) || (intCurrentStatus == 1003) || (intCurrentStatus == 1004) || (intCurrentStatus == 1006))
             {
-                TheMessagesClass.ErrorMessage("Project Currently in Either a WAIT, HOLD, CLOSED, or OPEN Status and Needs to be Changed Before Productivity Can Be Added, Please Change the Status Before Continuing");
+                TheMessagesClass.ErrorMessage("Project Currently in Either a HOLD, CLOSED, or OPEN Status and Needs to be Changed Before Productivity Can Be Added, Please Change the Status Before Continuing");
                 Close();
             }
 

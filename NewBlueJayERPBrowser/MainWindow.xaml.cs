@@ -940,5 +940,32 @@ namespace NewBlueJayERPBrowser
             ProjectProductivityReport projectProductivityReport = new ProjectProductivityReport();
             fraMainWindow.Navigate(projectProductivityReport);
         }
+
+        private void expShopAnalysis_Expanded(object sender, RoutedEventArgs e)
+        {
+            expShopAnalysis.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            ProjectShopAnalysis projectShopAnalysis = new ProjectShopAnalysis();
+            fraMainWindow.Navigate(projectShopAnalysis);
+        }
+
+        private void expAddProductionTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddProductionTask.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            AddProductivityWorkTask addProductivityWorkTask = new AddProductivityWorkTask();
+            fraMainWindow.Navigate(addProductivityWorkTask);
+        }
+
+        private void expUpdateServerLog_Expanded(object sender, RoutedEventArgs e)
+        {
+            expUpdateServerLog.IsExpanded = false;
+            expITDateEntry.IsExpanded = false;
+            expITInfo.IsExpanded = false;
+            UpdateServerEventLog updateServerEventLog = new UpdateServerEventLog();
+            fraMainWindow.Navigate(updateServerEventLog);
+        }
     }
 }

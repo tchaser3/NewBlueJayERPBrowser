@@ -80,6 +80,9 @@
     <Reference Include="EmployeeLaborRateDLL">
       <HintPath>..\..\Blue Jay Class Library\EmployeeLaborRateDLL.dll</HintPath>
     </Reference>
+    <Reference Include="EmployeeProductivityStatsDLL">
+      <HintPath>..\..\Blue Jay Class Library\EmployeeProductivityStatsDLL.dll</HintPath>
+    </Reference>
     <Reference Include="EmployeeProjectAssignmentDLL">
       <HintPath>..\..\Blue Jay Class Library\EmployeeProjectAssignmentDLL.dll</HintPath>
     </Reference>
@@ -198,6 +201,9 @@
     <Compile Include="AddOutageProjectStatus.xaml.cs">
       <DependentUpon>AddOutageProjectStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddProductivityWorkTask.xaml.cs">
+      <DependentUpon>AddProductivityWorkTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
@@ -298,6 +304,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="NormalDistributionDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OfficeInfoDashboard.xaml.cs">
       <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
     </Compile>
@@ -345,6 +356,9 @@
     <Compile Include="ProjectProductivityReport.xaml.cs">
       <DependentUpon>ProjectProductivityReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectShopAnalysis.xaml.cs">
+      <DependentUpon>ProjectShopAnalysis.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectWorkCompletedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -354,6 +368,11 @@
       <DependentUpon>SelectOutageProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
+    <Compile Include="ShopViolatorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopViolatorDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SubmitAfterHoursWorkDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -366,6 +385,9 @@
     </Compile>
     <Compile Include="TotalFootages.xaml.cs">
       <DependentUpon>TotalFootages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateServerEventLog.xaml.cs">
+      <DependentUpon>UpdateServerEventLog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewProductivity.xaml.cs">
       <DependentUpon>ViewProductivity.xaml</DependentUpon>
@@ -399,6 +421,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddOutageProjectStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddProductivityWorkTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -536,11 +562,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectShopAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SelectOutageProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TotalFootages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateServerEventLog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -659,6 +693,17 @@
     <None Include="NoRecordDataSet.xss">
       <DependentUpon>NoRecordDataSet.xsd</DependentUpon>
     </None>
+    <None Include="NormalDistributionDataSet.xsc">
+      <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NormalDistributionDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NormalDistributionDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="NormalDistributionDataSet.xss">
+      <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
+    </None>
     <None Include="OverdueProjectReportDataSet.xsc">
       <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
     </None>
@@ -717,6 +762,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ShopViolatorDataSet.xsc">
+      <DependentUpon>ShopViolatorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ShopViolatorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShopViolatorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ShopViolatorDataSet.xss">
+      <DependentUpon>ShopViolatorDataSet.xsd</DependentUpon>
     </None>
     <None Include="SubmitAfterHoursWorkDataSet.xsc">
       <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>

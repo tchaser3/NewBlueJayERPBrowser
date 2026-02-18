@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NormalDistributionDataSet" targetNamespace="http://tempuri.org/NormalDistributionDataSet.xsd" xmlns:mstns="http://tempuri.org/NormalDistributionDataSet.xsd" xmlns="http://tempuri.org/NormalDistributionDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NormalDistributionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="NormalDistributionDataSet" msprop:Generator_DataSetName="NormalDistributionDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="normaldistribution" msprop:Generator_RowEvHandlerName="normaldistributionRowChangeEventHandler" msprop:Generator_RowDeletedName="normaldistributionRowDeleted" msprop:Generator_RowDeletingName="normaldistributionRowDeleting" msprop:Generator_RowEvArgName="normaldistributionRowChangeEvent" msprop:Generator_TablePropName="normaldistribution" msprop:Generator_RowChangedName="normaldistributionRowChanged" msprop:Generator_RowChangingName="normaldistributionRowChanging" msprop:Generator_TableClassName="normaldistributionDataTable" msprop:Generator_RowClassName="normaldistributionRow" msprop:Generator_TableVarName="tablenormaldistribution" msprop:Generator_UserTableName="normaldistribution">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="Hours" msprop:Generator_ColumnPropNameInRow="Hours" msprop:Generator_ColumnPropNameInTable="HoursColumn" msprop:Generator_ColumnVarNameInTable="columnHours" msprop:Generator_UserColumnName="Hours" type="xs:decimal" />
+              <xs:element name="Mean" msprop:Generator_ColumnPropNameInRow="Mean" msprop:Generator_ColumnPropNameInTable="MeanColumn" msprop:Generator_ColumnVarNameInTable="columnMean" msprop:Generator_UserColumnName="Mean" type="xs:decimal" />
+              <xs:element name="StdDev" msprop:Generator_ColumnPropNameInRow="StdDev" msprop:Generator_ColumnPropNameInTable="StdDevColumn" msprop:Generator_ColumnVarNameInTable="columnStdDev" msprop:Generator_UserColumnName="StdDev" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:normaldistribution" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

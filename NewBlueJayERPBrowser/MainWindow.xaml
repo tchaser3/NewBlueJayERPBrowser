@@ -93,7 +93,6 @@
                             <Expander x:Name="expAddOutageProject" Header="Add Outage Project" Expanded="expAddOutageProject_Expanded" />
                             <Expander x:Name="expAddOutageProjectStatus" Header="Add Outage Project Status" Expanded="expAddOutageProjectStatus_Expanded" />
                             <Expander x:Name="expAddOutageProductivity" Header="Add Outage Productivity" Expanded="expAddOutageProductivity_Expanded" />
-                            <Expander x:Name="expAddProjectProductivity" Header="Add Project Productivity" />
                             <Expander x:Name="expEditOutageProject" Header="Edit Outage Project" Expanded="expEditOutageProject_Expanded" />
                             <Expander x:Name="expEditProject" Header="Edit Project" Expanded="expEditProject_Expanded" />
                         </StackPanel>
@@ -119,19 +118,18 @@
                             <Expander x:Name="expFootagesReport" Header="Footages or PO Report" Expanded="expFootagesReport_Expanded" />
                             <Expander x:Name="expInvoiceReport" Header="Invoice Report" Expanded="expInvoiceReport_Expanded" />                            
                             <Expander x:Name="expProductivityReport" Header="Project Productivity Report" Expanded="expProductivityReport_Expanded" />
-                            <Expander x:Name="expShopAnalysis" Header="Shop Analysis" />
-                            <Expander x:Name="expSortedWorkTaskReport" Header="Sorted Work Task Report" />
+                            <Expander x:Name="expShopAnalysis" Header="Shop Analysis" Expanded="expShopAnalysis_Expanded" />
                         </StackPanel>
                     </Expander>
                     <Expander x:Name="expProjectAdministration" Header="Project Administration" FontSize="14" Expanded="expProjectAdministration_Expanded">
                         <StackPanel Margin="10,1,1,1">
                             <Expander x:Name="expAddNonProductionTask" Header="Add Non-ProductionTask" Expanded="expAddNonProductionTask_Expanded" />
-                            <Expander x:Name="expAddProductionTask" Header="Add Production Task" />
-                            <Expander x:Name="expAddWorkTask" Header="Add Work Task" />
+                            <Expander x:Name="expAddProductionTask" Header="Add or Edit Production Task" Expanded="expAddProductionTask_Expanded" />
+                            <!--<Expander x:Name="expAddWorkTask" Header="Add Work Task" />
                             <Expander x:Name="expAddWOVBillingCode" Header="Add WOV Billing Code" />
-                            <Expander x:Name="expAddWOVTasks" Header="Add WOV Task" />
-                            <Expander x:Name="expAssignWorkTasks" Header="Assign Work Tasks" />
-                            <Expander x:Name="expEditWorkTask" Header="Edit Work Task" />
+                            <Expander x:Name="expAddWOVTasks" Header="Add WOV Task" />-->
+                            <!--<Expander x:Name="expAssignWorkTasks" Header="Assign Work Tasks" />
+                            <Expander x:Name="expEditWorkTask" Header="Edit Work Task" />-->
                             <Expander x:Name="expEditWOVBillingCode" Header="Edit WOV Billing Code" />
                             <Expander x:Name="expImportNonProductionTask" Header="Import Non-Production Task" />
                             <Expander x:Name="expRemoveDuplicateProjects" Header="Remove Duplicate Projects" />
@@ -247,9 +245,10 @@
                             <Expander x:Name="expAddSearchTerms" FontSize="14" Header="Add Search Terms" />
                             <Expander x:Name="expCreateProblemType" FontSize="14" Header="Create Problem Type" />
                             <Expander x:Name="expCreateITYHelpDeskTicket" FontSize="14" Header="Create IT Help Desk Ticket" />
-                            <Expander x:Name="expEditSearchTerms" FontSize="14" Header="Edit Search Terms" />
+                            <Expander x:Name="expEditSearchTerms" FontSize="14" Header="Edit Search Terms" />                            
                             <Expander x:Name="expReopenHelpDeskTicket" FontSize="14" Header="Re-Open Help Desk Ticket" />
                             <Expander x:Name="expUpdateHelpDeskTickets" FontSize="14" Header="Update Help Desk Tickets" />
+                            <Expander x:Name="expUpdateServerLog" Header="Update Server Log" FontSize="14" Expanded="expUpdateServerLog_Expanded" />
                         </StackPanel>                        
                     </Expander>
                     <Expander x:Name="expITReports" Header="IT Reports">
