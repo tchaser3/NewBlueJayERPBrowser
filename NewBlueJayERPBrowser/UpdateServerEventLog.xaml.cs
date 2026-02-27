@@ -29,6 +29,7 @@ namespace NewBlueJayERPBrowser
         SendEmailClass sendEmailClass = new SendEmailClass();
 
         FindServerEventLogForReportsEntryDataSet findServerEventLogForReportsEntryDataSet = new FindServerEventLogForReportsEntryDataSet();
+        FindServerEventLogForReportsSpecificDataSet findServerEventLogForReportsSpecificDataSet = new FindServerEventLogForReportsSpecificDataSet();
 
         public UpdateServerEventLog()
         {
@@ -42,6 +43,9 @@ namespace NewBlueJayERPBrowser
         private void ResetControls()
         {
             int intNumberOfRecords;
+
+            PleaseWait pleaseWait = new PleaseWait();
+            pleaseWait.Show();
 
             try
             {
@@ -67,7 +71,9 @@ namespace NewBlueJayERPBrowser
                 sendEmailClass.SendEventLog("New Blue Jay ERP Browser // Update Server Event Log // Page Loaded " + Ex.ToString());
                 wpfMessagesClass.ErrorMessage(Ex.ToString());
             }
-            
+
+            pleaseWait.Close(); 
+
         }
 
         private void expProcess_Expanded(object sender, RoutedEventArgs e)
@@ -79,6 +85,7 @@ namespace NewBlueJayERPBrowser
             string strLogonName;
             string strItemAccessed;
             string strEventNotes;
+            int intRecordCount;
 
             PleaseWait pleaseWait = new PleaseWait();
 
@@ -110,8 +117,17 @@ namespace NewBlueJayERPBrowser
                             strItemAccessed = strNewItems[16];
                         }
 
-                        blnFatalError = eventLogClass.InsertServerEventLogForReports(datTransactionDate, strLogonName, strItemAccessed);
+                        //findServerEventLogForReportsSpecificDataSet = eventLogClass.FindServerEventLogForReportsSpecific(datTransactionDate, strLogonName, strItemAccessed);
 
+                        //intRecordCount = findServerEventLogForReportsSpecificDataSet.FindServerEventLogForReportsSpecific.Rows.Count;
+
+                        //if (intRecordCount == 0)
+                        //{
+                            blnFatalError = eventLogClass.InsertServerEventLogForReports(datTransactionDate, strLogonName, strItemAccessed);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        //}
                     }
                 }
 
