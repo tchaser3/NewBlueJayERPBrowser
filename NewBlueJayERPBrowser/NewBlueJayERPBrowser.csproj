@@ -92,6 +92,9 @@
     <Reference Include="FleetIOVehicleDLL">
       <HintPath>..\..\Blue Jay Class Library\FleetIOVehicleDLL.dll</HintPath>
     </Reference>
+    <Reference Include="HelpDeskDLL">
+      <HintPath>..\..\Blue Jay Class Library\HelpDeskDLL.dll</HintPath>
+    </Reference>
     <Reference Include="IncentivePayDLL">
       <HintPath>..\..\Blue Jay Class Library\IncentivePayDLL.dll</HintPath>
     </Reference>
@@ -112,6 +115,9 @@
     </Reference>
     <Reference Include="OutageProjectDLL">
       <HintPath>..\..\Blue Jay Class Library\OutageProjectDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="PhonesDLL">
+      <HintPath>..\..\Blue Jay Class Library\PhonesDLL.dll</HintPath>
     </Reference>
     <Reference Include="ProductionProjectDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductionProjectDLL.dll</HintPath>
@@ -245,6 +251,9 @@
     <Compile Include="EditEmployeePunches.xaml.cs">
       <DependentUpon>EditEmployeePunches.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditHelpDeskTicket.xaml.cs">
+      <DependentUpon>EditHelpDeskTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditOutageProject.xaml.cs">
       <DependentUpon>EditOutageProject.xaml</DependentUpon>
     </Compile>
@@ -311,6 +320,11 @@
     </Compile>
     <Compile Include="OfficeInfoDashboard.xaml.cs">
       <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenHelpDeskTicketsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="OpenProjectDashboard.xaml.cs">
       <DependentUpon>OpenProjectDashboard.xaml</DependentUpon>
@@ -386,8 +400,14 @@
     <Compile Include="TotalFootages.xaml.cs">
       <DependentUpon>TotalFootages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateHelpDeskTickets.xaml.cs">
+      <DependentUpon>UpdateHelpDeskTickets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateServerEventLog.xaml.cs">
       <DependentUpon>UpdateServerEventLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewHelpDeskAttachments.xaml.cs">
+      <DependentUpon>ViewHelpDeskAttachments.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewProductivity.xaml.cs">
       <DependentUpon>ViewProductivity.xaml</DependentUpon>
@@ -457,6 +477,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditEmployeePunches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditHelpDeskTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -574,7 +598,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpdateHelpDeskTickets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateServerEventLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewHelpDeskAttachments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -703,6 +735,17 @@
     </None>
     <None Include="NormalDistributionDataSet.xss">
       <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OpenHelpDeskTicketsDataSet.xsc">
+      <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OpenHelpDeskTicketsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OpenHelpDeskTicketsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="OpenHelpDeskTicketsDataSet.xss">
+      <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
     </None>
     <None Include="OverdueProjectReportDataSet.xsc">
       <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>

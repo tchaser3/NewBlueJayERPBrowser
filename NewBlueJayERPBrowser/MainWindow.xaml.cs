@@ -75,6 +75,8 @@ namespace NewBlueJayERPBrowser
         public static string gstrModule;
         public static string gstrVehicleNumber;
         public static int gintVehicleID;
+        public static int gintHelpDeskTicketID;
+        public static int gintProblemTypeID;
 
         public MainWindow()
         {
@@ -966,6 +968,15 @@ namespace NewBlueJayERPBrowser
             expITInfo.IsExpanded = false;
             UpdateServerEventLog updateServerEventLog = new UpdateServerEventLog();
             fraMainWindow.Navigate(updateServerEventLog);
+        }
+
+        private void expUpdateHelpDeskTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            expUpdateHelpDeskTickets.IsExpanded = false;
+            expITDateEntry.IsExpanded = false;
+            expITInfo.IsExpanded = false;
+            UpdateHelpDeskTickets updateHelpDeskTickets = new UpdateHelpDeskTickets();
+            fraMainWindow.Navigate(updateHelpDeskTickets);
         }
     }
 }

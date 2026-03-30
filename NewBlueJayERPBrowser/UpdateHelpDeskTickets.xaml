@@ -1,12 +1,12 @@
-﻿<Page x:Class="NewBlueJayERPBrowser.UpdateServerEventLog"
+﻿<Page x:Class="NewBlueJayERPBrowser.UpdateHelpDeskTickets"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NewBlueJayERPBrowser"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1000" 
-      Title="UpdateServerEventLog" Loaded="Page_Loaded" >
+      d:DesignHeight="1000" d:DesignWidth="1200"
+      Title="UpdateHelpDeskTickets" Loaded="Page_Loaded">
     <Page.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#358AB1" />
@@ -56,22 +56,31 @@
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
-            <RowDefinition Height="325" />
-            <RowDefinition Height="325" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="390" />
-            <ColumnDefinition Width="390" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Image x:Name="imgLogo" Grid.Row="0" Grid.Column="0" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
-        <Label x:Name="lblTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="View And Update Missing Security Log Entries" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" />
-        <StackPanel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Width="200" Background="LightBlue">
-            <Expander x:Name="expProcess" Header="Process" FontSize="16" Margin="10,0,0,0" Expanded="expProcess_Expanded" />
+        <Label x:Name="lblTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" Content="Open Help Desk Tickets" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" />
+        <StackPanel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Grid.RowSpan="10" Width="200" Background="LightBlue">
+            <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,0,0,0" Expanded="expResetWindow_Expanded" />
         </StackPanel>
-        <DataGrid x:Name="dgrResults" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="5" HorizontalAlignment="Center" VerticalAlignment="Top" AutoGenerateColumns="True" IsReadOnly="True" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" />
-
+        <Label x:Name="lblSelectTicket" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" Content="Select Ticket" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" />
+        <DataGrid x:Name="dgrOpenTickets" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="10" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center"  Margin="1,5,1,1" Width="1400" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrOpenTickets_SelectionChanged"/>
     </Grid>
 </Page>
