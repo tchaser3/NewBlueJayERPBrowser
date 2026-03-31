@@ -978,5 +978,15 @@ namespace NewBlueJayERPBrowser
             UpdateHelpDeskTickets updateHelpDeskTickets = new UpdateHelpDeskTickets();
             fraMainWindow.Navigate(updateHelpDeskTickets);
         }
+
+
+        private void expCreateITHelpDeskTicket_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateITHelpDeskTicket.IsExpanded = false;
+            expITDateEntry.IsExpanded = false;
+            expITInfo.IsExpanded = false;
+            CreateITHelpDeskTicket createITHelpDeskTicket = new CreateITHelpDeskTicket();
+            fraMainWindow.Navigate(createITHelpDeskTicket);
+        }
     }
 }

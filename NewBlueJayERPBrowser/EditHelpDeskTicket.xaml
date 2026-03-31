@@ -73,6 +73,10 @@
                         <Label x:Name="lblProblemType" Content="Problem Type" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150"/>
                         <ComboBox x:Name="cboProblemType" IsReadOnly="True" FontSize="16" TabIndex="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="200" Margin="10,1,1,1" SelectionChanged="cboProblemType_SelectionChanged" />
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="130" Width="415">
+                        <Label x:Name="lblReportedProblem" Content="Reported Problem" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="125" Width="150"/>
+                        <TextBox x:Name="txtReportedProblem" IsReadOnly="True" Background="LightGray" FontSize="16" CharacterCasing="Upper" TabIndex="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="130" Width="200" Margin="10,1,1,1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="40" Width="415">
                         <Label x:Name="lblUserName" Content="User Name" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150"/>
                         <TextBox x:Name="txtUserName" FontSize="16" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="200" Margin="10,1,1,1"/>
@@ -85,6 +89,10 @@
                         <Label x:Name="lblExtension" Content="Extension" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150"/>
                         <TextBox x:Name="txtExtension" FontSize="16" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="200" Margin="10,1,1,1"/>
                     </StackPanel>
+                    
+                    
+                </StackPanel>
+                <StackPanel Height="290" Width="415" >
                     <StackPanel Orientation="Horizontal" Height="40" Width="415">
                         <Label x:Name="lblChangeAssignment" Content="Change Assignment" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150"/>
                         <ComboBox x:Name="cboSelectEmployee" IsReadOnly="True" FontSize="16" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectEmployee_SelectionChanged" />
@@ -93,12 +101,9 @@
                         <Label x:Name="lblTicketStatus" Content="Ticket Status" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="150"/>
                         <ComboBox x:Name="cboTicketStatus" IsReadOnly="True" FontSize="16" TabIndex="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="200" Margin="10,1,1,1" SelectionChanged="cboTicketStatus_SelectionChanged" />
                     </StackPanel>
-                    
-                </StackPanel>
-                <StackPanel Height="290" Width="415" >
-                    <StackPanel Orientation="Horizontal" Height="180" Width="415">
-                        <Label x:Name="lblCurrentUpdte" Content="Current Updates" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="170" Width="125"/>
-                        <TextBox x:Name="txtCurrentUpdte" FontSize="16" CharacterCasing="Upper" TabIndex="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="170" Width="250" Margin="10,1,1,1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto"/>
+                    <StackPanel Orientation="Horizontal" Height="140" Width="415">
+                        <Label x:Name="lblCurrentUpdte" Content="Current Updates" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="135" Width="125"/>
+                        <TextBox x:Name="txtCurrentUpdte" FontSize="16" CharacterCasing="Upper" TabIndex="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="135" Width="250" Margin="10,1,1,1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="75" Width="415">
                         <Button x:Name="btnViewDocuments" Content="View Documents" TabIndex="3" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="65" Width="175" Margin="20,1,1,1" Click="btnViewDocuments_Click" />

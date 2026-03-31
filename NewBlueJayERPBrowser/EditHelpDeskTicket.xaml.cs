@@ -90,7 +90,8 @@ namespace NewBlueJayERPBrowser
                 gstrUserEmailAddress = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress.ToLower();
                 txtUserName.Text = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName + " " + TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].LastName;
                 txtComputerName.Text = TheFindHelpDeskTicketInfomationByTicketIDDataSet.FindHelpDeskTicketInformationByTickeID[0].ComputerName;
-                if(!(TheFindHelpDeskTicketInfomationByTicketIDDataSet.FindHelpDeskTicketInformationByTickeID[0].IsExtensionNull()))
+                txtReportedProblem.Text = TheFindHelpDeskTicketInfomationByTicketIDDataSet.FindHelpDeskTicketInformationByTickeID[0].ReportedProblem;
+                if (!(TheFindHelpDeskTicketInfomationByTicketIDDataSet.FindHelpDeskTicketInformationByTickeID[0].IsExtensionNull()))
                 {
                     txtExtension.Text = Convert.ToString(TheFindHelpDeskTicketInfomationByTicketIDDataSet.FindHelpDeskTicketInformationByTickeID[0].Extension);
                 }

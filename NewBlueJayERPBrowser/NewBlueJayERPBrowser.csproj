@@ -235,6 +235,9 @@
     <Compile Include="CreateAfterHoursReport.xaml.cs">
       <DependentUpon>CreateAfterHoursReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateITHelpDeskTicket.xaml.cs">
+      <DependentUpon>CreateITHelpDeskTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentEmployeePunchesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -465,6 +468,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateAfterHoursReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateITHelpDeskTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
